@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Do E-Scooters Really Cost?</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="pic/fav.ico"/>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="fullwindow">
+    <div id="preloadanimation"></div>
+    <div id="fullbackground"></div>
+
+    <nav class="window">
+        <div id="title">How Much Do E-Scooters Really Cost?</div>
+
+        <div id="icons">
+            <div id="question" class="icon">
+                <text translate="no">?</text>
+            </div>
+
+            <div id="information" class="icon">
+                <text translate="no">i</text>
+            </div>
+
+            <div id="reset" class="icon">
+                <img src="pic/reset.svg" height="30px">
+            </div>
+        </div>
+    </nav>
+
+    <article>
+        <div id="chartbutton">
+            <div id="dotbutton" class="window buttonradius button">
+                <img src="pic/dot.svg" height="25">
+                <text class="buttontext">Overview</text>
+            </div>
+
+            <div id="barbutton" class="window buttonradius button">
+                <img src="pic/bar.svg" height="25">
+                <text class="buttontext">Analysis</text>
+            </div>
+
+            <div id="chartbuttonshadow" class="buttonradius shadow"></div>
+        </div>
+
+        <div id="chartwindow">
+            <div id="dotwindow" class="window"></div>
+
+            <div id="barwindow" class="window">
+                <div id="spendingchartarea"></div>
+			    <div id="emissionchartarea"></div>
+                <div id="nobarchart"></div>
+            </div>
+            
+            <div id="chartwindowshadow" class="window shadow"></div>
+        </div>
+    </article>
+
+    <aside>
+        <div id="sidebutton">
+            <div id="searchbutton" class="window buttonradius">
+                <img src="pic/search.svg" id="searchicon" height="28px">
+                <input type="text" id="searchbar" class="buttontext" placeholder="Search">
+            </div>
+
+            <div id="custombutton" class="window buttonradius button">
+                <text class="buttontext">Customize</text>
+            </div>
+
+            <div id="custombuttonshadow" class="buttonradius shadow"></div>
+        </div>
+
+        <div id="sidewindow">
+            <div id="dotside" class="window">
+
+                <div id="checkedlisth1"></div>
+                <div id="checkedlist"></div>
+
+                <h1>Types</h1>
+                <ul>
+                    <li id="Phase6">
+                        <div id="phasesixdot" class="legenddot"></div>
+                        <text>Phase 6 Gas. Scooter</text>
+                    </li>
+                    <li id="Phase7">
+                        <div id="phasesevendot" class="legenddot"></div>
+                        <text>Phase 7 Gas. Scooter</text>
+                    </li>
+                    <li id="SwapS">
+                        <div id="swappingescooterdot" class="legenddot"></div>
+                        <text>Batt. Swap. E-Scooter</text>
+                    </li>
+                    <li id="ChargeS">
+                        <div id="chargingescooterdot" class="legenddot"></div>
+                        <text>Batt. Charge. E-Scooter</text>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="barside" class="window">
+
+                <div id="checkedlisth12"></div>
+                <div id="checkedlist2"></div>
+
+                <h1>Costs</h1>
+                <ul>
+                    <li>
+                        <div id="taxdot" class="legenddot"></div>
+                        <text>Basic Tax and Insurance</text>
+                    </li>
+                    <li>
+                        <div id="maintaindot" class="legenddot"></div>
+                        <text>Mantenance</text>
+                    </li>
+                    <li>
+                        <div id="fueldot" class="legenddot"></div>
+                        <text>Fuel and Electricity</text>
+                    </li>
+                    <li>
+                        <div id="owndot" class="legenddot"></div>
+                        <text>Acquisition and Depreciation</text>
+                    </li>
+                </ul>
+
+                <h1>Emissions</h1>
+                <ul>
+                    <li>
+                        <div id="bodymakedot" class="legenddot"></div>
+                        <text>Vehicle Production</text>
+                    </li>
+                    <li>
+                        <div id="batterymakedot" class="legenddot"></div>
+                        <text>Battery Production</text>
+                    </li>
+                    <li>
+                        <div id="fuelmakedot" class="legenddot"></div>
+                        <text>Fuel Production</text>
+                    </li>
+                    <li>
+                        <div id="fuelburndot" class="legenddot"></div>
+                        <text>Fuel Usage</text>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="searchside" class="window">
+                <img src="pic/close.svg" height="20px" id="searchclose" class="icon closeicon">
+
+                <h1>Scooters</h1>
+
+                <div id="searchinside"></div>
+            </div>
+
+            <div id="customside" class="window">
+                <img src="pic/close.svg" height="20px" id="customclose" class="icon closeicon">
+
+                <h1>Energy Price</h1>
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Gasoline&thinsp;:</h2>
+                    <h2><span id="92priceout"></span>NT$/L</h2></div><br>
+                    <input type="range" min="10" max="40" value=27.2 class="slider" id="92pricein" step="0.1">
+                </div>
+    
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Electricity&thinsp;:</h2>
+                    <h2><span id="electricpriceout"></span>NT$/kWh</h2></div><br>
+                    <input type="range" min="0" max="5" value="2.7" class="slider" id="electricpricein" step="0.1">
+                </div>
+
+                <h1>Usage Condition</h1>
+			    <div class="slidecontainer">
+                    <div class="textcontainer"><h2>City</h2>
+                    
+                    <select id="selectcity">
+                        <option value="None" selected>None</option>
+                        <option value="Keelung City">Keelung City</option>
+                        <option value="New Taipei City">New Taipei City</option>
+                        <option value="Taipei City">Taipei City</option>
+                        <option value="Taoyuan City">Taoyuan City</option>
+                        <option value="Hsinchu County">Hsinchu County</option>
+                        <option value="Hsinchu City">Hsinchu City</option>
+                        <option value="Miaoli County">Miaoli County</option>
+                        <option value="Taichung City">Taichung City</option>
+                        <option value="Changhua City">Changhua City</option>
+                        <option value="Nantou City">Nantou City</option>
+                        <option value="Yunlin County">Yunlin County</option>
+                        <option value="Chiayi County">Chiayi County</option>
+                        <option value="Chiayi City">Chiayi City</option>
+                        <option value="Tainan City">Tainan City</option>
+                        <option value="Kaohsiung City">Kaohsiung City</option>
+                        <option value="Pingtung City">Pingtung City</option>
+                        <option value="Yilan City">Yilan City</option>
+                        <option value="Hualien City">Hualien City</option>
+                        <option value="Taitung City">Taitung City</option>
+                        <option value="Kinmen County">Kinmen County</option>
+                        <option value="Penghu County">Penghu County</option>
+                        <option value="Lienchiang County">Lienchiang County</option>
+                    </select></div>
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Subsidy&thinsp;:</h2></div>
+                    <ul>
+                        <li>
+                            <h3>P. 7 GAS Scooter&thinsp;:</h3><h3><span id="gasmotorsubsidy"></span>NT$</h3>
+                        </li>
+                        <li>
+                            <h3>ELEC Scooter&thinsp;:</h3><h3><span id="evmotorsubsidy"></span>NT$</h3>
+                        </li>
+                        <!-- <li>
+                            <h3>ELEC Scooter&thinsp;:</h3><h3><span id="greenevsubsidy"></span>NT$</h3>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Driving Distance&thinsp;:</h2>
+                    <h2><span id="yearkmout"></span>km/year</h2></div><br>
+                    <input type="range" min="100" max="12000" value="5000" class="slider" id="yearkmin" step="100">				
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Ownership&thinsp;:</h2>
+                    <h2><span id="ownyearout"></span>years</h2></div><br>
+                    <input type="range" min="1" max="20" value="10" class="slider" id="ownyearin" step="1">
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Depreciation Rate&thinsp;:</h2>
+                    <h2><span id="depreciationout"></span>%</h2></div><br>
+                    <input type="range" min="0" max="0.40" value="0.25" class="slider" id="depreciationin" step="0.01">
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Discount Rate&thinsp;:</h2>
+                    <h2><span id="discountout"></span>%</h2></div><br>
+                    <input type="range" min="0" max="0.20" value="0.06" class="slider" id="discountin" step="0.01">
+                </div>
+
+                <select><text>X-Axis</text>
+                    <option>Vehicle Price</option>
+                    <option>Fuel Price</option>
+                    <option selected>TCO(per month)</option>
+                    <option>TCO(per year)</option>
+                </select>
+
+                <select><text>Y-Axis</text>
+                    <option>Vehicle Production Emissions</option>
+                    <option>Fuel Production Emissions</option>
+                    <option selected>GHG Emissions(per km)</option>
+                    <option>GHG Emissions(per month)</option>
+                </select>
+            </div>
+
+            <div id="informationside" class="window">
+Lorem ipsum dolor sit amet, consect
+            </div>
+
+            <div id="sidewindowshadow" class="window shadow"></div>
+        </div>
+    </aside>
+    
+</body>
+
+<!-- d3js -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<!-- data -->
+<script type="text/javascript" src="js/data.js"></script>
+<!--js-->
+<script type="text/javascript" src="js/index.js"></script>
+
+
+</html>
