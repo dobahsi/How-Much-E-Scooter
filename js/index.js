@@ -999,6 +999,8 @@ function updateSelectedDot(){
 	tempArea.selectAll('circle')
 		.data(checkedData)
 		.join('circle')
+		.transition()
+        .duration(500)
 		.attr('r', 9)
 		.attr('fill', '#F5DF4D');
 
@@ -1019,7 +1021,7 @@ function updateSelectedDot(){
 	});
 };
 
-barbutton.click();
+
 
 //barchart
 var barWinWidth = dotwindow.clientWidth*0.45;
@@ -1239,5 +1241,3 @@ function updatebar(){
 updatebar();
 
 window.addEventListener('mouseup', e => {setTimeout(updatebar,10)});
-
-console.log(Phase7.length, Phase6.length, SwapM.length, SwapS.length, ChargeM.length, ChargeS.length)
