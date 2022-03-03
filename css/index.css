@@ -11,7 +11,8 @@
 }
 
 :root{
-    --windowColor: #F9F7F7;
+    --windowColor: #FFFFFF;
+    /* --windowColor: #F9F7F7; */
     --light: #DBE2EF;
     --subLight: #3F72AF;
     --dark: #112D4E;
@@ -119,6 +120,9 @@ nav{
     top: 3vh;
     box-shadow: 10px 10px var(--dark);
 
+    animation-duration: 2s;
+	animation-name: popup1;
+
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -198,12 +202,18 @@ article{
 #dotbutton{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+
+    animation-duration: 2.5s;
+	animation-name: popup2-1;
 }
 
 #barbutton{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     z-index: 1;
+
+    animation-duration: 2.5s;
+	animation-name: popup2;
 }
 
 /* chartwindow */
@@ -216,6 +226,11 @@ article{
     width: 100%;
     height: calc(86vh - 110px);
     padding: 10px;
+}
+
+#dotwindow{
+    animation-duration: 2.5s;
+	animation-name: popup2;
 }
 
 #barwindow{
@@ -258,6 +273,9 @@ aside{
     left: 0;
     box-shadow: 10px 10px var(--dark);
 
+    animation-duration: 3s;
+	animation-name: popup3;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -285,6 +303,9 @@ aside{
     height: 50px;
     right: 0;
 
+    animation-duration: 3s;
+	animation-name: popup3;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -301,6 +322,11 @@ aside{
     height: calc(86vh - 110px);
     padding: 10px 30px;
     overflow: auto;
+}
+
+#dotside{
+    animation-duration: 3s;
+	animation-name: popup3;
 }
 
 .closeicon{
@@ -491,7 +517,6 @@ input[type=checkbox]:checked + .checkcircle{
 select{
 	float: right;
 	font-size: 12px;
-	color: var(--blue);
 	height: 27px;
 	width: 50%;
 	background-color: var(--windowColor);
@@ -516,6 +541,10 @@ select:focus{
     justify-content: space-between;
 }
 /* informationside */
+#informationside{
+    /* text-align: justify; */
+    font-size: 0.8em;
+}
 
 
 
@@ -531,6 +560,10 @@ select:focus{
 	border: 1.5px solid var(--dark);
 	border-radius: 20px;
 	z-index: 9999;
+}
+
+sub{
+    font-size: initial;
 }
 
 .shadow{
@@ -594,5 +627,62 @@ select:focus{
 	}
 	100%{
 		opacity: 0;
+	}
+}
+
+@keyframes popup1{
+	0%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	100%{
+		transform: translate(0px,0px);
+		box-shadow: 10px 10px var(--dark);
+	}
+}
+
+@keyframes popup2{
+	0%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	20%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	100%{
+		transform: translate(0px,0px);
+		box-shadow: 10px 10px var(--dark);
+	}
+}
+
+@keyframes popup2-1{
+	0%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	20%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	100%{
+		transform: translate(6px,6px);
+		box-shadow: 4px 4px var(--dark);
+	}
+}
+
+
+@keyframes popup3{
+	0%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	33.3%{
+		transform: translate(10px,10px);
+		box-shadow: 0px 0px var(--dark);
+	}
+	100%{
+		transform: translate(0px,0px);
+		box-shadow: 10px 10px var(--dark);
 	}
 }

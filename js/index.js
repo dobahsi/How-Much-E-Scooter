@@ -19,7 +19,7 @@ const fullbackground = document.getElementById("fullbackground");
 setTimeout(function preloadanimation(){
 	d3.select('#preloadanimation')
     .style('display', 'none');
-},10);
+},1500);
 
 // button
 dotbutton.classList.add("press");
@@ -257,14 +257,16 @@ dotchart.append('g')
 dotchart.append('text')
     .attr('x', winWidth/2-110)
     .attr('y', winHeight-30)
+	.attr('fill', '#112D4E')
     .style('font-size', '0.8em')
     .text('Total Cost of Ownership (NT$/month)');
 dotchart.append('text')
     .attr('transform', 'rotate(-90)')
     .attr('x', -winHeight/2-110)
     .attr('y', 20)
+	.attr('fill', '#112D4E')
     .style('font-size', '0.8em')
-    .text('Greenhouse Gas Emissions (gCO2eq/km)');
+    .text('Greenhouse Gas Emissions (gCO₂eq/km)');
 
 var selectedDotArea = dotchart.append('g');
 
@@ -281,7 +283,7 @@ function dotHover(d,i){
         namediv.transition()
             .style('display', 'block');
  
-        namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+', '+i.emission)
+        namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+' NT$, '+i.emission+' gCO<sub>2</sub>')
             .style('left', d.x+20 + 'px')
             .style('top', d.y+20 + 'px');
 };
@@ -329,7 +331,7 @@ function selectedDotHover(d,i){
 	namediv.transition()
 		.style('display', 'block');
 
-	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+', '+i.emission)
+	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+' NT$, '+i.emission+' gCO<sub>2</sub>')
 		.style('left', d.x+20 + 'px')
 		.style('top', d.y+20 + 'px');
 };
@@ -1048,10 +1050,10 @@ var spendingyScale = d3.scaleLinear()
     .domain([0,d3.max(checkedData, d => d.spending*1)*1.1])
     .range([winHeight-70, 10]);
 var spendingxAxis = spendingchart.append('g')
-    .attr('transform', 'translate(0, ' + (winHeight-70) + ')')
+    .attr('transform', 'translate(10, ' + (winHeight-70) + ')')
     .call(d3.axisBottom(barxScaleNum));
 var spendingyAxis = spendingchart.append('g')
-    .attr('transform', 'translate(40,0)')
+    .attr('transform', 'translate(50,0)')
     .call(d3.axisLeft(spendingyScale));
 var spendingBarArea = spendingchart.append('g');
 var spendingDomain = ['own','fuel','maintain','tax'];
@@ -1059,6 +1061,14 @@ var spendingBarColor = d3.scaleOrdinal()
     .domain(spendingDomain)
     .range(['#325b8c','#3F72AF','#658ebf','#8baacf']);
 var spendingStacked = [];
+
+spendingBarArea.append('text')
+	.attr('transform', 'rotate(-90)')
+	.attr('x', -winHeight/2-100)
+	.attr('y', 20)
+	.attr('fill', '#112D4E')
+    .style('font-size', '0.8em')
+    .text('Total Cost of Ownership (NT$/month)');
 
 //emission
 var emissionyScale = d3.scaleLinear()
@@ -1127,13 +1137,13 @@ function emissionHover(d,i){
     var thisvalue = i[1]-i[0];//g6 kolombo150 nice100 racings150
     thisvalue = thisvalue.toFixed(2);
     if(thisvalue == (i.data.fuelburn*1).toFixed(2)){
-        bardiv.html('<h2>Fuel Usage</h2><br>'+i.data.fuelburn+' gCO2/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Fuel Usage</h2><br>'+i.data.fuelburn+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.fuelmakefinal*1).toFixed(2)){
-        bardiv.html('<h2>Fuel Production</h2><br>'+i.data.fuelmakefinal+' gCO2/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Fuel Production</h2><br>'+i.data.fuelmakefinal+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.battery*1).toFixed(2)){
-        bardiv.html('<h2>Battery Production</h2><br>'+i.data.battery+' gCO2/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Battery Production</h2><br>'+i.data.battery+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.body*1).toFixed(2)){
-        bardiv.html('<h2>Vehicle Production</h2><br>'+i.data.body+' gCO2/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Vehicle Production</h2><br>'+i.data.body+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     };
 };
 function emissionMove(d,i){
