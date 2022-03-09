@@ -564,9 +564,14 @@ function updatedot(){
 
         //total
         Phase6[i].spending = Phase6[i].tax*1+Phase6[i].maintain*1+Phase6[i].fuel*1+Phase6[i].own*1;
+		Phase6[i].spendingperkm = Phase6[i].spending/input[0].monthkm;
         Phase6[i].spending = Phase6[i].spending.toFixed(0);
+		Phase6[i].spendingperkm = Phase6[i].spendingperkm.toFixed(0);
+
         Phase6[i].emission = Phase6[i].fuelburn*1+Phase6[i].fuelmakefinal*1+Phase6[i].battery*1+Phase6[i].body*1;
+		Phase6[i].emissionpermonth = Phase6[i].emission*input[0].monthkm/1000;
         Phase6[i].emission = Phase6[i].emission.toFixed(2);
+		Phase6[i].emissionpermonth = Phase6[i].emissionpermonth.toFixed(2);
     };
 
 	//phase7
@@ -592,9 +597,14 @@ function updatedot(){
 
         //total
         Phase7[i].spending = Phase7[i].tax*1+Phase7[i].maintain*1+Phase7[i].fuel*1+Phase7[i].own*1;
+		Phase7[i].spendingperkm = Phase7[i].spending/input[0].monthkm;
         Phase7[i].spending = Phase7[i].spending.toFixed(0);
+		Phase7[i].spendingperkm = Phase7[i].spendingperkm.toFixed(0);
+
         Phase7[i].emission = Phase7[i].fuelburn*1+Phase7[i].fuelmakefinal*1+Phase7[i].battery*1+Phase7[i].body*1;
+		Phase7[i].emissionpermonth = Phase7[i].emission*input[0].monthkm/1000;
         Phase7[i].emission = Phase7[i].emission.toFixed(2);
+		Phase7[i].emissionpermonth = Phase7[i].emissionpermonth.toFixed(2);
     };
 
 	//SwapM
@@ -679,9 +689,14 @@ function updatedot(){
 
         //total
         SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
+		SwapM[i].spendingperkm = SwapM[i].spending/input[0].monthkm;
         SwapM[i].spending = SwapM[i].spending.toFixed(0);	
+		SwapM[i].spendingperkm = SwapM[i].spendingperkm.toFixed(0);
+
         SwapM[i].emission = SwapM[i].fuelburn*1+SwapM[i].fuelmakefinal*1+SwapM[i].battery*1+SwapM[i].body*1;
+		SwapM[i].emissionpermonth = SwapM[i].emission*input[0].monthkm/1000;
         SwapM[i].emission = SwapM[i].emission.toFixed(2);
+		SwapM[i].emissionpermonth = SwapM[i].emissionpermonth.toFixed(2);	
 	};
 
 	//ChargeM
@@ -738,10 +753,15 @@ function updatedot(){
         ChargeM[i].fuelmakefinal = ChargeM[i].fuelmakefinal.toFixed(2);
 
         //total
-        ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
+		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
+		ChargeM[i].spendingperkm = ChargeM[i].spending/input[0].monthkm;
         ChargeM[i].spending = ChargeM[i].spending.toFixed(0);	
+		ChargeM[i].spendingperkm = ChargeM[i].spendingperkm.toFixed(0);
+
         ChargeM[i].emission = ChargeM[i].fuelburn*1+ChargeM[i].fuelmakefinal*1+ChargeM[i].battery*1+ChargeM[i].body*1;
+		ChargeM[i].emissionpermonth = ChargeM[i].emission*input[0].monthkm/1000;
         ChargeM[i].emission = ChargeM[i].emission.toFixed(2);
+		ChargeM[i].emissionpermonth = ChargeM[i].emissionpermonth.toFixed(2);	
 	};
 
 	//SwapS
@@ -816,9 +836,14 @@ function updatedot(){
         SwapS[i].fuelmakefinal = SwapS[i].fuelmakefinal.toFixed(2);
         //total
         SwapS[i].spending = SwapS[i].tax*1+SwapS[i].maintain*1+SwapS[i].fuel*1+SwapS[i].own*1;
+		SwapS[i].spendingperkm = SwapS[i].spending/input[0].monthkm;
         SwapS[i].spending = SwapS[i].spending.toFixed(0);	
+		SwapS[i].spendingperkm = SwapS[i].spendingperkm.toFixed(0);
+
         SwapS[i].emission = SwapS[i].fuelburn*1+SwapS[i].fuelmakefinal*1+SwapS[i].battery*1+SwapS[i].body*1;
+		SwapS[i].emissionpermonth = SwapS[i].emission*input[0].monthkm/1000;
         SwapS[i].emission = SwapS[i].emission.toFixed(2);
+		SwapS[i].emissionpermonth = SwapS[i].emissionpermonth.toFixed(2);	
 	};
 
 	//ChargeS
@@ -862,11 +887,17 @@ function updatedot(){
 
         ChargeS[i].fuelmakefinal = ChargeS[i].fuelmake*1 + ChargeS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
         ChargeS[i].fuelmakefinal = ChargeS[i].fuelmakefinal.toFixed(2);
+
         //total
         ChargeS[i].spending = ChargeS[i].tax*1+ChargeS[i].maintain*1+ChargeS[i].fuel*1+ChargeS[i].own*1;
+		ChargeS[i].spendingperkm = ChargeS[i].spending/input[0].monthkm;
         ChargeS[i].spending = ChargeS[i].spending.toFixed(0);	
+		ChargeS[i].spendingperkm = ChargeS[i].spendingperkm.toFixed(0);
+
         ChargeS[i].emission = ChargeS[i].fuelburn*1+ChargeS[i].fuelmakefinal*1+ChargeS[i].battery*1+ChargeS[i].body*1;
+		ChargeS[i].emissionpermonth = ChargeS[i].emission*input[0].monthkm/1000;
         ChargeS[i].emission = ChargeS[i].emission.toFixed(2);
+		ChargeS[i].emissionpermonth = ChargeS[i].emissionpermonth.toFixed(2);	
 	};
 
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);

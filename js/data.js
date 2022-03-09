@@ -262,6 +262,8 @@ var Phase6 = [
         "body": "6.45",
         "spending": "22071",
         "emission": "84.47",
+        "spendingperkm": "52.97",
+        "emissionpermonth": "35.20",
         "salvage": "2000"
     },
     {
@@ -283,6 +285,8 @@ var Phase6 = [
         "body": "5.95",
         "spending": "20953",
         "emission": "79.69",
+        "spendingperkm": "50.29",
+        "emissionpermonth": "33.20",
         "salvage": "2000"
     },
     {
@@ -304,6 +308,8 @@ var Phase6 = [
         "body": "5.75",
         "spending": "21027",
         "emission": "67.72",
+        "spendingperkm": "50.47",
+        "emissionpermonth": "28.21",
         "salvage": "2000"
     },
     {
@@ -325,6 +331,8 @@ var Phase6 = [
         "body": "5.45",
         "spending": "19283",
         "emission": "62.90",
+        "spendingperkm": "46.28",
+        "emissionpermonth": "26.21",
         "salvage": "2000"
     },
     {
@@ -346,6 +354,8 @@ var Phase6 = [
         "body": "5.15",
         "spending": "19736",
         "emission": "65.02",
+        "spendingperkm": "47.37",
+        "emissionpermonth": "27.09",
         "salvage": "2000"
     },
     {
@@ -367,6 +377,8 @@ var Phase6 = [
         "body": "5.75",
         "spending": "20194",
         "emission": "70.81",
+        "spendingperkm": "48.47",
+        "emissionpermonth": "29.50",
         "salvage": "2000"
     },
     {
@@ -388,6 +400,8 @@ var Phase6 = [
         "body": "5.50",
         "spending": "20119",
         "emission": "67.26",
+        "spendingperkm": "48.29",
+        "emissionpermonth": "28.02",
         "salvage": "2000"
     },
     {
@@ -409,6 +423,8 @@ var Phase6 = [
         "body": "6.10",
         "spending": "19874",
         "emission": "74.19",
+        "spendingperkm": "47.70",
+        "emissionpermonth": "30.91",
         "salvage": "2000"
     },
     {
@@ -430,6 +446,8 @@ var Phase6 = [
         "body": "6.50",
         "spending": "20997",
         "emission": "75.91",
+        "spendingperkm": "50.39",
+        "emissionpermonth": "31.63",
         "salvage": "2000"
     },
     {
@@ -451,6 +469,8 @@ var Phase6 = [
         "body": "6.20",
         "spending": "22116",
         "emission": "72.20",
+        "spendingperkm": "53.08",
+        "emissionpermonth": "30.08",
         "salvage": "2000"
     },
     {
@@ -472,6 +492,8 @@ var Phase6 = [
         "body": "5.45",
         "spending": "19477",
         "emission": "73.95",
+        "spendingperkm": "46.74",
+        "emissionpermonth": "30.81",
         "salvage": "2000"
     },
     {
@@ -493,6 +515,8 @@ var Phase6 = [
         "body": "5.70",
         "spending": "19846",
         "emission": "65.16",
+        "spendingperkm": "47.63",
+        "emissionpermonth": "27.15",
         "salvage": "2000"
     },
     {
@@ -514,6 +538,8 @@ var Phase6 = [
         "body": "5.90",
         "spending": "19819",
         "emission": "72.64",
+        "spendingperkm": "47.57",
+        "emissionpermonth": "30.27",
         "salvage": "2000"
     },
     {
@@ -535,6 +561,8 @@ var Phase6 = [
         "body": "4.95",
         "spending": "20036",
         "emission": "58.76",
+        "spendingperkm": "48.09",
+        "emissionpermonth": "24.49",
         "salvage": "2000"
     },
     {
@@ -556,6 +584,8 @@ var Phase6 = [
         "body": "4.95",
         "spending": "19664",
         "emission": "61.84",
+        "spendingperkm": "47.19",
+        "emissionpermonth": "25.77",
         "salvage": "2000"
     },
     {
@@ -577,6 +607,8 @@ var Phase6 = [
         "body": "5.05",
         "spending": "19515",
         "emission": "69.29",
+        "spendingperkm": "46.84",
+        "emissionpermonth": "28.87",
         "salvage": "2000"
     },
     {
@@ -598,6 +630,8 @@ var Phase6 = [
         "body": "4.98",
         "spending": "18706",
         "emission": "63.75",
+        "spendingperkm": "44.89",
+        "emissionpermonth": "26.56",
         "salvage": "2000"
     },
     {
@@ -619,6 +653,8 @@ var Phase6 = [
         "body": "6.30",
         "spending": "20205",
         "emission": "71.10",
+        "spendingperkm": "48.49",
+        "emissionpermonth": "29.63",
         "salvage": "2000"
     },
     {
@@ -640,6 +676,8 @@ var Phase6 = [
         "body": "5.55",
         "spending": "20969",
         "emission": "67.52",
+        "spendingperkm": "50.33",
+        "emissionpermonth": "28.13",
         "salvage": "2000"
     },
     {
@@ -661,6 +699,8 @@ var Phase6 = [
         "body": "5.75",
         "spending": "21096",
         "emission": "70.26",
+        "spendingperkm": "50.63",
+        "emissionpermonth": "29.28",
         "salvage": "2000"
     },
     {
@@ -682,6 +722,8 @@ var Phase6 = [
         "body": "6.55",
         "spending": "20233",
         "emission": "76.63",
+        "spendingperkm": "48.56",
+        "emissionpermonth": "31.93",
         "salvage": "2000"
     },
     {
@@ -703,6 +745,8 @@ var Phase6 = [
         "body": "5.75",
         "spending": "21425",
         "emission": "78.81",
+        "spendingperkm": "51.42",
+        "emissionpermonth": "32.84",
         "salvage": "2000"
     },
     {
@@ -724,6 +768,8 @@ var Phase6 = [
         "body": "6.40",
         "spending": "22153",
         "emission": "78.79",
+        "spendingperkm": "53.17",
+        "emissionpermonth": "32.83",
         "salvage": "2000"
     },
     {
@@ -745,6 +791,8 @@ var Phase6 = [
         "body": "6.45",
         "spending": "22595",
         "emission": "77.91",
+        "spendingperkm": "54.23",
+        "emissionpermonth": "32.46",
         "salvage": "2000"
     },
     {
@@ -766,6 +814,8 @@ var Phase6 = [
         "body": "6.30",
         "spending": "22158",
         "emission": "78.83",
+        "spendingperkm": "53.18",
+        "emissionpermonth": "32.85",
         "salvage": "2000"
     },
     {
@@ -787,6 +837,8 @@ var Phase6 = [
         "body": "6.40",
         "spending": "21294",
         "emission": "80.49",
+        "spendingperkm": "51.10",
+        "emissionpermonth": "33.54",
         "salvage": "2000"
     },
     {
@@ -808,6 +860,8 @@ var Phase6 = [
         "body": "5.80",
         "spending": "20647",
         "emission": "73.19",
+        "spendingperkm": "49.55",
+        "emissionpermonth": "30.50",
         "salvage": "2000"
     },
     {
@@ -829,6 +883,8 @@ var Phase6 = [
         "body": "5.70",
         "spending": "20628",
         "emission": "78.27",
+        "spendingperkm": "49.51",
+        "emissionpermonth": "32.61",
         "salvage": "2000"
     },
     {
@@ -850,6 +906,8 @@ var Phase6 = [
         "body": "6.35",
         "spending": "21698",
         "emission": "80.54",
+        "spendingperkm": "52.08",
+        "emissionpermonth": "33.56",
         "salvage": "2000"
     },
     {
@@ -871,6 +929,8 @@ var Phase6 = [
         "body": "5.65",
         "spending": "18943",
         "emission": "65.31",
+        "spendingperkm": "45.46",
+        "emissionpermonth": "27.21",
         "salvage": "2000"
     },
     {
@@ -892,6 +952,8 @@ var Phase6 = [
         "body": "5.65",
         "spending": "18748",
         "emission": "70.57",
+        "spendingperkm": "45.00",
+        "emissionpermonth": "29.40",
         "salvage": "2000"
     },
     {
@@ -913,6 +975,8 @@ var Phase6 = [
         "body": "5.65",
         "spending": "18555",
         "emission": "70.39",
+        "spendingperkm": "44.53",
+        "emissionpermonth": "29.33",
         "salvage": "2000"
     },
     {
@@ -934,6 +998,8 @@ var Phase6 = [
         "body": "5.35",
         "spending": "20066",
         "emission": "70.98",
+        "spendingperkm": "48.16",
+        "emissionpermonth": "29.57",
         "salvage": "2000"
     },
     {
@@ -955,6 +1021,8 @@ var Phase6 = [
         "body": "6.15",
         "spending": "19492",
         "emission": "70.53",
+        "spendingperkm": "46.78",
+        "emissionpermonth": "29.39",
         "salvage": "2000"
     },
     {
@@ -976,6 +1044,8 @@ var Phase6 = [
         "body": "5.40",
         "spending": "19169",
         "emission": "65.36",
+        "spendingperkm": "46.01",
+        "emissionpermonth": "27.23",
         "salvage": "2000"
     },
     {
@@ -997,6 +1067,8 @@ var Phase6 = [
         "body": "5.15",
         "spending": "21056",
         "emission": "74.31",
+        "spendingperkm": "50.53",
+        "emissionpermonth": "30.96",
         "salvage": "2000"
     },
     {
@@ -1018,6 +1090,8 @@ var Phase6 = [
         "body": "5.15",
         "spending": "20808",
         "emission": "75.10",
+        "spendingperkm": "49.94",
+        "emissionpermonth": "31.29",
         "salvage": "2000"
     },
     {
@@ -1039,6 +1113,8 @@ var Phase6 = [
         "body": "5.30",
         "spending": "20864",
         "emission": "75.69",
+        "spendingperkm": "50.07",
+        "emissionpermonth": "31.54",
         "salvage": "2000"
     },
     {
@@ -1060,6 +1136,8 @@ var Phase6 = [
         "body": "4.95",
         "spending": "20063",
         "emission": "70.43",
+        "spendingperkm": "48.15",
+        "emissionpermonth": "29.35",
         "salvage": "2000"
     },
     {
@@ -1081,6 +1159,8 @@ var Phase6 = [
         "body": "5.00",
         "spending": "20294",
         "emission": "71.17",
+        "spendingperkm": "48.71",
+        "emissionpermonth": "29.66",
         "salvage": "2000"
     },
     {
@@ -1102,6 +1182,8 @@ var Phase6 = [
         "body": "4.70",
         "spending": "18261",
         "emission": "65.50",
+        "spendingperkm": "43.83",
+        "emissionpermonth": "27.29",
         "salvage": "2000"
     },
     {
@@ -1123,6 +1205,8 @@ var Phase6 = [
         "body": "4.70",
         "spending": "18567",
         "emission": "63.81",
+        "spendingperkm": "44.56",
+        "emissionpermonth": "26.59",
         "salvage": "2000"
     },
     {
@@ -1144,6 +1228,8 @@ var Phase6 = [
         "body": "6.40",
         "spending": "22630",
         "emission": "78.04",
+        "spendingperkm": "54.31",
+        "emissionpermonth": "32.52",
         "salvage": "2000"
     },
     {
@@ -1165,6 +1251,8 @@ var Phase6 = [
         "body": "5.60",
         "spending": "19656",
         "emission": "73.36",
+        "spendingperkm": "47.17",
+        "emissionpermonth": "30.57",
         "salvage": "2000"
     },
     {
@@ -1186,6 +1274,8 @@ var Phase6 = [
         "body": "5.00",
         "spending": "21195",
         "emission": "72.44",
+        "spendingperkm": "50.87",
+        "emissionpermonth": "30.18",
         "salvage": "2000"
     },
     {
@@ -1207,6 +1297,8 @@ var Phase6 = [
         "body": "4.90",
         "spending": "20932",
         "emission": "74.05",
+        "spendingperkm": "50.24",
+        "emissionpermonth": "30.85",
         "salvage": "2000"
     },
     {
@@ -1228,6 +1320,8 @@ var Phase6 = [
         "body": "5.00",
         "spending": "20763",
         "emission": "69.73",
+        "spendingperkm": "49.83",
+        "emissionpermonth": "29.05",
         "salvage": "2000"
     },
     {
@@ -1249,6 +1343,8 @@ var Phase6 = [
         "body": "4.90",
         "spending": "20472",
         "emission": "69.69",
+        "spendingperkm": "49.13",
+        "emissionpermonth": "29.04",
         "salvage": "2000"
     },
     {
@@ -1270,6 +1366,8 @@ var Phase6 = [
         "body": "6.15",
         "spending": "21370",
         "emission": "74.81",
+        "spendingperkm": "51.29",
+        "emissionpermonth": "31.17",
         "salvage": "2000"
     },
     {
@@ -1291,6 +1389,8 @@ var Phase6 = [
         "body": "5.55",
         "spending": "21033",
         "emission": "74.19",
+        "spendingperkm": "50.48",
+        "emissionpermonth": "30.91",
         "salvage": "2000"
     },
     {
@@ -1312,6 +1412,8 @@ var Phase6 = [
         "body": "5.55",
         "spending": "21127",
         "emission": "74.48",
+        "spendingperkm": "50.70",
+        "emissionpermonth": "31.03",
         "salvage": "2000"
     },
     {
@@ -1333,6 +1435,8 @@ var Phase6 = [
         "body": "6.15",
         "spending": "21522",
         "emission": "67.97",
+        "spendingperkm": "51.65",
+        "emissionpermonth": "28.32",
         "salvage": "2000"
     },
     {
@@ -1354,6 +1458,8 @@ var Phase6 = [
         "body": "4.75",
         "spending": "18948",
         "emission": "58.64",
+        "spendingperkm": "45.48",
+        "emissionpermonth": "24.43",
         "salvage": "2000"
     },
     {
@@ -1375,6 +1481,8 @@ var Phase6 = [
         "body": "4.40",
         "spending": "19549",
         "emission": "57.84",
+        "spendingperkm": "46.92",
+        "emissionpermonth": "24.10",
         "salvage": "2000"
     },
     {
@@ -1396,6 +1504,8 @@ var Phase6 = [
         "body": "4.85",
         "spending": "19828",
         "emission": "57.61",
+        "spendingperkm": "47.59",
+        "emissionpermonth": "24.01",
         "salvage": "2000"
     },
     {
@@ -1417,6 +1527,8 @@ var Phase6 = [
         "body": "4.70",
         "spending": "19715",
         "emission": "67.17",
+        "spendingperkm": "47.32",
+        "emissionpermonth": "27.99",
         "salvage": "2000"
     },
     {
@@ -1438,6 +1550,8 @@ var Phase6 = [
         "body": "4.70",
         "spending": "19282",
         "emission": "67.34",
+        "spendingperkm": "46.28",
+        "emissionpermonth": "28.06",
         "salvage": "2000"
     },
     {
@@ -1459,6 +1573,8 @@ var Phase6 = [
         "body": "4.50",
         "spending": "19398",
         "emission": "72.12",
+        "spendingperkm": "46.55",
+        "emissionpermonth": "30.05",
         "salvage": "2000"
     },
     {
@@ -1480,6 +1596,8 @@ var Phase6 = [
         "body": "4.85",
         "spending": "20053",
         "emission": "67.25",
+        "spendingperkm": "48.13",
+        "emissionpermonth": "28.02",
         "salvage": "2000"
     },
     {
@@ -1501,6 +1619,8 @@ var Phase6 = [
         "body": "6.00",
         "spending": "21066",
         "emission": "81.97",
+        "spendingperkm": "50.56",
+        "emissionpermonth": "34.15",
         "salvage": "2000"
     },
     {
@@ -1522,6 +1642,8 @@ var Phase6 = [
         "body": "5.90",
         "spending": "20965",
         "emission": "68.29",
+        "spendingperkm": "50.32",
+        "emissionpermonth": "28.46",
         "salvage": "2000"
     },
     {
@@ -1543,6 +1665,8 @@ var Phase6 = [
         "body": "5.10",
         "spending": "21504",
         "emission": "84.06",
+        "spendingperkm": "51.61",
+        "emissionpermonth": "35.02",
         "salvage": "2000"
     },
     {
@@ -1564,6 +1688,8 @@ var Phase6 = [
         "body": "5.45",
         "spending": "20697",
         "emission": "63.36",
+        "spendingperkm": "49.67",
+        "emissionpermonth": "26.40",
         "salvage": "2000"
     },
     {
@@ -1585,6 +1711,8 @@ var Phase6 = [
         "body": "5.30",
         "spending": "20722",
         "emission": "78.53",
+        "spendingperkm": "49.73",
+        "emissionpermonth": "32.72",
         "salvage": "2000"
     }
 ];
@@ -1608,6 +1736,8 @@ var Phase7 = [
         "body": "5.75",
         "spending": "22484",
         "emission": "77.65",
+        "spendingperkm": "53.96",
+        "emissionpermonth": "32.35",
         "salvage": "2000"
     },
     {
@@ -1629,6 +1759,8 @@ var Phase7 = [
         "body": "5.95",
         "spending": "21831",
         "emission": "79.50",
+        "spendingperkm": "52.39",
+        "emissionpermonth": "33.13",
         "salvage": "2000"
     },
     {
@@ -1650,6 +1782,8 @@ var Phase7 = [
         "body": "5.75",
         "spending": "20619",
         "emission": "62.78",
+        "spendingperkm": "49.49",
+        "emissionpermonth": "26.16",
         "salvage": "2000"
     },
     {
@@ -1671,6 +1805,8 @@ var Phase7 = [
         "body": "5.75",
         "spending": "22182",
         "emission": "67.12",
+        "spendingperkm": "53.24",
+        "emissionpermonth": "27.97",
         "salvage": "2000"
     },
     {
@@ -1692,6 +1828,8 @@ var Phase7 = [
         "body": "6.45",
         "spending": "22311",
         "emission": "72.45",
+        "spendingperkm": "53.55",
+        "emissionpermonth": "30.19",
         "salvage": "2000"
     },
     {
@@ -1713,6 +1851,8 @@ var Phase7 = [
         "body": "6.35",
         "spending": "22279",
         "emission": "70.26",
+        "spendingperkm": "53.47",
+        "emissionpermonth": "29.27",
         "salvage": "2000"
     },
     {
@@ -1734,6 +1874,8 @@ var Phase7 = [
         "body": "6.20",
         "spending": "22077",
         "emission": "72.20",
+        "spendingperkm": "52.98",
+        "emissionpermonth": "30.08",
         "salvage": "2000"
     },
     {
@@ -1755,6 +1897,8 @@ var Phase7 = [
         "body": "5.15",
         "spending": "20518",
         "emission": "63.11",
+        "spendingperkm": "49.24",
+        "emissionpermonth": "26.30",
         "salvage": "2000"
     },
     {
@@ -1776,6 +1920,8 @@ var Phase7 = [
         "body": "5.45",
         "spending": "20298",
         "emission": "63.48",
+        "spendingperkm": "48.72",
+        "emissionpermonth": "26.45",
         "salvage": "2000"
     },
     {
@@ -1797,6 +1943,8 @@ var Phase7 = [
         "body": "5.60",
         "spending": "20357",
         "emission": "66.52",
+        "spendingperkm": "48.86",
+        "emissionpermonth": "27.72",
         "salvage": "2000"
     },
     {
@@ -1818,6 +1966,8 @@ var Phase7 = [
         "body": "5.45",
         "spending": "19338",
         "emission": "63.18",
+        "spendingperkm": "46.41",
+        "emissionpermonth": "26.33",
         "salvage": "2000"
     },
     {
@@ -1839,6 +1989,8 @@ var Phase7 = [
         "body": "5.95",
         "spending": "20552",
         "emission": "64.08",
+        "spendingperkm": "49.33",
+        "emissionpermonth": "26.70",
         "salvage": "2000"
     },
     {
@@ -1860,6 +2012,8 @@ var Phase7 = [
         "body": "4.95",
         "spending": "20077",
         "emission": "58.96",
+        "spendingperkm": "48.19",
+        "emissionpermonth": "24.57",
         "salvage": "2000"
     },
     {
@@ -1881,6 +2035,8 @@ var Phase7 = [
         "body": "4.95",
         "spending": "18897",
         "emission": "59.03",
+        "spendingperkm": "45.35",
+        "emissionpermonth": "24.60",
         "salvage": "2000"
     },
     {
@@ -1902,6 +2058,8 @@ var Phase7 = [
         "body": "6.45",
         "spending": "22907",
         "emission": "77.91",
+        "spendingperkm": "54.98",
+        "emissionpermonth": "32.46",
         "salvage": "2000"
     },
     {
@@ -1923,6 +2081,8 @@ var Phase7 = [
         "body": "6.40",
         "spending": "22716",
         "emission": "77.51",
+        "spendingperkm": "54.52",
+        "emissionpermonth": "32.30",
         "salvage": "2000"
     },
     {
@@ -1944,6 +2104,8 @@ var Phase7 = [
         "body": "5.75",
         "spending": "22026",
         "emission": "68.27",
+        "spendingperkm": "52.86",
+        "emissionpermonth": "28.44",
         "salvage": "2000"
     },
     {
@@ -1965,6 +2127,8 @@ var Phase7 = [
         "body": "6.40",
         "spending": "23001",
         "emission": "78.54",
+        "spendingperkm": "55.20",
+        "emissionpermonth": "32.73",
         "salvage": "2000"
     },
     {
@@ -1986,6 +2150,8 @@ var Phase7 = [
         "body": "5.55",
         "spending": "21198",
         "emission": "67.62",
+        "spendingperkm": "50.87",
+        "emissionpermonth": "28.18",
         "salvage": "2000"
     },
     {
@@ -2007,6 +2173,8 @@ var Phase7 = [
         "body": "6.30",
         "spending": "22001",
         "emission": "66.27",
+        "spendingperkm": "52.80",
+        "emissionpermonth": "27.61",
         "salvage": "2000"
     },
     {
@@ -2028,6 +2196,8 @@ var Phase7 = [
         "body": "5.65",
         "spending": "19576",
         "emission": "65.05",
+        "spendingperkm": "46.98",
+        "emissionpermonth": "27.10",
         "salvage": "2000"
     },
     {
@@ -2049,6 +2219,8 @@ var Phase7 = [
         "body": "5.75",
         "spending": "21025",
         "emission": "64.99",
+        "spendingperkm": "50.46",
+        "emissionpermonth": "27.08",
         "salvage": "2000"
     },
     {
@@ -2070,6 +2242,8 @@ var Phase7 = [
         "body": "5.15",
         "spending": "21730",
         "emission": "73.85",
+        "spendingperkm": "52.15",
+        "emissionpermonth": "30.77",
         "salvage": "2000"
     },
     {
@@ -2091,6 +2265,8 @@ var Phase7 = [
         "body": "6.35",
         "spending": "22891",
         "emission": "78.32",
+        "spendingperkm": "54.94",
+        "emissionpermonth": "32.63",
         "salvage": "2000"
     },
     {
@@ -2112,6 +2288,8 @@ var Phase7 = [
         "body": "5.15",
         "spending": "21347",
         "emission": "74.44",
+        "spendingperkm": "51.23",
+        "emissionpermonth": "31.02",
         "salvage": "2000"
     },
     {
@@ -2133,6 +2311,8 @@ var Phase7 = [
         "body": "5.80",
         "spending": "21186",
         "emission": "66.56",
+        "spendingperkm": "50.85",
+        "emissionpermonth": "27.73",
         "salvage": "2000"
     },
     {
@@ -2154,6 +2334,8 @@ var Phase7 = [
         "body": "5.40",
         "spending": "19919",
         "emission": "61.59",
+        "spendingperkm": "47.80",
+        "emissionpermonth": "25.66",
         "salvage": "2000"
     },
     {
@@ -2175,6 +2357,8 @@ var Phase7 = [
         "body": "6.15",
         "spending": "21217",
         "emission": "65.19",
+        "spendingperkm": "50.92",
+        "emissionpermonth": "27.16",
         "salvage": "2000"
     },
     {
@@ -2196,6 +2380,8 @@ var Phase7 = [
         "body": "4.95",
         "spending": "20757",
         "emission": "71.10",
+        "spendingperkm": "49.82",
+        "emissionpermonth": "29.63",
         "salvage": "2000"
     },
     {
@@ -2217,6 +2403,8 @@ var Phase7 = [
         "body": "4.70",
         "spending": "19532",
         "emission": "64.44",
+        "spendingperkm": "46.88",
+        "emissionpermonth": "26.85",
         "salvage": "2000"
     },
     {
@@ -2238,6 +2426,8 @@ var Phase7 = [
         "body": "4.70",
         "spending": "18333",
         "emission": "62.06",
+        "spendingperkm": "44.00",
+        "emissionpermonth": "25.86",
         "salvage": "2000"
     },
     {
@@ -2259,6 +2449,8 @@ var Phase7 = [
         "body": "6.15",
         "spending": "21776",
         "emission": "79.35",
+        "spendingperkm": "52.26",
+        "emissionpermonth": "33.06",
         "salvage": "2000"
     },
     {
@@ -2280,6 +2472,8 @@ var Phase7 = [
         "body": "5.60",
         "spending": "19838",
         "emission": "70.42",
+        "spendingperkm": "47.61",
+        "emissionpermonth": "29.34",
         "salvage": "2000"
     },
     {
@@ -2301,6 +2495,8 @@ var Phase7 = [
         "body": "5.05",
         "spending": "21315",
         "emission": "74.11",
+        "spendingperkm": "51.16",
+        "emissionpermonth": "30.88",
         "salvage": "2000"
     },
     {
@@ -2322,6 +2518,8 @@ var Phase7 = [
         "body": "5.00",
         "spending": "21204",
         "emission": "74.28",
+        "spendingperkm": "50.89",
+        "emissionpermonth": "30.95",
         "salvage": "2000"
     },
     {
@@ -2343,6 +2541,8 @@ var Phase7 = [
         "body": "5.05",
         "spending": "20958",
         "emission": "72.90",
+        "spendingperkm": "50.30",
+        "emissionpermonth": "30.37",
         "salvage": "2000"
     },
     {
@@ -2364,6 +2564,8 @@ var Phase7 = [
         "body": "5.00",
         "spending": "20815",
         "emission": "72.91",
+        "spendingperkm": "49.96",
+        "emissionpermonth": "30.38",
         "salvage": "2000"
     },
     {
@@ -2385,6 +2587,8 @@ var Phase7 = [
         "body": "4.70",
         "spending": "20161",
         "emission": "57.09",
+        "spendingperkm": "48.39",
+        "emissionpermonth": "23.79",
         "salvage": "2000"
     },
     {
@@ -2406,6 +2610,8 @@ var Phase7 = [
         "body": "4.65",
         "spending": "20130",
         "emission": "57.00",
+        "spendingperkm": "48.31",
+        "emissionpermonth": "23.75",
         "salvage": "2000"
     },
     {
@@ -2427,6 +2633,8 @@ var Phase7 = [
         "body": "4.85",
         "spending": "20200",
         "emission": "57.17",
+        "spendingperkm": "48.48",
+        "emissionpermonth": "23.82",
         "salvage": "2000"
     },
     {
@@ -2448,6 +2656,8 @@ var Phase7 = [
         "body": "4.75",
         "spending": "18972",
         "emission": "57.16",
+        "spendingperkm": "45.53",
+        "emissionpermonth": "23.82",
         "salvage": "2000"
     },
     {
@@ -2469,6 +2679,8 @@ var Phase7 = [
         "body": "6.15",
         "spending": "21598",
         "emission": "69.44",
+        "spendingperkm": "51.83",
+        "emissionpermonth": "28.93",
         "salvage": "2000"
     },
     {
@@ -2490,6 +2702,8 @@ var Phase7 = [
         "body": "6.35",
         "spending": "21469",
         "emission": "69.59",
+        "spendingperkm": "51.52",
+        "emissionpermonth": "28.99",
         "salvage": "2000"
     },
     {
@@ -2511,6 +2725,8 @@ var Phase7 = [
         "body": "5.00",
         "spending": "19564",
         "emission": "57.63",
+        "spendingperkm": "46.95",
+        "emissionpermonth": "24.01",
         "salvage": "2000"
     },
     {
@@ -2532,6 +2748,8 @@ var Phase7 = [
         "body": "5.45",
         "spending": "20697",
         "emission": "63.36",
+        "spendingperkm": "49.67",
+        "emissionpermonth": "26.40",
         "salvage": "2000"
     }
 ];
@@ -2562,6 +2780,8 @@ var SwapM = [
         "kwh": "17.36",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "87.76",
+        "emissionpermonth": "14.64",
         "salvage": "2000"
     },
     {
@@ -2590,6 +2810,8 @@ var SwapM = [
         "kwh": "18.36",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "88.88",
+        "emissionpermonth": "15.30",
         "salvage": "2000"
     },
     {
@@ -2618,6 +2840,8 @@ var SwapM = [
         "kwh": "19.29",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "90.76",
+        "emissionpermonth": "15.97",
         "salvage": "2000"
     },
     {
@@ -2646,6 +2870,8 @@ var SwapM = [
         "kwh": "18.36",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "90.94",
+        "emissionpermonth": "15.46",
         "salvage": "2000"
     },
     {
@@ -2674,6 +2900,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "86.30",
+        "emissionpermonth": "14.80",
         "salvage": "2000"
     },
     {
@@ -2702,6 +2930,8 @@ var SwapM = [
         "kwh": "16.28",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.73",
+        "emissionpermonth": "14.03",
         "salvage": "2000"
     },
     {
@@ -2730,6 +2960,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "89.07",
+        "emissionpermonth": "14.28",
         "salvage": "2000"
     },
     {
@@ -2758,6 +2990,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.13",
+        "emissionpermonth": "14.78",
         "salvage": "2000"
     },
     {
@@ -2786,6 +3020,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "87.23",
+        "emissionpermonth": "14.78",
         "salvage": "2000"
     },
     {
@@ -2814,6 +3050,8 @@ var SwapM = [
         "kwh": "17.08",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "87.95",
+        "emissionpermonth": "14.55",
         "salvage": "2000"
     },
     {
@@ -2842,6 +3080,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "96.97",
+        "emissionpermonth": "14.65",
         "salvage": "2000"
     },
     {
@@ -2870,6 +3110,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "94.35",
+        "emissionpermonth": "14.65",
         "salvage": "2000"
     },
     {
@@ -2898,6 +3140,8 @@ var SwapM = [
         "kwh": "17.88",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "89.85",
+        "emissionpermonth": "15.08",
         "salvage": "2000"
     },
     {
@@ -2926,6 +3170,8 @@ var SwapM = [
         "kwh": "17.88",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "92.29",
+        "emissionpermonth": "15.08",
         "salvage": "2000"
     },
     {
@@ -2954,6 +3200,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "94.50",
+        "emissionpermonth": "14.41",
         "salvage": "2000"
     },
     {
@@ -2982,6 +3230,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.36",
+        "emissionpermonth": "14.28",
         "salvage": "2000"
     },
     {
@@ -3010,6 +3260,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.36",
+        "emissionpermonth": "14.28",
         "salvage": "2000"
     },
     {
@@ -3038,6 +3290,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "87.23",
+        "emissionpermonth": "14.32",
         "salvage": "2000"
     },
     {
@@ -3066,6 +3320,8 @@ var SwapM = [
         "kwh": "18.77",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.73",
+        "emissionpermonth": "15.65",
         "salvage": "2000"
     },
     {
@@ -3094,6 +3350,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.51",
+        "emissionpermonth": "14.30",
         "salvage": "2000"
     },
     {
@@ -3122,6 +3380,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.92",
+        "emissionpermonth": "14.28",
         "salvage": "2000"
     },
     {
@@ -3150,6 +3410,8 @@ var SwapM = [
         "kwh": "17.51",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "88.73",
+        "emissionpermonth": "14.75",
         "salvage": "2000"
     },
     {
@@ -3178,6 +3440,8 @@ var SwapM = [
         "kwh": "15.43",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "85.36",
+        "emissionpermonth": "13.38",
         "salvage": "2000"
     },
     {
@@ -3206,6 +3470,8 @@ var SwapM = [
         "kwh": "15.43",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "87.23",
+        "emissionpermonth": "13.36",
         "salvage": "2000"
     },
     {
@@ -3234,6 +3500,8 @@ var SwapM = [
         "kwh": "15.43",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "86.11",
+        "emissionpermonth": "13.38",
         "salvage": "2000"
     },
     {
@@ -3262,6 +3530,8 @@ var SwapM = [
         "kwh": "15.43",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "87.04",
+        "emissionpermonth": "13.36",
         "salvage": "2000"
     },
     {
@@ -3290,6 +3560,8 @@ var SwapM = [
         "kwh": "16.67",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "85.36",
+        "emissionpermonth": "14.15",
         "salvage": "2000"
     },
     {
@@ -3318,6 +3590,8 @@ var SwapM = [
         "kwh": "16.28",
         "plan": "預選630",
         "planprice": "799",
+        "spendingperkm": "83.49",
+        "emissionpermonth": "13.86",
         "salvage": "2000"
     }
 ];
@@ -3348,6 +3622,8 @@ var ChargeM = [
         "kwh": "3.99",
         "plan": "充電699",
         "planprice": "699",
+        "spendingperkm": "82.63",
+        "emissionpermonth": "27.86",
         "salvage": "2000"
     },
     {
@@ -3376,6 +3652,8 @@ var ChargeM = [
         "kwh": "4.22",
         "plan": "充電699",
         "planprice": "699",
+        "spendingperkm": "83.76",
+        "emissionpermonth": "28.58",
         "salvage": "2000"
     },
     {
@@ -3404,6 +3682,8 @@ var ChargeM = [
         "kwh": "4.44",
         "plan": "充電699",
         "planprice": "699",
+        "spendingperkm": "85.63",
+        "emissionpermonth": "29.50",
         "salvage": "2000"
     },
     {
@@ -3432,6 +3712,8 @@ var ChargeM = [
         "kwh": "5.18",
         "plan": "基礎型",
         "planprice": "399",
+        "spendingperkm": "64.47",
+        "emissionpermonth": "32.98",
         "salvage": "2000"
     },
     {
@@ -3460,6 +3742,8 @@ var ChargeM = [
         "kwh": "4.89",
         "plan": "基礎型",
         "planprice": "399",
+        "spendingperkm": "67.47",
+        "emissionpermonth": "31.20",
         "salvage": "2000"
     }
 ];
@@ -3490,6 +3774,8 @@ var SwapS = [
         "kwh": "13.31",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "83.83",
+        "emissionpermonth": "10.84",
         "salvage": "2000"
     },
     {
@@ -3518,6 +3804,8 @@ var SwapS = [
         "kwh": "14.99",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "87.20",
+        "emissionpermonth": "12.10",
         "salvage": "2000"
     },
     {
@@ -3546,6 +3834,8 @@ var SwapS = [
         "kwh": "13.31",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "84.76",
+        "emissionpermonth": "10.97",
         "salvage": "2000"
     },
     {
@@ -3574,6 +3864,8 @@ var SwapS = [
         "kwh": "14.57",
         "plan": "換電799",
         "planprice": "799",
+        "spendingperkm": "84.01",
+        "emissionpermonth": "11.85",
         "salvage": "2000"
     },
     {
@@ -3602,6 +3894,8 @@ var SwapS = [
         "kwh": "15.43",
         "plan": "騎到飽",
         "planprice": "399",
+        "spendingperkm": "62.78",
+        "emissionpermonth": "12.06",
         "salvage": "2000"
     },
     {
@@ -3630,6 +3924,8 @@ var SwapS = [
         "kwh": "14.99",
         "plan": "騎到飽",
         "planprice": "399",
+        "spendingperkm": "62.79",
+        "emissionpermonth": "11.81",
         "salvage": "2000"
     },
     {
@@ -3658,6 +3954,8 @@ var SwapS = [
         "kwh": "12.51",
         "plan": "騎到飽",
         "planprice": "399",
+        "spendingperkm": "61.11",
+        "emissionpermonth": "10.19",
         "salvage": "2000"
     }
 ];
@@ -3686,6 +3984,8 @@ var ChargeS = [
         "spending": "19016",
         "emission": "47.99",
         "kwh": "3.55",
+        "spendingperkm": "45.64",
+        "emissionpermonth": "20.00",
         "salvage": "2000"
     },
     {
@@ -3712,6 +4012,8 @@ var ChargeS = [
         "spending": "19646",
         "emission": "47.05",
         "kwh": "3.64",
+        "spendingperkm": "47.15",
+        "emissionpermonth": "19.61",
         "salvage": "2000"
     },
     {
@@ -3740,6 +4042,8 @@ var ChargeS = [
         "kwh": "3.35",
         "plan": "充電399",
         "planprice": "399",
+        "spendingperkm": "63.97",
+        "emissionpermonth": "19.10",
         "salvage": "2000"
     },
     {
@@ -3766,6 +4070,8 @@ var ChargeS = [
         "spending": "18661",
         "emission": "42.28",
         "kwh": "3.06",
+        "spendingperkm": "44.79",
+        "emissionpermonth": "17.62",
         "salvage": "2000"
     },
     {
@@ -3792,6 +4098,8 @@ var ChargeS = [
         "spending": "19641",
         "emission": "49.62",
         "kwh": "3.55",
+        "spendingperkm": "47.14",
+        "emissionpermonth": "20.67",
         "salvage": "2000"
     },
     {
@@ -3818,6 +4126,8 @@ var ChargeS = [
         "spending": "18849",
         "emission": "44.79",
         "kwh": "3.35",
+        "spendingperkm": "45.24",
+        "emissionpermonth": "18.66",
         "salvage": "2000"
     },
     {
@@ -3844,6 +4154,8 @@ var ChargeS = [
         "spending": "18576",
         "emission": "44.77",
         "kwh": "3.35",
+        "spendingperkm": "44.58",
+        "emissionpermonth": "18.65",
         "salvage": "2000"
     }
 ];
