@@ -14,6 +14,8 @@ const searchinside = document.getElementById("searchinside");
 const customside = document.getElementById('customside');
 const informationside = document.getElementById("informationside");
 const fullbackground = document.getElementById("fullbackground");
+var selectxaxis = document.getElementById("selectxaxis");
+var selectyaxis = document.getElementById("selectyaxis");
 
 //preload
 setTimeout(function preloadanimation(){
@@ -254,19 +256,22 @@ dotchart.append('g')
 	.on('mouseout', dotunHover)
 	.on('click', dotClick);
 
-dotchart.append('text')
-    .attr('x', winWidth/2-110)
+var xaxistitle = dotchart.append('text')
+    .attr('x', winWidth/2)
     .attr('y', winHeight-30)
 	.attr('fill', '#112D4E')
-    .style('font-size', '0.8em')
-    .text('Total Cost of Ownership (NT$/month)');
-dotchart.append('text')
+	.attr('text-anchor', 'middle')
+    .style('font-size', '0.8em');
+xaxistitle.html('Total Cost of Ownership (NT$/month)');
+
+var yaxistitle = dotchart.append('text')
     .attr('transform', 'rotate(-90)')
-    .attr('x', -winHeight/2-110)
+    .attr('x', -winHeight/2)
     .attr('y', 20)
 	.attr('fill', '#112D4E')
     .style('font-size', '0.8em')
-    .text('Greenhouse Gas Emissions (gCO₂eq/km)');
+	.attr('text-anchor', 'middle')
+yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 
 var selectedDotArea = dotchart.append('g');
 
@@ -283,9 +288,18 @@ function dotHover(d,i){
         namediv.transition()
             .style('display', 'block');
  
-        namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+' NT$, '+i.emission+' gCO<sub>2</sub>')
+		var tempx = (i.x*1).toFixed(0);
+		var tempy = (i.y*1).toFixed(2);
+		if(selectxaxis.value == selectxaxis[0].innerHTML){
+			tempx = (i.x*1).toFixed(2);
+		};
+
+        namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
             .style('left', d.x+20 + 'px')
             .style('top', d.y+20 + 'px');
+		if(selectyaxis.value == selectyaxis[1].innerHTML || selectyaxis.value == selectyaxis[2].innerHTML){
+			namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' kgCO<sub>2</sub>')
+		};
 };
 function dotunHover(d,i){
         d3.select(this)
@@ -396,6 +410,10 @@ function legendunHover(d){
 	selectedDotArea.selectAll('circle')
 		.attr('r', 9);
 };
+
+// function mapxy(d){
+// 	var mappedxy = motordata.map(function)
+// }
 
 //updatedot
 var sum = 0;
@@ -565,13 +583,9 @@ function updatedot(){
         //total
         Phase6[i].spending = Phase6[i].tax*1+Phase6[i].maintain*1+Phase6[i].fuel*1+Phase6[i].own*1;
 		Phase6[i].spendingperkm = Phase6[i].spending/input[0].monthkm;
-        Phase6[i].spending = Phase6[i].spending.toFixed(0);
-		Phase6[i].spendingperkm = Phase6[i].spendingperkm.toFixed(0);
 
         Phase6[i].emission = Phase6[i].fuelburn*1+Phase6[i].fuelmakefinal*1+Phase6[i].battery*1+Phase6[i].body*1;
 		Phase6[i].emissionpermonth = Phase6[i].emission*input[0].monthkm/1000;
-        Phase6[i].emission = Phase6[i].emission.toFixed(2);
-		Phase6[i].emissionpermonth = Phase6[i].emissionpermonth.toFixed(2);
     };
 
 	//phase7
@@ -598,13 +612,9 @@ function updatedot(){
         //total
         Phase7[i].spending = Phase7[i].tax*1+Phase7[i].maintain*1+Phase7[i].fuel*1+Phase7[i].own*1;
 		Phase7[i].spendingperkm = Phase7[i].spending/input[0].monthkm;
-        Phase7[i].spending = Phase7[i].spending.toFixed(0);
-		Phase7[i].spendingperkm = Phase7[i].spendingperkm.toFixed(0);
 
         Phase7[i].emission = Phase7[i].fuelburn*1+Phase7[i].fuelmakefinal*1+Phase7[i].battery*1+Phase7[i].body*1;
 		Phase7[i].emissionpermonth = Phase7[i].emission*input[0].monthkm/1000;
-        Phase7[i].emission = Phase7[i].emission.toFixed(2);
-		Phase7[i].emissionpermonth = Phase7[i].emissionpermonth.toFixed(2);
     };
 
 	//SwapM
@@ -644,12 +654,10 @@ function updatedot(){
 				SwapM[i].plan = gogoro[2].plan;
 				SwapM[i].planprice = gogoro[2].price;
 				SwapM[i].fueloriginal = (799+(input[0].monthkm-630)*1.5)*12;
-				console.log('b')
 			}else if(input[0].monthkm*1 > 315+120){
 				SwapM[i].plan = gogoro[2].plan;
 				SwapM[i].planprice = gogoro[2].price;
 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
-				console.log('c')
 			}else if(input[0].monthkm*1 > 315){
 				SwapM[i].plan = gogoro[1].plan;
 				SwapM[i].planprice = gogoro[1].price;
@@ -658,7 +666,6 @@ function updatedot(){
 				SwapM[i].plan = gogoro[1].plan;
 				SwapM[i].planprice = gogoro[1].price;
 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
-				console.log('d')
 			}else if(SwapM[i].kwh*1 > 3.757 && SwapM[i].kwh*1 < 7.514){
 				SwapM[i].plan = gogoro[0].plan;
 				SwapM[i].planprice = gogoro[0].price;
@@ -690,13 +697,9 @@ function updatedot(){
         //total
         SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
 		SwapM[i].spendingperkm = SwapM[i].spending/input[0].monthkm;
-        SwapM[i].spending = SwapM[i].spending.toFixed(0);	
-		SwapM[i].spendingperkm = SwapM[i].spendingperkm.toFixed(0);
 
         SwapM[i].emission = SwapM[i].fuelburn*1+SwapM[i].fuelmakefinal*1+SwapM[i].battery*1+SwapM[i].body*1;
 		SwapM[i].emissionpermonth = SwapM[i].emission*input[0].monthkm/1000;
-        SwapM[i].emission = SwapM[i].emission.toFixed(2);
-		SwapM[i].emissionpermonth = SwapM[i].emissionpermonth.toFixed(2);	
 	};
 
 	//ChargeM
@@ -755,13 +758,9 @@ function updatedot(){
         //total
 		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
 		ChargeM[i].spendingperkm = ChargeM[i].spending/input[0].monthkm;
-        ChargeM[i].spending = ChargeM[i].spending.toFixed(0);	
-		ChargeM[i].spendingperkm = ChargeM[i].spendingperkm.toFixed(0);
 
         ChargeM[i].emission = ChargeM[i].fuelburn*1+ChargeM[i].fuelmakefinal*1+ChargeM[i].battery*1+ChargeM[i].body*1;
 		ChargeM[i].emissionpermonth = ChargeM[i].emission*input[0].monthkm/1000;
-        ChargeM[i].emission = ChargeM[i].emission.toFixed(2);
-		ChargeM[i].emissionpermonth = ChargeM[i].emissionpermonth.toFixed(2);	
 	};
 
 	//SwapS
@@ -837,13 +836,9 @@ function updatedot(){
         //total
         SwapS[i].spending = SwapS[i].tax*1+SwapS[i].maintain*1+SwapS[i].fuel*1+SwapS[i].own*1;
 		SwapS[i].spendingperkm = SwapS[i].spending/input[0].monthkm;
-        SwapS[i].spending = SwapS[i].spending.toFixed(0);	
-		SwapS[i].spendingperkm = SwapS[i].spendingperkm.toFixed(0);
 
         SwapS[i].emission = SwapS[i].fuelburn*1+SwapS[i].fuelmakefinal*1+SwapS[i].battery*1+SwapS[i].body*1;
 		SwapS[i].emissionpermonth = SwapS[i].emission*input[0].monthkm/1000;
-        SwapS[i].emission = SwapS[i].emission.toFixed(2);
-		SwapS[i].emissionpermonth = SwapS[i].emissionpermonth.toFixed(2);	
 	};
 
 	//ChargeS
@@ -891,23 +886,80 @@ function updatedot(){
         //total
         ChargeS[i].spending = ChargeS[i].tax*1+ChargeS[i].maintain*1+ChargeS[i].fuel*1+ChargeS[i].own*1;
 		ChargeS[i].spendingperkm = ChargeS[i].spending/input[0].monthkm;
-        ChargeS[i].spending = ChargeS[i].spending.toFixed(0);	
-		ChargeS[i].spendingperkm = ChargeS[i].spendingperkm.toFixed(0);
 
         ChargeS[i].emission = ChargeS[i].fuelburn*1+ChargeS[i].fuelmakefinal*1+ChargeS[i].battery*1+ChargeS[i].body*1;
 		ChargeS[i].emissionpermonth = ChargeS[i].emission*input[0].monthkm/1000;
-        ChargeS[i].emission = ChargeS[i].emission.toFixed(2);
-		ChargeS[i].emissionpermonth = ChargeS[i].emissionpermonth.toFixed(2);	
 	};
 
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 
-	dotxScale = d3.scaleLinear()
-		.domain([d3.min(motordata, d => d.spending*1)*0.98, d3.max(motordata, d => d.spending*1)*1.02])
-		.range([57, winWidth-40]);
-	dotyScale = d3.scaleLinear()
-		.domain([d3.max(motordata, d => d.emission*1)*1.02, d3.min(motordata, d => d.emission*1)*0.98])
-		.range([15, winHeight-70]);
+	if(selectxaxis.value == selectxaxis[0].innerHTML){
+		//TCO per km
+		dotxScale = d3.scaleLinear()
+			.domain([d3.min(motordata, d => d.spendingperkm*1)*0.98, d3.max(motordata, d => d.spendingperkm*1)*1.02])
+			.range([57, winWidth-40]);
+		motordata.forEach(d => d.x = d.spendingperkm);
+
+		xaxistitle.html('Total Cost of Ownership (NT$/km)');
+	}else if(selectxaxis.value == selectxaxis[1].innerHTML){
+		//TCO per month
+		dotxScale = d3.scaleLinear()
+			.domain([d3.min(motordata, d => d.spending*1)*0.98, d3.max(motordata, d => d.spending*1)*1.02])
+			.range([57, winWidth-40]);
+		motordata.forEach(d => d.x = d.spending);
+
+		xaxistitle.html('Total Cost of Ownership (NT$/month)');
+	}else if(selectxaxis.value == selectxaxis[2].innerHTML){
+		//vehicle price
+		dotxScale = d3.scaleLinear()
+			.domain([d3.min(motordata, d => d.price*1)*0.98, d3.max(motordata, d => d.price*1)*1.02])
+			.range([57, winWidth-40]);
+		motordata.forEach(d => d.x = d.price);
+
+		xaxistitle.html('Vehicle Price (NT$)');
+	}else if(selectxaxis.value == selectxaxis[3].innerHTML){
+		//fuel price
+		dotxScale = d3.scaleLinear()
+			.domain([d3.min(motordata, d => d.fuel*1)*0.98, d3.max(motordata, d => d.fuel*1)*1.02])
+			.range([57, winWidth-40]);
+		motordata.forEach(d => d.x = d.fuel);
+
+		xaxistitle.html('Fuel Price (NT$)');
+	};
+
+	if(selectyaxis.value == selectyaxis[0].innerHTML){
+		//emission per km
+		dotyScale = d3.scaleLinear()
+			.domain([d3.max(motordata, d => d.emission*1)*1.02, d3.min(motordata, d => d.emission*1)*0.98])
+			.range([15, winHeight-70]);
+		motordata.forEach(d => d.y = d.emission);
+
+		yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
+	}else if(selectyaxis.value == selectyaxis[1].innerHTML){
+		//emissiom per month
+		dotyScale = d3.scaleLinear()
+			.domain([d3.max(motordata, d => d.emissionpermonth*1)*1.02, d3.min(motordata, d => d.emissionpermonth*1)*0.98])
+			.range([15, winHeight-70]);
+		motordata.forEach(d => d.y = d.emissionpermonth);
+
+		yaxistitle.html('Greenhouse Gas Emissions (kgCO₂eq/month)');
+	}else if(selectyaxis.value == selectyaxis[2].innerHTML){
+		//vehicle production
+		dotyScale = d3.scaleLinear()
+			.domain([d3.max(motordata, d => d.bodymake*1)*1.02, d3.min(motordata, d => d.bodymake*1)*0.98])
+			.range([15, winHeight-70]);
+		motordata.forEach(d => d.y = d.bodymake);
+
+		yaxistitle.html('Vehicle Production Emissions (kgCO₂eq)');
+	}else if(selectyaxis.value == selectyaxis[3].innerHTML){
+		//fuel
+		dotyScale = d3.scaleLinear()
+			.domain([d3.max(motordata, d => d.fuelmakefinal*1+d.fuelburn*1)*1.02, d3.min(motordata, d => d.fuelmakefinal*1+d.fuelburn*1)*0.98])
+			.range([15, winHeight-70]);
+		motordata.forEach(d => d.y = d.fuelmakefinal*1+d.fuelburn*1);
+
+		yaxistitle.html('Fuel Emissions (gCO₂eq/km)');
+	};
 
 	dotxAxis.transition()
 		.duration(800)
@@ -923,12 +975,15 @@ function updatedot(){
 
 	dotchart.selectAll('circle')
         .data(motordata)
-        .transition()
-        .duration(800)
+		.transition()
+		.duration(800)
         .attr('cx', function(d){
-			return dotxScale(d.spending);})
+			return dotxScale(d.x);})
 		.attr('cy', function(d){
-			return dotyScale(d.emission);});
+			return dotyScale(d.y);});
+
+			
+//change xy 名稱
 };
 
 updatedot();
@@ -1027,7 +1082,7 @@ function updateSelectedDot(){
 		.on('mouseover', selectedDotHover)
 		.on('mouseout', selectedDotunHover)
 		.on('click', dotunClick)
-		.attr('transform', d => 'translate(' + dotxScale(d.spending) + ',' + dotyScale(d.emission) +')');
+		.attr('transform', d => 'translate(' + dotxScale(d.x) + ',' + dotyScale(d.y) +')');
 	
 	tempArea.selectAll('circle')
 		.data(checkedData)
