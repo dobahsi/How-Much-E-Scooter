@@ -23,15 +23,15 @@
     --swapS: #3F72AF;
     --chargeS: #1A3B63;
 
-    --tax: #8baacf;
-    --maintain: #658ebf;
+    --tax: #8BAACF;
+    --maintain: #658EBF;
     --fuel: #3F72AF;
-    --own: #325b8c;
+    --own: #325B8C;
 
-    --bodymake: #d7aca8;
-    --batterymake: #bf7a73;
+    --bodymake: #D7ACA8;
+    --batterymake: #BF7A73;
     --fuelmake: #B05A51;
-    --fuelburn: #8c4840;
+    --fuelburn: #8C4840;
 }
 
 ::-webkit-scrollbar{
@@ -244,6 +244,7 @@ article{
     width: 47%;
     height: calc(86vh - 150px);
     margin-left: 20px;
+    /* border: 1px solid red; */
 }
 
 
@@ -685,4 +686,11 @@ sub{
 		transform: translate(0px,0px);
 		box-shadow: 10px 10px var(--dark);
 	}
+}
+
+/* tour */
+.tour-position {
+	position: absolute;
+	border: 7px solid var(--phase7);
+	z-index: 1000;
 }

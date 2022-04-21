@@ -23,7 +23,7 @@ setTimeout(function preloadanimation(){
     .style('display', 'none');
 },1500);
 
-// button
+//button
 dotbutton.classList.add("press");
 barwindow.classList.add("displaynone");
 barside.classList.add("displaynone");
@@ -202,6 +202,7 @@ document.getElementById("reset").onclick = function(){
 
 
 //dotchart
+//劃出製圖區域
 var dotchart = d3.select(dotwindow).append('svg')
 	.attr('width', '100%')
 	.attr('height', '100%');
@@ -209,8 +210,14 @@ var dotchart = d3.select(dotwindow).append('svg')
 var winWidth = dotwindow.clientWidth;
 var winHeight = dotwindow.clientHeight;
 
+//全部合成一個array
 var motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 
+//設定xy邊界
+//scaleLinear()是線性對應
+//同時是一個製圖比例function
+//domain是xy值得上下邊界
+//range是在製圖範圍內的比例
 var dotxScale = d3.scaleLinear()
     .domain([d3.min(motordata, d => d.spending*1)*0.98, d3.max(motordata, d => d.spending*1)*1.02])
     .range([57, winWidth-40]);
@@ -218,6 +225,8 @@ var dotyScale = d3.scaleLinear()
     .domain([d3.max(motordata, d => d.emission*1)*1.02, d3.min(motordata, d => d.emission*1)*0.98])
     .range([15, winHeight-70]);
 
+//叫出xy軸
+//用transform調整軸線位置
 var dotxAxis = dotchart.append('g')
     .attr('transform', 'translate(0, ' + (winHeight-70) + ')')
     .call(d3.axisBottom(dotxScale));
@@ -225,11 +234,17 @@ var dotyAxis = dotchart.append('g')
     .attr('transform', 'translate(57,0)')
     .call(d3.axisLeft(dotyScale));
 
+//縮放xy軸名稱, 座標數字的大小
 dotxAxis.selectAll('text')
     .style('font-size', '0.8rem');
 dotyAxis.selectAll('text')
     .style('font-size', '0.8rem');
 
+//scaleOrdinal()
+//一個可以找出對應名稱的function, 一個對應一個 e.g. 1對到A, 2對到B...
+//如果在資料裡面用的簡稱不想顯示出來可以改成比較好懂得字串
+//或是分類 e.g. 1對到A, 3也對到A
+//也可以對應到想要用到的色票之類的各種資訊
 const energySelect = d3.scaleOrdinal()
 	.domain(['Phase6', 'Phase7', 'SwapM', 'ChargeM', 'SwapS', 'ChargeS'])
 	.range(['P6GS', 'P7GS', 'BSES', 'BCES', 'BSES', 'BCES']);
@@ -242,11 +257,14 @@ const colorSelect = d3.scaleOrdinal()
 	.domain(['Phase6', 'Phase7', 'SwapM', 'ChargeM', 'SwapS', 'ChargeS'])
 	.range(['#B05A51', '#C78B85', '#3F72AF', '#1A3B63', '#3F72AF', '#1A3B63']);
 
+//拿motordata(總和後的矩陣)來一筆一筆畫出點點
+//點點要套剛剛的製圖比例function
+//這些順序有按照一定的順序邏輯, 可以網路查d3.js
+//cx cy是circle的專屬定位方式, rect或g就不能用
 dotchart.append('g')
     .selectAll('circle')
     .data(motordata)
-    .enter()
-    .append('circle')
+    .join('circle')
     .attr('cx', d => dotxScale(d.spending))
     .attr('cy', d => dotyScale(d.emission))
     .attr('r', 6)
@@ -256,12 +274,17 @@ dotchart.append('g')
 	.on('mouseout', dotunHover)
 	.on('click', dotClick);
 
+//xy軸名稱
+//text-anchor拿來置中字串
+//.html可以直接寫在整串的最後接下去
+//但這邊把axistitle.html額外拿出來寫是為了後續容易換xy軸的名稱
 var xaxistitle = dotchart.append('text')
     .attr('x', winWidth/2)
     .attr('y', winHeight-30)
 	.attr('fill', '#112D4E')
 	.attr('text-anchor', 'middle')
     .style('font-size', '0.8em');
+
 xaxistitle.html('Total Cost of Ownership (NT$/month)');
 
 var yaxistitle = dotchart.append('text')
@@ -270,74 +293,138 @@ var yaxistitle = dotchart.append('text')
     .attr('y', 20)
 	.attr('fill', '#112D4E')
     .style('font-size', '0.8em')
-	.attr('text-anchor', 'middle')
+	.attr('text-anchor', 'middle');
+
 yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 
+//劃出一個'已選點'的繪圖區域
 var selectedDotArea = dotchart.append('g');
 
+//futuregoal
+var futureGoalArea = dotchart.append('g');
+
+futureGoalArea.selectAll('line')
+	.data(FutureGoal)
+	.join('line')
+	.style('stroke', '#112D4E')
+	.style('stroke-dasharray', ('3, 3'))
+	.attr('x1', 57)
+	.attr('y1', d => dotyScale(d.emission))
+	.attr('x2', winWidth-40)
+	.attr('y2', d => dotyScale(d.emission))
+	.on('mouseover', lineHover)
+	.on('mouseout', lineunHover);
+
+
 //tools
+//拿來做hover的資訊卡
+//平常display none, hover的時候display
 var namediv = d3.select('#fullwindow')
     .append('div')
     .attr('class', 'nametag')
     .style('display', 'none');
 
+//這裡的i是點的data資料
+//d是滑鼠的動作資訊 e.g.滑鼠的位置, 在做什麼動作...
 function dotHover(d,i){
-        d3.select(this)
-            .attr('r', 8);
-    
-        namediv.transition()
-            .style('display', 'block');
- 
-		var tempx = (i.x*1).toFixed(0);
-		var tempy = (i.y*1).toFixed(2);
-		if(selectxaxis.value == selectxaxis[0].innerHTML){
-			tempx = (i.x*1).toFixed(2);
-		};
+	//hover點變大
+	d3.select(this)
+		.attr('r', 8);
 
-        namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
-            .style('left', d.x+20 + 'px')
-            .style('top', d.y+20 + 'px');
-		if(selectyaxis.value == selectyaxis[1].innerHTML || selectyaxis.value == selectyaxis[2].innerHTML){
-			namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' kgCO<sub>2</sub>')
-		};
+	namediv.transition()
+		.style('display', 'block');
+	
+	//i.x y是計算過後最後拿來繪圖跟輸出的值
+	//原本的x y值是四捨五入前的資訊 這樣繪圖位置最精準
+	//tempx y拿來顯示在hover資訊卡上面, 不會動到原本的資料
+	var tempx = (i.x*1).toFixed(0);
+	var tempy = (i.y*1).toFixed(2);
+	if(selectxaxis.value == selectxaxis[0].innerHTML){
+		tempx = (i.x*1).toFixed(2);
+	};
+
+	//hover資訊卡的innerhtml
+	//d.x y是在hover的時候滑鼠所在螢幕上的位置資訊
+	//也是hover資訊卡會出現的地方
+	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
+		.style('left', d.x+20 + 'px')
+		.style('top', d.y+20 + 'px');
+	//select axis後面會出現
+	//這個if用在如果有特定軸需要不同單位的時候用
+	//像是這邊原本是gCO2, 變成kgCO2
+	if(selectyaxis.value == selectyaxis[1].innerHTML || selectyaxis.value == selectyaxis[2].innerHTML){
+		namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' kgCO<sub>2</sub>')
+	};
 };
+
+//unhover的時候把點點縮回去, 資訊卡藏起來
 function dotunHover(d,i){
-        d3.select(this)
-            .attr('r', 6);
-    
-        namediv.transition()
-            .style('display', 'none');
+	d3.select(this)
+		.attr('r', 6);
+
+	namediv.transition()
+		.style('display', 'none');
 };
 
+//點擊點點的時候會把資訊加入'已選點'
+//跟上面一樣, i是點的資料
+//之前版本是每check一次就刷新已選點列表, 但是會把順序打亂
+//這次是每點一次就把一個資料push進去, 順序就跟點的資訊一樣了
 function dotClick(d,i){
 	checkedData.push(i);
 
+	//點擊點點的同時要把列表的checkbox勾起來
 	for(var j=0; j<motorlist.length; j++){
 		if(motorlist[j].name+motorlist[j].value == i.category+i.model){
 			motorlist[j].checked = true;
 		};
 	};
 
+	//已選點的更新
 	updateSelectedDot();
 };
 
+//點擊'已選點'的function
+//.splice用來消除矩陣的其中一個資料
+//從第'j'個往後刪掉'1'個
 function dotunClick(d,i){
 	for(var j=0; j<checkedData.length; j++){
 		if(checkedData[j].category+checkedData[j].model == i.category+i.model){
 			checkedData.splice(j,1);
-			j--;
+			break;
 		};
 	};
 
+	//checkbox false
 	for(var k=0; k<motorlist.length; k++){
 		if(motorlist[k].name+motorlist[k].value == i.category+i.model){
 			motorlist[k].checked = false;
+			break;
 		};
 	};
 
 	updateSelectedDot();
 };
 
+//linehover
+function lineHover(d,i){
+	namediv.transition()
+		.style('display', 'block');
+	
+	namediv.html(i.year+' Emission Target<br>(for average car on road)<br>'+i.y)
+		.style('left', d.x+20 + 'px')
+		.style('top', d.y+20 + 'px');
+};
+
+function lineunHover(d,i){
+	namediv.transition()
+		.style('display', 'none');
+};
+
+//已選點的hover
+//這邊多了一個先select(this)才select('circle')
+//因為在點點上面要放數字, 所以拿了<g>包住裡面的<circle>跟<text>
+//this是指<g>, 後面會有為什麼, 詳見updateSelectedDot()
 function selectedDotHover(d,i){
 	d3.select(this).select('circle')
 		.attr('r', 11);
@@ -345,7 +432,13 @@ function selectedDotHover(d,i){
 	namediv.transition()
 		.style('display', 'block');
 
-	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+i.spending+' NT$, '+i.emission+' gCO<sub>2</sub>')
+	var tempx = (i.x*1).toFixed(0);
+	var tempy = (i.y*1).toFixed(2);
+	if(selectxaxis.value == selectxaxis[0].innerHTML){
+		tempx = (i.x*1).toFixed(2);
+	};
+
+	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
 		.style('left', d.x+20 + 'px')
 		.style('top', d.y+20 + 'px');
 };
@@ -357,6 +450,7 @@ function selectedDotunHover(d,i){
 		.style('display', 'none');
 };
 
+//hover右邊legend時會帶動散佈圖的點點放大縮小
 d3.select('#Phase6')
 	.on('mouseover', Phase6Hover)
 	.on('mouseout', legendunHover);
@@ -411,11 +505,12 @@ function legendunHover(d){
 		.attr('r', 9);
 };
 
-// function mapxy(d){
-// 	var mappedxy = motordata.map(function)
-// }
 
 //updatedot
+//計算算式區跟之前幾乎一樣
+//跟之前不同的是現在不要先toFixed, 因為最後i.x轉到tempx的時候再toFixed就好
+//還有因為xy軸可以變換, 所以額外的計算也在這邊加上
+//e.g. 每公里變成每月 => 把每公里的資料*每月公里數
 var sum = 0;
 function discountformula(x){
 	sum = 0;
@@ -423,7 +518,6 @@ function discountformula(x){
 		sum += x/(1+input[0].discount*1)**i;
 	};
 	sum = sum/input[0].ownyear;
-	sum = sum.toFixed(0);
 };
 
 function updatedot(){
@@ -477,7 +571,7 @@ function updatedot(){
     };
     gasairfilter = gasairfilter/input[0].ownyear;
 
-	var gasmaintain = (gasenginoil*1 + gasbreakoil*1 + gasbattery*1 + gassparkplug*1 + gasairfilter*1).toFixed(0);
+	var gasmaintain = gasenginoil*1 + gasbreakoil*1 + gasbattery*1 + gassparkplug*1 + gasairfilter*1;
 
 
 	//evmaintain
@@ -524,7 +618,7 @@ function updatedot(){
     };
     evmay18k = evmay18k/input[0].ownyear;
 
-	var evmaintain = (evfirst1k*1 + evmay3k*1 + evmay9k*1 + evmay18k*1).toFixed(0);
+	var evmaintain = evfirst1k*1 + evmay3k*1 + evmay9k*1 + evmay18k*1;
 
 	//greenmaintain
     //$122 5000km
@@ -557,7 +651,7 @@ function updatedot(){
     };
     greenmay20k = greenmay20k/input[0].ownyear;
 
-	var greenevmaintain = (greenmay5k*1 + greenmay10k*1 + greenmay20k*1).toFixed(0);
+	var greenevmaintain = greenmay5k*1 + greenmay10k*1 + greenmay20k*1;
 
 	//phase6
 	for (var i=0; i<Phase6.length; i++){
@@ -576,12 +670,12 @@ function updatedot(){
 
         //emission
         Phase6[i].body = Phase6[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        Phase6[i].body = Phase6[i].body.toFixed(2);
 
         Phase6[i].fuelmakefinal = Phase6[i].fuelmake;
 
         //total
         Phase6[i].spending = Phase6[i].tax*1+Phase6[i].maintain*1+Phase6[i].fuel*1+Phase6[i].own*1;
+		Phase6[i].spending = Phase6[i].spending/12;
 		Phase6[i].spendingperkm = Phase6[i].spending/input[0].monthkm;
 
         Phase6[i].emission = Phase6[i].fuelburn*1+Phase6[i].fuelmakefinal*1+Phase6[i].battery*1+Phase6[i].body*1;
@@ -605,12 +699,12 @@ function updatedot(){
 
         //emission
         Phase7[i].body = Phase7[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        Phase7[i].body = Phase7[i].body.toFixed(2);
 
         Phase7[i].fuelmakefinal = Phase7[i].fuelmake;
 
         //total
         Phase7[i].spending = Phase7[i].tax*1+Phase7[i].maintain*1+Phase7[i].fuel*1+Phase7[i].own*1;
+		Phase7[i].spending = Phase7[i].spending/12;
 		Phase7[i].spendingperkm = Phase7[i].spending/input[0].monthkm;
 
         Phase7[i].emission = Phase7[i].fuelburn*1+Phase7[i].fuelmakefinal*1+Phase7[i].battery*1+Phase7[i].body*1;
@@ -686,16 +780,14 @@ function updatedot(){
 
         //emission
         SwapM[i].battery = SwapM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
-        SwapM[i].battery = SwapM[i].battery.toFixed(2);
 
         SwapM[i].body = SwapM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        SwapM[i].body = SwapM[i].body.toFixed(2);
 
         SwapM[i].fuelmakefinal = SwapM[i].fuelmake*1 + SwapM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
-        SwapM[i].fuelmakefinal = SwapM[i].fuelmakefinal.toFixed(2);
 
         //total
         SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
+		SwapM[i].spending = SwapM[i].spending/12;
 		SwapM[i].spendingperkm = SwapM[i].spending/input[0].monthkm;
 
         SwapM[i].emission = SwapM[i].fuelburn*1+SwapM[i].fuelmakefinal*1+SwapM[i].battery*1+SwapM[i].body*1;
@@ -747,16 +839,14 @@ function updatedot(){
 
 		//emission
         ChargeM[i].battery = ChargeM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
-        ChargeM[i].battery = ChargeM[i].battery.toFixed(2);
 
         ChargeM[i].body = ChargeM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        ChargeM[i].body = ChargeM[i].body.toFixed(2);
 
         ChargeM[i].fuelmakefinal = ChargeM[i].fuelmake*1 + ChargeM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
-        ChargeM[i].fuelmakefinal = ChargeM[i].fuelmakefinal.toFixed(2);
 
         //total
 		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
+		ChargeM[i].spending = ChargeM[i].spending/12;
 		ChargeM[i].spendingperkm = ChargeM[i].spending/input[0].monthkm;
 
         ChargeM[i].emission = ChargeM[i].fuelburn*1+ChargeM[i].fuelmakefinal*1+ChargeM[i].battery*1+ChargeM[i].body*1;
@@ -814,7 +904,6 @@ function updatedot(){
 				SwapS[i].planprice = gogoro[0].price;
 				SwapS[i].fueloriginal = SwapS[i].planprice*12;
 			};
-			
 		};
 
 		discountformula(SwapS[i].fueloriginal);
@@ -826,15 +915,14 @@ function updatedot(){
 
         //emission
         SwapS[i].battery = SwapS[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
-        SwapS[i].battery = SwapS[i].battery.toFixed(2);
 
         SwapS[i].body = SwapS[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        SwapS[i].body = SwapS[i].body.toFixed(2);
 
         SwapS[i].fuelmakefinal = SwapS[i].fuelmake*1 + SwapS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
-        SwapS[i].fuelmakefinal = SwapS[i].fuelmakefinal.toFixed(2);
+
         //total
         SwapS[i].spending = SwapS[i].tax*1+SwapS[i].maintain*1+SwapS[i].fuel*1+SwapS[i].own*1;
+		SwapS[i].spending = SwapS[i].spending/12;
 		SwapS[i].spendingperkm = SwapS[i].spending/input[0].monthkm;
 
         SwapS[i].emission = SwapS[i].fuelburn*1+SwapS[i].fuelmakefinal*1+SwapS[i].battery*1+SwapS[i].body*1;
@@ -875,92 +963,100 @@ function updatedot(){
 
         //emission
         ChargeS[i].battery = ChargeS[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
-        ChargeS[i].battery = ChargeS[i].battery.toFixed(2);
 
         ChargeS[i].body = ChargeS[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-        ChargeS[i].body = ChargeS[i].body.toFixed(2);
 
         ChargeS[i].fuelmakefinal = ChargeS[i].fuelmake*1 + ChargeS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
-        ChargeS[i].fuelmakefinal = ChargeS[i].fuelmakefinal.toFixed(2);
 
         //total
         ChargeS[i].spending = ChargeS[i].tax*1+ChargeS[i].maintain*1+ChargeS[i].fuel*1+ChargeS[i].own*1;
+		ChargeS[i].spending = ChargeS[i].spending/12;
 		ChargeS[i].spendingperkm = ChargeS[i].spending/input[0].monthkm;
 
         ChargeS[i].emission = ChargeS[i].fuelburn*1+ChargeS[i].fuelmakefinal*1+ChargeS[i].battery*1+ChargeS[i].body*1;
 		ChargeS[i].emissionpermonth = ChargeS[i].emission*input[0].monthkm/1000;
 	};
 
+	//futuregoal
+	FutureGoal.forEach(d =>{
+		d.body = d.bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+		d.emission = d.fuelburn*1+d.fuelmake*1+d.battery*1+d.body*1;
+		d.emissionpermonth = d.emission*input[0].monthkm/1000;
+	});
+
+	//畫到圖上前要重新整合一次, 順序要跟剛剛一樣
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 
+	//xAxis
+	//當xy軸選擇不同種的時候, x y點的值會不同
+	//軸的名稱html要變
 	if(selectxaxis.value == selectxaxis[0].innerHTML){
 		//TCO per km
-		dotxScale = d3.scaleLinear()
-			.domain([d3.min(motordata, d => d.spendingperkm*1)*0.98, d3.max(motordata, d => d.spendingperkm*1)*1.02])
-			.range([57, winWidth-40]);
 		motordata.forEach(d => d.x = d.spendingperkm);
 
 		xaxistitle.html('Total Cost of Ownership (NT$/km)');
 	}else if(selectxaxis.value == selectxaxis[1].innerHTML){
 		//TCO per month
-		dotxScale = d3.scaleLinear()
-			.domain([d3.min(motordata, d => d.spending*1)*0.98, d3.max(motordata, d => d.spending*1)*1.02])
-			.range([57, winWidth-40]);
 		motordata.forEach(d => d.x = d.spending);
 
 		xaxistitle.html('Total Cost of Ownership (NT$/month)');
 	}else if(selectxaxis.value == selectxaxis[2].innerHTML){
 		//vehicle price
-		dotxScale = d3.scaleLinear()
-			.domain([d3.min(motordata, d => d.price*1)*0.98, d3.max(motordata, d => d.price*1)*1.02])
-			.range([57, winWidth-40]);
-		motordata.forEach(d => d.x = d.price);
-
+		motordata.forEach(function(d){
+			if(d.category == 'Phase6' || d.category == 'Phase7'){
+				d.x = d.price-gasmotorsub;
+			}else if(d.category == 'SwapM' || d.category == 'ChargeM'){
+				d.x = d.price-evmotorsub;
+			}else if(d.category == 'SwapS' || d.category == 'ChargeS'){
+				d.x = d.price-greenevsub;
+			};
+		});
+		
 		xaxistitle.html('Vehicle Price (NT$)');
 	}else if(selectxaxis.value == selectxaxis[3].innerHTML){
 		//fuel price
-		dotxScale = d3.scaleLinear()
-			.domain([d3.min(motordata, d => d.fuel*1)*0.98, d3.max(motordata, d => d.fuel*1)*1.02])
-			.range([57, winWidth-40]);
 		motordata.forEach(d => d.x = d.fuel);
 
 		xaxistitle.html('Fuel Price (NT$)');
 	};
 
+	//重新定義xy軸的上下區間
+	dotxScale = d3.scaleLinear()
+			.domain([d3.min(motordata, d => d.x*1)*0.98, d3.max(motordata, d => d.x*1)*1.02])
+			.range([57, winWidth-40]);
+
+	//yAxis
 	if(selectyaxis.value == selectyaxis[0].innerHTML){
 		//emission per km
-		dotyScale = d3.scaleLinear()
-			.domain([d3.max(motordata, d => d.emission*1)*1.02, d3.min(motordata, d => d.emission*1)*0.98])
-			.range([15, winHeight-70]);
 		motordata.forEach(d => d.y = d.emission);
+		FutureGoal.forEach(d => d.y = d.emission);
 
 		yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 	}else if(selectyaxis.value == selectyaxis[1].innerHTML){
 		//emissiom per month
-		dotyScale = d3.scaleLinear()
-			.domain([d3.max(motordata, d => d.emissionpermonth*1)*1.02, d3.min(motordata, d => d.emissionpermonth*1)*0.98])
-			.range([15, winHeight-70]);
 		motordata.forEach(d => d.y = d.emissionpermonth);
+		FutureGoal.forEach(d => d.y = d.emissionpermonth);
 
 		yaxistitle.html('Greenhouse Gas Emissions (kgCO₂eq/month)');
 	}else if(selectyaxis.value == selectyaxis[2].innerHTML){
 		//vehicle production
-		dotyScale = d3.scaleLinear()
-			.domain([d3.max(motordata, d => d.bodymake*1)*1.02, d3.min(motordata, d => d.bodymake*1)*0.98])
-			.range([15, winHeight-70]);
 		motordata.forEach(d => d.y = d.bodymake);
 
 		yaxistitle.html('Vehicle Production Emissions (kgCO₂eq)');
 	}else if(selectyaxis.value == selectyaxis[3].innerHTML){
 		//fuel
-		dotyScale = d3.scaleLinear()
-			.domain([d3.max(motordata, d => d.fuelmakefinal*1+d.fuelburn*1)*1.02, d3.min(motordata, d => d.fuelmakefinal*1+d.fuelburn*1)*0.98])
-			.range([15, winHeight-70]);
 		motordata.forEach(d => d.y = d.fuelmakefinal*1+d.fuelburn*1);
+		FutureGoal.forEach(d => d.y = d.fuelmake*1+d.fuelburn*1);
 
 		yaxistitle.html('Fuel Emissions (gCO₂eq/km)');
 	};
 
+	dotyScale = d3.scaleLinear()
+			.domain([d3.max(motordata, d => d.y*1)*1.02, d3.min(motordata, d => d.y*1)*0.98])
+			.range([15, winHeight-70]);
+
+	//xy軸改變的動畫時間, 單位毫秒
+	//重新叫xy軸
 	dotxAxis.transition()
 		.duration(800)
 		.call(d3.axisBottom(dotxScale));
@@ -973,17 +1069,23 @@ function updatedot(){
 	dotyAxis.selectAll('text')
 		.style('font-size', '0.8rem');
 
+	//更新點點的位置, 加上動畫時間
 	dotchart.selectAll('circle')
         .data(motordata)
 		.transition()
 		.duration(800)
-        .attr('cx', function(d){
-			return dotxScale(d.x);})
-		.attr('cy', function(d){
-			return dotyScale(d.y);});
+        .attr('cx', d => dotxScale(d.x))
+		.attr('cy', d => dotyScale(d.y));
 
-			
-//change xy 名稱
+	//futuregoal
+	futureGoalArea.selectAll('line')
+		.data(FutureGoal)
+		.transition()
+		.duration(800)
+		.attr('y1', d => dotyScale(d.y))
+		.attr('y2', d => dotyScale(d.y));
+
+		console.log(gasmaintain,evmaintain,greenevmaintain)
 };
 
 updatedot();
@@ -993,6 +1095,7 @@ window.addEventListener('mouseup', e => {setTimeout(updatedot,10)});
 
 
 //search
+//之前是在html檔裡面把所有checkbox打好, 現在改成直接讓js做好
 var searchhtml = motordata.map(d => {
 	return `
 	<label>
@@ -1033,20 +1136,26 @@ var motorlabelcombine = [];
 var checkedData = [];
 
 for(var i=0; i<motorlist.length; i++){
+	//這邊的.name+.value是剛剛上面<input>設定的
 	motorlabelcombine.push(motorlist[i].name+motorlist[i].value);
 };
 
+//checkbox被點的時候的function
 d3.selectAll("input[type=checkbox]")
 	.on('click', checkboxClick);
 
 function checkboxClick(i){
+	//這個i是滑鼠的活動
 	if(i.target.checked==true){
+		//把勾選的資料加進已選點
+		//moterdata.filter出來會是一個矩陣, 所以後面要加[0]
 		checkedData.push(motordata.filter(d => d.category+d.model == i.target.name+i.target.value)[0]);
 	}else{
+		//取消勾選時, 把資料削掉一個
 		for(var d=0; d<checkedData.length; d++){
 			if(checkedData[d].category+checkedData[d].model == i.target.name+i.target.value){
 				checkedData.splice(d,1);
-				d--;
+				break;
 			};
 		};
 	};
@@ -1055,10 +1164,13 @@ function checkboxClick(i){
 };
 
 function updateSelectedDot(){
+	//checklisth1只拿來放大標<h1>Selected</h1>
+	//checkedlist放下面的車輛基本資訊
 	checkedlisth1.innerHTML = "";
 	checkedlist.innerHTML = "";
 
 	if(checkedData.length == 0){
+		//沒勾選的時候不顯示東西
 		checkedlisth1.innerHTML = "";
 		checkedlist.innerHTML = "";
 	}else{
@@ -1075,6 +1187,8 @@ function updateSelectedDot(){
 	checkedlisth12.innerHTML = checkedlisth1.innerHTML;
 	checkedlist2.innerHTML = checkedlist.innerHTML;
 
+	//因為在點點上面要放數字, 所以拿了<g>包住裡面的<circle>跟<text>
+	//<g>的定位方式跟circle不同, g要用transform定位
 	var tempArea = selectedDotArea.selectAll('g')
 		.data(checkedData)
 		.join('g')
@@ -1084,6 +1198,7 @@ function updateSelectedDot(){
 		.on('click', dotunClick)
 		.attr('transform', d => 'translate(' + dotxScale(d.x) + ',' + dotyScale(d.y) +')');
 	
+	//已選點冒出
 	tempArea.selectAll('circle')
 		.data(checkedData)
 		.join('circle')
@@ -1092,6 +1207,7 @@ function updateSelectedDot(){
 		.attr('r', 9)
 		.attr('fill', '#F5DF4D');
 
+	//放上數字
 	selectedDotArea.selectAll('g')
 		.data(checkedData)
 		.append('text')
@@ -1114,6 +1230,7 @@ function updateSelectedDot(){
 //barchart
 var barWinWidth = dotwindow.clientWidth*0.45;
 
+//劃出柱狀圖範圍
 var spendingchart = d3.select('#spendingchartarea')
     .append('svg')
     .attr('width', '100%')
@@ -1123,12 +1240,14 @@ var emissionchart = d3.select('#emissionchartarea')
     .attr('width', '100%')
     .attr('height', '100%');
 
+//scaleBand()拿來一個對一個, 上面的scaleLinear()是線性對照
 var barxScale = d3.scaleBand()
     .range([40, barWinWidth])
     .padding(0.5);
 var barxScaleNum = d3.scaleBand()
     .range([40, barWinWidth])
     .padding(0.5);
+//x軸車輛名稱以123代替
 var barxScaleNumArray = [];
 
 //spending
@@ -1141,18 +1260,23 @@ var spendingxAxis = spendingchart.append('g')
 var spendingyAxis = spendingchart.append('g')
     .attr('transform', 'translate(50,0)')
     .call(d3.axisLeft(spendingyScale));
+//每一根柱狀都用<g>包起來
 var spendingBarArea = spendingchart.append('g');
 var spendingDomain = ['own','fuel','maintain','tax'];
+//不同分類不同顏色
+//spendingDomain拿出來設是後面會用到
 var spendingBarColor = d3.scaleOrdinal()
     .domain(spendingDomain)
     .range(['#325b8c','#3F72AF','#658ebf','#8baacf']);
 var spendingStacked = [];
 
+//y軸名稱
 spendingBarArea.append('text')
 	.attr('transform', 'rotate(-90)')
-	.attr('x', -winHeight/2-100)
-	.attr('y', 20)
+	.attr('x', -winHeight/2)
+	.attr('y', 10)
 	.attr('fill', '#112D4E')
+	.attr('text-anchor', 'middle')
     .style('font-size', '0.8em')
     .text('Total Cost of Ownership (NT$/month)');
 
@@ -1173,7 +1297,17 @@ var emissionBarColor = d3.scaleOrdinal()
     .range(['#8c4840','#B05A51','#bf7a73','#d7aca8']);
 var emissionStacked = [];
 
+emissionBarArea.append('text')
+	.attr('transform', 'rotate(-90)')
+	.attr('x', -winHeight/2)
+	.attr('y', 10)
+	.attr('fill', '#112D4E')
+	.attr('text-anchor', 'middle')
+    .style('font-size', '0.8em')
+    .text('Greenhouse Gas Emissions (gCO₂eq/km)');
+
 //tooltip
+//hover資訊卡
 var bardiv = d3.select('#fullwindow')
     .append('div')
     .attr('class', 'nametag')
@@ -1188,6 +1322,10 @@ function spendingHover(d,i){
 
     d.target.classList.add('barhover');
 
+	//stacked bar的繪製在後面
+	//stacked的邏輯是分成1樓高層, 2樓高層...
+	//thisvalue就是這層的頂-底 = 這區塊的數值
+	//如果thisvalue = data裡面的其中一個數值, 就可以判別hover的這塊屬於什麼legend
     var thisvalue = i[1]-i[0];
     thisvalue = thisvalue.toFixed(0);
     if(thisvalue == (i.data.own*1).toFixed(0)){
@@ -1220,7 +1358,7 @@ function emissionHover(d,i){
 
     d.target.classList.add('barhover');
 
-    var thisvalue = i[1]-i[0];//g6 kolombo150 nice100 racings150
+    var thisvalue = i[1]-i[0];
     thisvalue = thisvalue.toFixed(2);
     if(thisvalue == (i.data.fuelburn*1).toFixed(2)){
         bardiv.html('<h2>Fuel Usage</h2><br>'+i.data.fuelburn+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
@@ -1245,6 +1383,7 @@ function emissionunHover(d,i){
 
 //update bar
 function updatebar(){
+	//沒有已選點的時候會顯示下面那串字
 	if(checkedData.length==0){
 		d3.select('#spendingchartarea')
 			.style('display', 'none');
@@ -1261,6 +1400,8 @@ function updatebar(){
 			.html('');
 	};
 
+	//x軸domain放上
+	//同時放了123(barxScaleNum)
     barxScale.domain(checkedData.map(d => d.category+d.model));
 
     barxScaleNumArray = [];
@@ -1268,6 +1409,8 @@ function updatebar(){
     barxScaleNum.domain(barxScaleNumArray);
 
     //spending
+	//做出stacked bar
+	//.key拿來回傳東西
     spendingStacked = d3.stack()
         .keys(spendingDomain)(checkedData);
     spendingyScale = d3.scaleLinear()
@@ -1283,6 +1426,7 @@ function updatebar(){
     	.style('font-size', '0.7rem');
 	spendingyAxis.selectAll('text')
 		.style('font-size', '0.7rem');
+	//劃出柱狀用1樓2樓高層來畫
     spendingBarArea.selectAll('g')
         .data(spendingStacked)
         .join('g')
@@ -1337,3 +1481,115 @@ function updatebar(){
 updatebar();
 
 window.addEventListener('mouseup', e => {setTimeout(updatebar,10)});
+
+
+
+//tour
+var tourstep = [
+    {"name":"tour-start" , "position":"tourstart-position"},
+    {"name":"tour-dotchart", "position":"tourdotchart-position"},
+    {"name":"tour-barchart", "position":"tourbarchart-position"},
+    {"name":"tour-search", "position":"toursearch-position"},
+    {"name":"tour-customize", "position":"tourcustom-position"},
+    {"name":"tour-info", "position":"tourinfo-position"},
+    {"name":"tour-reset", "position":"tourreset-position"},
+    {"name":"tour-more", "position":"tourmore-position"}
+]
+
+var step = 0;
+
+function tourstart(){
+    var x = document.getElementById("tour-start");
+    if (x.classList.contains("displaynone")) {
+      x.classList.remove("displaynone");
+    } else {
+      x.classList.add("displaynone");
+    };
+    // touranimate.classList.add("displaynone");
+    searchside.classList.add("displaynone");
+    fullbackground.classList.add("displaynone");
+    informationside.classList.add("displaynone");
+    if(customside.classList.contains("displaynone")){
+    }else{
+        custombutton.onclick();
+    };
+}
+
+function tourend(){
+    document.getElementById(tourstep[step].name).classList.add("displaynone");
+    document.getElementById(tourstep[step].position).classList.add("displaynone");
+    step = 0;
+}
+
+function tournext(){
+    step += 1;
+    document.getElementById(tourstep[step-1].name).classList.add("displaynone");
+    document.getElementById(tourstep[step].name).classList.remove("displaynone");
+    document.getElementById(tourstep[step-1].position).classList.add("displaynone");
+    document.getElementById(tourstep[step].position).classList.remove("displaynone");
+
+    tourstepcheck();
+}
+
+function tourprev(){
+    step -= 1;
+    if(step >= 0 ){
+        document.getElementById(tourstep[step+1].name).classList.add("displaynone");
+        document.getElementById(tourstep[step].name).classList.remove("displaynone");
+        document.getElementById(tourstep[step+1].position).classList.add("displaynone");
+        document.getElementById(tourstep[step].position).classList.remove("displaynone");
+    };
+
+    tourstepcheck();
+};
+
+function tourstepcheck(){
+	if(step==1){
+        searchside.classList.add("displaynone");
+        fullbackground.classList.add("displaynone");
+        informationside.classList.add("displaynone");
+        if(customside.classList.contains("displaynone")){
+        }else{
+            custombutton.onclick();
+        };
+        dotbutton.onclick();
+    }else if(step==2){
+        searchside.classList.add("displaynone");
+        fullbackground.classList.add("displaynone");
+        informationside.classList.add("displaynone");
+        if(customside.classList.contains("displaynone")){
+        }else{
+            custombutton.onclick();
+        };
+        barbutton .onclick();
+    }else if(step==3){
+        informationside.classList.add("displaynone");
+        if(customside.classList.contains("displaynone")){
+        }else{
+            custombutton.onclick();
+        };
+        searchside.classList.remove("displaynone");
+		fullbackground.classList.remove("displaynone");
+    }else if(step==4){
+        custombutton.onclick();
+        dotbutton.onclick();
+    }else if(step==5){
+        information.onclick();
+    }else if(step==6){
+        searchside.classList.add("displaynone");
+        fullbackground.classList.add("displaynone");
+        informationside.classList.add("displaynone");
+        if(customside.classList.contains("displaynone")){
+            custombutton.onclick();
+        };
+    }else if(step==7){
+        searchside.classList.add("displaynone");
+        fullbackground.classList.add("displaynone");
+        informationside.classList.add("displaynone");
+        if(customside.classList.contains("displaynone")){
+        }else{
+            custombutton.onclick();
+        };
+        dotbutton.onclick();
+    };
+};

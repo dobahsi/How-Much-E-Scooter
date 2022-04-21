@@ -21,12 +21,15 @@
         <div id="title">How Much Do E-Scooters Really Cost?</div>
 
         <div id="icons">
-            <div id="question" class="icon">
+            <div id="question" title='The "Tour" function will update later on.'>
+                <!-- class="icon" -->
+                <!-- onclick="tourstart()" -->
                 <text translate="no">?</text>
             </div>
 
             <div id="information" class="icon">
                 <text translate="no">i</text>
+                <div id="tourinfo-position" , class="tour-position displaynone"></div>
             </div>
 
             <div id="reset" class="icon">
@@ -274,13 +277,88 @@
                 <a href="mailto:iyhsieh@ntu.edu.tw"><h4>iyhsieh@ntu.edu.tw</h4></a>
 
                 <h1>Overview</h1>
-The 2015 Paris Agreement commits countries to limit the global average temperature rise to well below 2 °C above pre-industrial levels and achieve carbon neutrality between 2050 and 2100. The transport sector accounts for around one-fourth of the global CO2 emissions, and road transport is responsible for three-quarters of transport emissions1. Thus, to achieve the climate goals, the ground transportation sector across the globe is a must to be decarbonized—including Taiwan. In Taiwan, about 14% of all carbon emissions are from transportation, and almost all of them were from road transportation2. With nearly 612 scooters per 1000 populations, the Taiwanese government set various regulations to limit the emissions from scooters. For example, all scooters produced after 2021 must conform to Phase 7 Emission Standard (similar to Euro 5). Moreover, the government has provided financial incentives since 2016 to encourage people to retire their old, high-emitting scooters and switch to cleaner ones—including electric scooters (e-scooters).<br><br>
-Nowadays, electric vehicles (EVs) are considered as an alternative for global climate change mitigation and local air pollution reduction. Nevertheless, EVs market growth is impeded by their high purchase costs and lifetime carbon footprint advantages are still unclear. Since vehicles (including scooters) can be used in the long term and their emissions are not only from the vehicle operation, their price tags and zero tailpipe emissions only tell part of the story. In Taiwan, it remains questionable whether e-scooters are indeed more costly, especially considering their carbon emission reduction potentials, compared to conventional internal combustion engine scooters (ICE scooters). Thus, total cost of ownership (TCO) and life cycle analysis (LCA) analyses are conducted to evaluate the costs and carbon intensities of 156 scooters (35 battery swapping, 12 battery charging, 64 Phase 6 and 45 Phase 7 gasoline scooter models) on Taiwan’s market today. Moreover, this study also develops an interactive tool to help the public and decision-makers better understand “How much do e-scooters really cost?” The study scope includes gasoline-powered scooters complying with Phase 6 and Phase 7 emission standards as well as e-scooters charged by battery swapping and battery charging.
+                    The 2015 Paris Agreement commits countries to limit the global average temperature rise to well below 2 °C above pre-industrial levels and achieve carbon neutrality between 2050 and 2100. The transport sector accounts for around one-fourth of the global CO2 emissions, and road transport is responsible for three-quarters of transport emissions1. Thus, to achieve the climate goals, the ground transportation sector across the globe is a must to be decarbonized—including Taiwan. In Taiwan, about 14% of all carbon emissions are from transportation, and almost all of them were from road transportation2. With nearly 612 scooters per 1000 populations, the Taiwanese government set various regulations to limit the emissions from scooters. For example, all scooters produced after 2021 must conform to Phase 7 Emission Standard (similar to Euro 5). Moreover, the government has provided financial incentives since 2016 to encourage people to retire their old, high-emitting scooters and switch to cleaner ones—including electric scooters (e-scooters).<br><br>
+                    Nowadays, electric vehicles (EVs) are considered as an alternative for global climate change mitigation and local air pollution reduction. Nevertheless, EVs market growth is impeded by their high purchase costs and lifetime carbon footprint advantages are still unclear. Since vehicles (including scooters) can be used in the long term and their emissions are not only from the vehicle operation, their price tags and zero tailpipe emissions only tell part of the story. In Taiwan, it remains questionable whether e-scooters are indeed more costly, especially considering their carbon emission reduction potentials, compared to conventional internal combustion engine scooters (ICE scooters). Thus, total cost of ownership (TCO) and life cycle analysis (LCA) analyses are conducted to evaluate the costs and carbon intensities of 156 scooters (35 battery swapping, 12 battery charging, 64 Phase 6 and 45 Phase 7 gasoline scooter models) on Taiwan’s market today. Moreover, this study also develops an interactive tool to help the public and decision-makers better understand “How much do e-scooters really cost?” The study scope includes gasoline-powered scooters complying with Phase 6 and Phase 7 emission standards as well as e-scooters charged by battery swapping and battery charging.
             </div>
 
             <div id="sidewindowshadow" class="window shadow"></div>
         </div>
     </aside>
+
+    <div id="tour">
+		
+		<div id="tour-start" class="tour-box displaynone">
+			<span id="tourbox-header">導覽</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">嗨～我是功能導覽視窗～<br>每往下一步都會有一個地方被粉紅框框起來，在這裡會跟你說明各個按鈕或區域的功用。<br><br>p.s.使用手機的朋友如果找不到粉紅框框可以上下滑滑找找</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+		</div>
+
+		<div id="tour-dotchart" class="tour-box displaynone">
+			<span id="tourbox-header">散佈圖</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">以參數客製設定的值，計算機車全生命週期的碳排放量和總持有成本，橫軸為每年平均花費，縱軸為機車每行駛一公里的平均碳排放量。</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-barchart" class="tour-box displaynone">
+			<span id="tourbox-header">柱狀圖</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">點擊右邊的「柱狀圖」可以換成柱狀圖。圖中以不同色塊顯示所選車款在不同項目的花費及碳排放量。</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-search" class="tour-box displaynone">
+			<span id="tourbox-header">搜尋車輛</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">點擊搜尋欄，資訊欄會出現資料庫的所有車款，點擊想要的車款就會被選起來，也可以直接搜尋，等等在「柱狀圖」會顯示已選車款的詳細分析。<br><br>p.s.如果想要分析其他車款的時候記得回到這裡</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-customize" class="tour-box displaynone">
+			<span id="tourbox-header">參數客製</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">點擊「參數客製」後，可依你的機車使用習慣及你喜歡的油電價格調整，調整完參數表格會自動更新～<br><br>p.s. 使用手機的朋友得麻煩你調整完參數點一下任何空白處才會更新</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-info" class="tour-box displaynone">
+			<span id="tourbox-header">更多資訊</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">在「更多資訊」裡，可以看到我們的資料來源及研究方法，還有製作這個平台的作者們～</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-reset" class="tour-box displaynone">
+			<span id="tourbox-header">數據重置</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">按一下「數據重製」可以將客製參數調整回預設值，已選車款也會全部清空。</span>
+			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+		</div>
+
+		<div id="tour-more" class="tour-box displaynone">
+			<span id="tourbox-header">來去隔壁看看</span>
+			<span id="tourline"></span>
+			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
+			<span id="tourbox-text">點擊「查看汽車分析」前往汽車種類的分析平台～</span>
+			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+			<span id="tourbox-close" onclick="tourend()">結束</span>
+		</div>
+
+	</div>
     
 </body>
 

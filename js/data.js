@@ -242,6 +242,32 @@ const subsidy = [
         "gas": "9000"
     }
 ];
+var FutureGoal = [
+    {
+        "year": "2030",
+        "efficiency": "43.82780105",
+        "weight": "111",
+        "bodymake": "277.37",
+        "fuelburn": "54.1437157",
+        "fuelmake": "14.83076916",
+        "battery": "0",
+        "body": "5.55",
+        "emission": "74.52",
+        "emissionpermonth": "31.05"
+    },
+    {
+        "year": "2040",
+        "efficiency": "53.94190898",
+        "weight": "111",
+        "bodymake": "277.37",
+        "fuelburn": "43.99176901",
+        "fuelmake": "12.04999994",
+        "battery": "0",
+        "body": "5.55",
+        "emission": "61.59",
+        "emissionpermonth": "25.66"
+    }
+];
 var Phase6 = [
     {
         "category": "Phase6",
