@@ -379,7 +379,6 @@ function dotClick(d,i){
 			motorlist[j].checked = true;
 		};
 	};
-
 	//已選點的更新
 	updateSelectedDot();
 };
@@ -619,7 +618,7 @@ function updatedot(){
     evmay18k = evmay18k/input[0].ownyear;
 
 	var evmaintain = evfirst1k*1 + evmay3k*1 + evmay9k*1 + evmay18k*1;
-
+console.log(evmaintain)
 	//greenmaintain
     //$122 5000km
     var greenmay5k = 0;
@@ -783,7 +782,7 @@ function updatedot(){
 
         SwapM[i].body = SwapM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
-        SwapM[i].fuelmakefinal = SwapM[i].fuelmake*1 + SwapM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+        SwapM[i].fuelmakefinal = SwapM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
 
         //total
         SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
@@ -808,7 +807,7 @@ function updatedot(){
 			if(input[0].yearkm*1 > ionex[4].kmperyear*1){
 				ChargeM[i].plan = ionex[4].plan;
 				ChargeM[i].planprice = ionex[4].price;
-				ChargeM[i].fueloriginal = ionex[4].price*12+(input[0].yearkm-ionex[4].kmperyear)*ionex[4].ntdperkm+(input[0].yearkm/ChargeM[i].efficiency*input[0].electric);
+				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+(input[0].yearkm-ionex[4].kmperyear)*ionex[4].ntdperkm+(input[0].yearkm/ChargeM[i].efficiency*input[0].electric);
 			}else{
 				ChargeM[i].plan = ionex[4].plan;
 				ChargeM[i].planprice = ionex[4].price;
@@ -842,7 +841,7 @@ function updatedot(){
 
         ChargeM[i].body = ChargeM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
-        ChargeM[i].fuelmakefinal = ChargeM[i].fuelmake*1 + ChargeM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+        ChargeM[i].fuelmakefinal = ChargeM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
 
         //total
 		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
@@ -918,7 +917,7 @@ function updatedot(){
 
         SwapS[i].body = SwapS[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
-        SwapS[i].fuelmakefinal = SwapS[i].fuelmake*1 + SwapS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+        SwapS[i].fuelmakefinal = SwapS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
 
         //total
         SwapS[i].spending = SwapS[i].tax*1+SwapS[i].maintain*1+SwapS[i].fuel*1+SwapS[i].own*1;
@@ -966,7 +965,7 @@ function updatedot(){
 
         ChargeS[i].body = ChargeS[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
-        ChargeS[i].fuelmakefinal = ChargeS[i].fuelmake*1 + ChargeS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+        ChargeS[i].fuelmakefinal = ChargeS[i].kwh*input[0].electriccoefficient/input[0].monthkm;
 
         //total
         ChargeS[i].spending = ChargeS[i].tax*1+ChargeS[i].maintain*1+ChargeS[i].fuel*1+ChargeS[i].own*1;
@@ -1085,7 +1084,48 @@ function updatedot(){
 		.attr('y1', d => dotyScale(d.y))
 		.attr('y2', d => dotyScale(d.y));
 
-		console.log(gasmaintain,evmaintain,greenevmaintain)
+	// 	var checkedlist = document.getElementById('checkedlist');
+	// var ph6 = ChargeS.map(d => {
+	// 	return `
+	// 	${d.brand},${d.price},${d.model},${d.spendingperkm},${d.emission}`
+	// }).join('');
+
+	// checkedlist.innerHTML = ph6;
+	// console.log(checkedlist.innerHTML)
+
+// 	var suum4 = 0;
+// 	var suum1 = 0;
+// 	var suum2 = 0;
+// 	var suum3 = 0;
+// 	var avvg1 = 0;
+// 	var avvg2 = 0;
+// 	var avvg3 = 0;
+// 	var avvg4 = 0;
+
+// 	for(var i=0; i<Phase7.length; i++){
+// 		suum1 += Phase7[i].body*1;
+// 		suum2 += Phase7[i].battery*1;
+// 		suum3 += Phase7[i].fuelmakefinal*1;
+// 		suum4 += Phase7[i].emission*1;
+// 	};
+// 	avvg1 = suum1/Phase7.length;
+// 	avvg2 = suum2/Phase7.length;
+// 	avvg3 = suum3/Phase7.length;
+// 	avvg4 = suum4/Phase7.length;
+// 	console.log(avvg1,avvg2,avvg3,avvg4)
+
+	var ioro = [];	
+	for(var i=0; i<Phase7.length; i++){
+		ioro.push(Phase7[i].fuel/input[0].yearkm)
+	}
+	console.log(ioro,Math.max(...ioro),Math.min(...ioro))
+	// console.log(SwapM[1].tax,SwapM[1].maintain,SwapM[1].fuel,SwapM[1].own)
+	// console.log(ChargeM[1].tax,ChargeM[1].maintain,ChargeM[1].fuel,ChargeM[1].own)
+	// console.log(SwapM[2].tax,SwapM[2].maintain,SwapM[2].fuel,SwapM[2].own)
+	// console.log(ChargeM[2].tax,ChargeM[2].maintain,ChargeM[2].fuel,ChargeM[2].own)
+	// console.log(SwapM[0].spendingperkm,SwapM[0].emission,ChargeM[0].spendingperkm,ChargeM[0].emission)
+	// console.log(SwapM[1].spendingperkm,SwapM[1].emission,ChargeM[1].spendingperkm,ChargeM[1].emission)
+	// console.log(SwapM[2].spendingperkm,SwapM[2].emission,ChargeM[2].spendingperkm,ChargeM[2].emission)
 };
 
 updatedot();
