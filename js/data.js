@@ -92,14 +92,15 @@ const gogoro = [
 ];
 var input = [
     {
-        "ownyear": "10",
-        "yearkm": "5000",
+        "ownyear": "16",
+        "yearkm": "6400",
         "monthkm": "416.67",
         "depreciation": "0.75",
         "discount": "0.06",
         "gas92": "27.2",
         "electric": "2.7",
-        "electriccoefficient": "509"
+        "electriccoefficient": "529.6",
+        "gascoefficient": "2263.1"
     }
 ];
 const subsidy = [
@@ -245,15 +246,15 @@ const subsidy = [
 var FutureGoal = [
     {
         "year": "2030",
-        "efficiency": "43.82780105",
+        "efficiency": "141.5963",
         "weight": "111",
         "bodymake": "277.37",
-        "fuelburn": "54.1437157",
-        "fuelmake": "14.83076916",
+        "fuelburn": "16.759",
+        "fuelmake": "4.5905",
         "battery": "0",
         "body": "5.55",
         "emission": "74.52",
-        "emissionpermonth": "31.05"
+        "emissionpermonth": "11.21"
     },
     {
         "year": "2040",
@@ -778,7 +779,7 @@ var Phase6 = [
     {
         "category": "Phase6",
         "brand": "Kymco",
-        "model": "RAVING S 150",
+        "model": "RACING S 150",
         "efficiency": "42.0",
         "price": "89000",
         "weight": "128",
@@ -1676,7 +1677,7 @@ var Phase6 = [
         "category": "Phase6",
         "brand": "Aeonmotor",
         "model": "co-in 125",
-        "efficiency": "30.2",
+        "efficiency": "43.2",
         "price": "66000",
         "weight": "102",
         "bodymake": "254.8761205",

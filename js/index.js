@@ -161,7 +161,7 @@ input[0].discount = indiscount.value};
 
 var selectcity = document.getElementById("selectcity");
 
-window.addEventListener('mouseup', e => {updatesubsidy()});
+window.addEventListener('pointerup', e => {updatesubsidy()});
 function updatesubsidy(){
 	for(var i=0; i<subsidy.length; i++){
 		if(selectcity.value==subsidy[i].city){
@@ -178,8 +178,8 @@ function updatesubsidy(){
 document.getElementById("reset").onclick = function(){
 	input[0].gas92 = in92.value = out92.innerHTML = 27.2;
 	input[0].electric = inelec.value = outelec.innerHTML = 2.7;
-	input[0].yearkm = inyearkm.value = outyearkm.innerHTML = 5000;
-	input[0].ownyear = inownyear.value = outownyear.innerHTML = 10;
+	input[0].yearkm = inyearkm.value = outyearkm.innerHTML = 6400;
+	input[0].ownyear = inownyear.value = outownyear.innerHTML = 16;
 	input[0].depreciation = 0.75;
 	indepreciation.value = 0.25;
 	outdepreciation.innerHTML = (indepreciation.value*100).toFixed(0);
@@ -618,7 +618,7 @@ function updatedot(){
     evmay18k = evmay18k/input[0].ownyear;
 
 	var evmaintain = evfirst1k*1 + evmay3k*1 + evmay9k*1 + evmay18k*1;
-console.log(evmaintain)
+
 	//greenmaintain
     //$122 5000km
     var greenmay5k = 0;
@@ -668,6 +668,8 @@ console.log(evmaintain)
         Phase6[i].own = sum;
 
         //emission
+		Phase6[i].fuelburn = input[0].gascoefficient*1/Phase6[i].efficiency
+
         Phase6[i].body = Phase6[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
         Phase6[i].fuelmakefinal = Phase6[i].fuelmake;
@@ -697,6 +699,8 @@ console.log(evmaintain)
         Phase7[i].own = sum;
 
         //emission
+		Phase7[i].fuelburn = input[0].gascoefficient*1/Phase7[i].efficiency
+
         Phase7[i].body = Phase7[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
 
         Phase7[i].fuelmakefinal = Phase7[i].fuelmake;
@@ -1077,12 +1081,12 @@ console.log(evmaintain)
 		.attr('cy', d => dotyScale(d.y));
 
 	//futuregoal
-	futureGoalArea.selectAll('line')
-		.data(FutureGoal)
-		.transition()
-		.duration(800)
-		.attr('y1', d => dotyScale(d.y))
-		.attr('y2', d => dotyScale(d.y));
+	// futureGoalArea.selectAll('line')
+	// 	.data(FutureGoal)
+	// 	.transition()
+	// 	.duration(800)
+	// 	.attr('y1', d => dotyScale(d.y))
+	// 	.attr('y2', d => dotyScale(d.y));
 
 	// 	var checkedlist = document.getElementById('checkedlist');
 	// var ph6 = ChargeS.map(d => {
@@ -1093,32 +1097,32 @@ console.log(evmaintain)
 	// checkedlist.innerHTML = ph6;
 	// console.log(checkedlist.innerHTML)
 
-// 	var suum4 = 0;
-// 	var suum1 = 0;
-// 	var suum2 = 0;
-// 	var suum3 = 0;
-// 	var avvg1 = 0;
-// 	var avvg2 = 0;
-// 	var avvg3 = 0;
-// 	var avvg4 = 0;
+	// var suum4 = 0;
+	// var suum1 = 0;
+	// var suum2 = 0;
+	// var suum3 = 0;
+	// var avvg1 = 0;
+	// var avvg2 = 0;
+	// var avvg3 = 0;
+	// var avvg4 = 0;
 
-// 	for(var i=0; i<Phase7.length; i++){
-// 		suum1 += Phase7[i].body*1;
-// 		suum2 += Phase7[i].battery*1;
-// 		suum3 += Phase7[i].fuelmakefinal*1;
-// 		suum4 += Phase7[i].emission*1;
-// 	};
-// 	avvg1 = suum1/Phase7.length;
-// 	avvg2 = suum2/Phase7.length;
-// 	avvg3 = suum3/Phase7.length;
-// 	avvg4 = suum4/Phase7.length;
-// 	console.log(avvg1,avvg2,avvg3,avvg4)
+	// for(var i=0; i<Phase7.length; i++){
+	// 	suum1 += Phase7[i].own*1;
+	// 	suum2 += Phase7[i].fuel*1;
+	// 	suum3 += (Phase7[i].tax*1+Phase7[i].maintain*1);
+	// 	// suum4 += Phase7[i].fuelburn*1;
+	// };
+	// avvg1 = suum1/Phase7.length/input[0].yearkm;
+	// avvg2 = suum2/Phase7.length/input[0].yearkm;
+	// avvg3 = suum3/Phase7.length/input[0].yearkm;
+	// // avvg4 = suum4/Phase7.length;
+	// console.log(avvg1,avvg2,avvg3,avvg4)
 
-	var ioro = [];	
-	for(var i=0; i<Phase7.length; i++){
-		ioro.push(Phase7[i].fuel/input[0].yearkm)
-	}
-	console.log(ioro,Math.max(...ioro),Math.min(...ioro))
+	// var ioro = [];	
+	// for(var i=0; i<Phase7.length; i++){
+	// 	ioro.push(Phase7[i].fuel/input[0].yearkm)
+	// }
+	// console.log(ioro,Math.max(...ioro),Math.min(...ioro))
 	// console.log(SwapM[1].tax,SwapM[1].maintain,SwapM[1].fuel,SwapM[1].own)
 	// console.log(ChargeM[1].tax,ChargeM[1].maintain,ChargeM[1].fuel,ChargeM[1].own)
 	// console.log(SwapM[2].tax,SwapM[2].maintain,SwapM[2].fuel,SwapM[2].own)
@@ -1126,11 +1130,19 @@ console.log(evmaintain)
 	// console.log(SwapM[0].spendingperkm,SwapM[0].emission,ChargeM[0].spendingperkm,ChargeM[0].emission)
 	// console.log(SwapM[1].spendingperkm,SwapM[1].emission,ChargeM[1].spendingperkm,ChargeM[1].emission)
 	// console.log(SwapM[2].spendingperkm,SwapM[2].emission,ChargeM[2].spendingperkm,ChargeM[2].emission)
+
+	// var listt = [];
+	// for(var i=0; i<ChargeS.length; i++){
+	// 	listt.push(ChargeS[i].spendingperkm+","+ChargeS[i].emission+'<br>')
+		
+	// }
+	// informationside.innerHTML = listt;
+
 };
 
 updatedot();
 
-window.addEventListener('mouseup', e => {setTimeout(updatedot,10)});
+window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 
 
 
@@ -1520,7 +1532,7 @@ function updatebar(){
 
 updatebar();
 
-window.addEventListener('mouseup', e => {setTimeout(updatebar,10)});
+window.addEventListener('pointerup', e => {setTimeout(updatebar,10)});
 
 
 

@@ -542,9 +542,8 @@ select:focus{
     justify-content: space-between;
 }
 /* informationside */
-#informationside{
-    /* text-align: justify; */
-    font-size: 0.8em;
+#informationside, #informationside a{
+    font-size: 12px;
 }
 
 
