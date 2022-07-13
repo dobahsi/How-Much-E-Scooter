@@ -1032,13 +1032,13 @@ function updatedot(){
 	if(selectyaxis.value == selectyaxis[0].innerHTML){
 		//emission per km
 		motordata.forEach(d => d.y = d.emission);
-		FutureGoal.forEach(d => d.y = d.emission);
+// 		FutureGoal.forEach(d => d.y = d.emission);
 
 		yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 	}else if(selectyaxis.value == selectyaxis[1].innerHTML){
 		//emissiom per month
 		motordata.forEach(d => d.y = d.emissionpermonth);
-		FutureGoal.forEach(d => d.y = d.emissionpermonth);
+// 		FutureGoal.forEach(d => d.y = d.emissionpermonth);
 
 		yaxistitle.html('Greenhouse Gas Emissions (kgCO₂eq/month)');
 	}else if(selectyaxis.value == selectyaxis[2].innerHTML){
@@ -1049,7 +1049,7 @@ function updatedot(){
 	}else if(selectyaxis.value == selectyaxis[3].innerHTML){
 		//fuel
 		motordata.forEach(d => d.y = d.fuelmakefinal*1+d.fuelburn*1);
-		FutureGoal.forEach(d => d.y = d.fuelmake*1+d.fuelburn*1);
+// 		FutureGoal.forEach(d => d.y = d.fuelmake*1+d.fuelburn*1);
 
 		yaxistitle.html('Fuel Emissions (gCO₂eq/km)');
 	};
