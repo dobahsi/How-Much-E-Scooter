@@ -301,19 +301,19 @@ yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 var selectedDotArea = dotchart.append('g');
 
 //futuregoal
-var futureGoalArea = dotchart.append('g');
+// var futureGoalArea = dotchart.append('g');
 
-futureGoalArea.selectAll('line')
-	.data(FutureGoal)
-	.join('line')
-	.style('stroke', '#112D4E')
-	.style('stroke-dasharray', ('3, 3'))
-	.attr('x1', 57)
-	.attr('y1', d => dotyScale(d.emission))
-	.attr('x2', winWidth-40)
-	.attr('y2', d => dotyScale(d.emission))
-	.on('mouseover', lineHover)
-	.on('mouseout', lineunHover);
+// futureGoalArea.selectAll('line')
+// 	.data(FutureGoal)
+// 	.join('line')
+// 	.style('stroke', '#112D4E')
+// 	.style('stroke-dasharray', ('3, 3'))
+// 	.attr('x1', 57)
+// 	.attr('y1', d => dotyScale(d.emission))
+// 	.attr('x2', winWidth-40)
+// 	.attr('y2', d => dotyScale(d.emission))
+// 	.on('mouseover', lineHover)
+// 	.on('mouseout', lineunHover);
 
 
 //tools
@@ -981,11 +981,11 @@ function updatedot(){
 	};
 
 	//futuregoal
-	FutureGoal.forEach(d =>{
-		d.body = d.bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-		d.emission = d.fuelburn*1+d.fuelmake*1+d.battery*1+d.body*1;
-		d.emissionpermonth = d.emission*input[0].monthkm/1000;
-	});
+// 	FutureGoal.forEach(d =>{
+// 		d.body = d.bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+// 		d.emission = d.fuelburn*1+d.fuelmake*1+d.battery*1+d.body*1;
+// 		d.emissionpermonth = d.emission*input[0].monthkm/1000;
+// 	});
 
 	//畫到圖上前要重新整合一次, 順序要跟剛剛一樣
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
