@@ -96,13 +96,21 @@
                         <div id="phasesevendot" class="legenddot"></div>
                         <text>Phase 7 Gas. Scooter</text>
                     </li>
-                    <li id="SwapS">
+                    <li id="SwapM">
                         <div id="swappingescooterdot" class="legenddot"></div>
                         <text>Batt. Swap. E-Scooter</text>
                     </li>
-                    <li id="ChargeS">
+                    <li id="ChargeM">
                         <div id="chargingescooterdot" class="legenddot"></div>
                         <text>Batt. Charge. E-Scooter</text>
+                    </li>
+                    <li id="SwapS">
+                        <div id="lwswappingescooterdot" class="legenddot"></div>
+                        <text>Light. Swap. E-Scooter</text>
+                    </li>
+                    <li id="ChargeS">
+                        <div id="lwchargingescooterdot" class="legenddot"></div>
+                        <text>Light. Charge. E-Scooter</text>
                     </li>
                 </ul>
             </div>
@@ -215,11 +223,11 @@
                             <h3>P. 7 GAS Scooter&thinsp;:</h3><h3><span id="gasmotorsubsidy"></span>NT$</h3>
                         </li>
                         <li>
-                            <h3>ELEC Scooter&thinsp;:</h3><h3><span id="evmotorsubsidy"></span>NT$</h3>
+                            <h3>E-Scooter&thinsp;:</h3><h3><span id="evmotorsubsidy"></span>NT$</h3>
                         </li>
-                        <!-- <li>
-                            <h3>ELEC Scooter&thinsp;:</h3><h3><span id="greenevsubsidy"></span>NT$</h3>
-                        </li> -->
+                        <li>
+                            <h3>E-Scooter (Light)&thinsp;:</h3><h3><span id="greenevsubsidy"></span>NT$</h3>
+                        </li>
                     </ul>
                 </div>
 
@@ -245,6 +253,12 @@
                     <div class="textcontainer"><h2>Discount Rate&thinsp;:</h2>
                     <h2><span id="discountout"></span>%</h2></div><br>
                     <input type="range" min="0" max="0.20" value="0.06" class="slider" id="discountin" step="0.01">
+                </div>
+
+                <div class="slidecontainer">
+                    <div class="textcontainer"><h2>Carbon Intensity&thinsp;:</h2>
+                    <h3><span id="carbonout"></span>kgCO2/kWh</h3></div><br>
+                    <input type="range" min="0" max="0.7" value="0.55" class="slider" id="carbonin" step="0.01">
                 </div>
 
                 <h1>Axes</h1>
@@ -279,7 +293,7 @@
                 <h1>Overview</h1>
                     The 2015 Paris Agreement commits countries to limit the global average temperature rise to well below 2 °C above pre-industrial levels and achieve carbon neutrality between 2050 and 2100. The transport sector accounts for around one-fourth of the global CO2 emissions, and road transport is responsible for three-quarters of transport emissions1. Thus, to achieve the climate goals, the ground transportation sector across the globe is a must to be decarbonized—including Taiwan. In Taiwan, about 14% of all carbon emissions are from transportation, and almost all of them were from road transportation2. With nearly 612 scooters per 1000 populations, the Taiwanese government set various regulations to limit the emissions from scooters. For example, all scooters produced after 2021 must conform to Phase 7 Emission Standard (similar to Euro 5). Moreover, the government has provided financial incentives since 2016 to encourage people to retire their old, high-emitting scooters and switch to cleaner ones—including electric scooters (e-scooters).<br><br>
                     Nowadays, electric vehicles (EVs) are considered as an alternative for global climate change mitigation and local air pollution reduction. Nevertheless, EVs market growth is impeded by their high purchase costs and lifetime carbon footprint advantages are still unclear. Since vehicles (including scooters) can be used in the long term and their emissions are not only from the vehicle operation, their price tags and zero tailpipe emissions only tell part of the story. In Taiwan, it remains questionable whether e-scooters are indeed more costly, especially considering their carbon emission reduction potentials, compared to conventional internal combustion engine scooters (ICE scooters). Thus, total cost of ownership (TCO) and life cycle analysis (LCA) analyses are conducted to evaluate the costs and carbon intensities of 156 scooters (35 battery swapping, 12 battery charging, 64 Phase 6 and 45 Phase 7 gasoline scooter models) on Taiwan’s market today. Moreover, this study also develops an interactive tool to help the public and decision-makers better understand “How much do e-scooters really cost?” The study scope includes gasoline-powered scooters complying with Phase 6 and Phase 7 emission standards as well as e-scooters charged by battery swapping and battery charging.<br><br>
-                    Click <a href="Abstract.pdf">here</a> for full abstract.
+                    Click <a href="Abstract.pdf" target="_blank">here</a> for full abstract.
             </div>
 
             <div id="sidewindowshadow" class="window shadow"></div>

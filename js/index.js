@@ -128,7 +128,7 @@ var evmotorsub = subsidy[0].evwhite;
 var greenevsub = subsidy[0].evgreen;
 gasmotorsubsidy.innerHTML = subsidy[0].gas;
 evmotorsubsidy.innerHTML = subsidy[0].evwhite;
-// greenevsubsidy.innerHTML = subsidy[2].evgreen;
+greenevsubsidy.innerHTML = subsidy[2].evgreen;
 
 var inyearkm = document.getElementById("yearkmin");
 var outyearkm = document.getElementById("yearkmout");
@@ -159,6 +159,13 @@ indiscount.oninput = function() {
 outdiscount.innerHTML = (indiscount.value*100).toFixed(0);
 input[0].discount = indiscount.value};
 
+var incarbon = document.getElementById("carbonin");
+var outcarbon = document.getElementById("carbonout");
+outcarbon.innerHTML = (input[0].electriccoefficient/1000).toFixed(2);
+incarbon.oninput = function() {
+outcarbon.innerHTML = (incarbon.value*1).toFixed(2);
+input[0].electriccoefficient = incarbon.value*1000};
+
 var selectcity = document.getElementById("selectcity");
 
 window.addEventListener('pointerup', e => {updatesubsidy()});
@@ -170,7 +177,7 @@ function updatesubsidy(){
 			greenevsub = subsidy[i].evgreen;
 			gasmotorsubsidy.innerHTML = subsidy[i].gas;
 			evmotorsubsidy.innerHTML = subsidy[i].evwhite;
-			// greenevsubsidy.innerHTML = subsidy[i].evgreen;
+			greenevsubsidy.innerHTML = subsidy[i].evgreen;
 		};
 	};
 };
@@ -185,13 +192,15 @@ document.getElementById("reset").onclick = function(){
 	outdepreciation.innerHTML = (indepreciation.value*100).toFixed(0);
 	input[0].discount = indiscount.value = 0.06;
 	outdiscount.innerHTML = (input[0].discount*100).toFixed(0);
+	input[0].electriccoefficient = 551.7;
+	incarbon.value = outcarbon.innerHTML = (input[0].electriccoefficient/1000).toFixed(2);
 	selectcity.value = subsidy[0].city;
 	gasmotorsub = subsidy[0].gas;
 	evmotorsub = subsidy[0].evwhite;
 	greenevsub = subsidy[0].evgreen;
 	gasmotorsubsidy.innerHTML = subsidy[0].gas;
 	evmotorsubsidy.innerHTML = subsidy[0].evwhite;
-	// greenevsubsidy.innerHTML = subsidy[2].evgreen;
+	greenevsubsidy.innerHTML = subsidy[0].evgreen;
 	searchside.classList.add("displaynone");
 	fullbackground.classList.add("displaynone");
 	d3.selectAll("input[type=checkbox]").property("checked", false);
@@ -219,10 +228,10 @@ var motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 //domain是xy值得上下邊界
 //range是在製圖範圍內的比例
 var dotxScale = d3.scaleLinear()
-    .domain([d3.min(motordata, d => d.spending*1)*0.98, d3.max(motordata, d => d.spending*1)*1.02])
+    .domain([d3.min(motordata, d => d.spending*1)*0.96, d3.max(motordata, d => d.spending*1)*1.04])
     .range([57, winWidth-40]);
 var dotyScale = d3.scaleLinear()
-    .domain([d3.max(motordata, d => d.emission*1)*1.02, d3.min(motordata, d => d.emission*1)*0.98])
+    .domain([d3.max(motordata, d => d.emission*1)*1.06, Math.min(d3.min(motordata, d => d.emission*1)*0.94, FutureGoal[2].emission*0.9)])
     .range([15, winHeight-70]);
 
 //叫出xy軸
@@ -255,7 +264,7 @@ const energySelectFull = d3.scaleOrdinal()
 
 const colorSelect = d3.scaleOrdinal()
 	.domain(['Phase6', 'Phase7', 'SwapM', 'ChargeM', 'SwapS', 'ChargeS'])
-	.range(['#B05A51', '#C78B85', '#3F72AF', '#1A3B63', '#3F72AF', '#1A3B63']);
+	.range(['#BA9699', '#C36B76', '#16A1FE', '#FEAE0A', '#B5CCDD', '#EAE4D4']);
 
 //拿motordata(總和後的矩陣)來一筆一筆畫出點點
 //點點要套剛剛的製圖比例function
@@ -267,7 +276,7 @@ dotchart.append('g')
     .join('circle')
     .attr('cx', d => dotxScale(d.spending))
     .attr('cy', d => dotyScale(d.emission))
-    .attr('r', 6)
+    .attr('r', 6.5)
     .attr('fill', d => colorSelect(d.category))
 	.style("cursor", "pointer")
 	.on('mouseover', dotHover)
@@ -301,19 +310,19 @@ yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 var selectedDotArea = dotchart.append('g');
 
 //futuregoal
-// var futureGoalArea = dotchart.append('g');
+var futureGoalArea = dotchart.append('g');
 
-// futureGoalArea.selectAll('line')
-// 	.data(FutureGoal)
-// 	.join('line')
-// 	.style('stroke', '#112D4E')
-// 	.style('stroke-dasharray', ('3, 3'))
-// 	.attr('x1', 57)
-// 	.attr('y1', d => dotyScale(d.emission))
-// 	.attr('x2', winWidth-40)
-// 	.attr('y2', d => dotyScale(d.emission))
-// 	.on('mouseover', lineHover)
-// 	.on('mouseout', lineunHover);
+futureGoalArea.selectAll('line')
+	.data(FutureGoal)
+	.join('line')
+	.style('stroke', '#112D4E')
+	.style('stroke-dasharray', ('3, 3'))
+	.attr('x1', 57)
+	.attr('y1', d => dotyScale(d.emission))
+	.attr('x2', winWidth-40)
+	.attr('y2', d => dotyScale(d.emission))
+	.on('mouseover', lineHover)
+	.on('mouseout', lineunHover);
 
 
 //tools
@@ -360,7 +369,7 @@ function dotHover(d,i){
 //unhover的時候把點點縮回去, 資訊卡藏起來
 function dotunHover(d,i){
 	d3.select(this)
-		.attr('r', 6);
+		.attr('r', 6.5);
 
 	namediv.transition()
 		.style('display', 'none');
@@ -370,6 +379,7 @@ function dotunHover(d,i){
 //跟上面一樣, i是點的資料
 //之前版本是每check一次就刷新已選點列表, 但是會把順序打亂
 //這次是每點一次就把一個資料push進去, 順序就跟點的資訊一樣了
+var checkedData = [];
 function dotClick(d,i){
 	checkedData.push(i);
 
@@ -379,6 +389,7 @@ function dotClick(d,i){
 			motorlist[j].checked = true;
 		};
 	};
+
 	//已選點的更新
 	updateSelectedDot();
 };
@@ -410,7 +421,9 @@ function lineHover(d,i){
 	namediv.transition()
 		.style('display', 'block');
 	
-	namediv.html(i.year+' Emission Target<br>(for average car on road)<br>'+i.y)
+	var tempy = (i.y*1).toFixed(2);
+
+	namediv.html(i.year+' Emission Target<br>(for average car on road)<br>'+tempy+' gCO2')
 		.style('left', d.x+20 + 'px')
 		.style('top', d.y+20 + 'px');
 };
@@ -456,6 +469,12 @@ d3.select('#Phase6')
 d3.select('#Phase7')
 	.on('mouseover', Phase7Hover)
 	.on('mouseout', legendunHover);
+d3.select('#SwapM')
+	.on('mouseover', SwapMHover)
+	.on('mouseout', legendunHover);
+d3.select('#ChargeM')
+	.on('mouseover', ChargeMHover)
+	.on('mouseout', legendunHover);
 d3.select('#SwapS')
 	.on('mouseover', SwapSHover)
 	.on('mouseout', legendunHover);
@@ -468,38 +487,46 @@ function Phase6Hover(d){
 		.attr('r', 4);
 	dotchart.selectAll('circle')
 		.filter(d => d.category=='Phase6')
-		.attr('r', 7);
+		.attr('r', 8);
 };
 function Phase7Hover(d){
 	dotchart.selectAll('circle')
 		.attr('r', 4);
 	dotchart.selectAll('circle')
 		.filter(d => d.category=='Phase7')
-		.attr('r', 7);
+		.attr('r', 8);
+};
+function SwapMHover(d){
+	dotchart.selectAll('circle')
+		.attr('r', 4);
+	dotchart.selectAll('circle')
+		.filter(d => d.category=='SwapM')
+		.attr('r', 8);
+};
+function ChargeMHover(d){
+	dotchart.selectAll('circle')
+		.attr('r', 4);
+	dotchart.selectAll('circle')
+		.filter(d => d.category=='ChargeM')
+		.attr('r', 8);
 };
 function SwapSHover(d){
 	dotchart.selectAll('circle')
 		.attr('r', 4);
 	dotchart.selectAll('circle')
 		.filter(d => d.category=='SwapS')
-		.attr('r', 7);
-	dotchart.selectAll('circle')
-		.filter(d => d.category=='SwapM')
-		.attr('r', 7);
+		.attr('r', 8);
 };
 function ChargeSHover(d){
 	dotchart.selectAll('circle')
 		.attr('r', 4);
 	dotchart.selectAll('circle')
 		.filter(d => d.category=='ChargeS')
-		.attr('r', 7);
-	dotchart.selectAll('circle')
-		.filter(d => d.category=='ChargeM')
-		.attr('r', 7);
+		.attr('r', 8);
 };
 function legendunHover(d){
 	dotchart.selectAll('circle')
-		.attr('r', 6);
+		.attr('r', 6.5);
 	selectedDotArea.selectAll('circle')
 		.attr('r', 9);
 };
@@ -656,16 +683,16 @@ function updatedot(){
 	for (var i=0; i<Phase6.length; i++){
         //spending
         discountformula(Phase6[i].taxoriginal);
-        Phase6[i].tax = sum;
+        Phase6[i].tax = sum/12;
 
-        Phase6[i].maintain = gasmaintain;
+        Phase6[i].maintain = gasmaintain/12;
             
         discountformula((input[0].yearkm/Phase6[i].efficiency)*input[0].gas92);
-        Phase6[i].fuel = sum;
+        Phase6[i].fuel = sum/12;
 
         Phase6[i].salvage = Phase6[i].price*input[0].depreciation**input[0].ownyear;
         discountformula((Phase6[i].price-Phase6[i].salvage)/input[0].ownyear);
-        Phase6[i].own = sum;
+        Phase6[i].own = sum/12;
 
         //emission
 		Phase6[i].fuelburn = input[0].gascoefficient*1/Phase6[i].efficiency
@@ -676,7 +703,6 @@ function updatedot(){
 
         //total
         Phase6[i].spending = Phase6[i].tax*1+Phase6[i].maintain*1+Phase6[i].fuel*1+Phase6[i].own*1;
-		Phase6[i].spending = Phase6[i].spending/12;
 		Phase6[i].spendingperkm = Phase6[i].spending/input[0].monthkm;
 
         Phase6[i].emission = Phase6[i].fuelburn*1+Phase6[i].fuelmakefinal*1+Phase6[i].battery*1+Phase6[i].body*1;
@@ -687,16 +713,16 @@ function updatedot(){
 	for (var i=0; i<Phase7.length; i++){
         //spending
         discountformula(Phase7[i].taxoriginal);
-        Phase7[i].tax = sum;
+        Phase7[i].tax = sum/12;
 
-        Phase7[i].maintain = gasmaintain;
+        Phase7[i].maintain = gasmaintain/12;
             
         discountformula((input[0].yearkm/Phase7[i].efficiency)*input[0].gas92);
-        Phase7[i].fuel = sum;
+        Phase7[i].fuel = sum/12;
 
         Phase7[i].salvage = Phase7[i].price*input[0].depreciation**input[0].ownyear;
         discountformula((Phase7[i].price-Phase7[i].salvage)/input[0].ownyear);
-        Phase7[i].own = sum;
+        Phase7[i].own = sum/12;
 
         //emission
 		Phase7[i].fuelburn = input[0].gascoefficient*1/Phase7[i].efficiency
@@ -707,7 +733,6 @@ function updatedot(){
 
         //total
         Phase7[i].spending = Phase7[i].tax*1+Phase7[i].maintain*1+Phase7[i].fuel*1+Phase7[i].own*1;
-		Phase7[i].spending = Phase7[i].spending/12;
 		Phase7[i].spendingperkm = Phase7[i].spending/input[0].monthkm;
 
         Phase7[i].emission = Phase7[i].fuelburn*1+Phase7[i].fuelmakefinal*1+Phase7[i].battery*1+Phase7[i].body*1;
@@ -718,9 +743,9 @@ function updatedot(){
 	for (var i=0; i<SwapM.length; i++){
 		//spending
 		discountformula(SwapM[i].taxoriginal);
-		SwapM[i].tax = sum;
+		SwapM[i].tax = sum/12;
 
-		SwapM[i].maintain = evmaintain;
+		SwapM[i].maintain = evmaintain/12;
 
 		SwapM[i].kwh = input[0].monthkm/SwapM[i].efficiency;
 
@@ -775,11 +800,11 @@ function updatedot(){
 		};
 
 		discountformula(SwapM[i].fueloriginal);
-        SwapM[i].fuel = sum;
+        SwapM[i].fuel = sum/12;
 
         SwapM[i].salvage = (SwapM[i].price-evmotorsub)*input[0].depreciation**input[0].ownyear;
         discountformula((SwapM[i].price-evmotorsub-SwapM[i].salvage)/input[0].ownyear);
-        SwapM[i].own = sum;
+        SwapM[i].own = sum/12;
 
         //emission
         SwapM[i].battery = SwapM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
@@ -790,7 +815,6 @@ function updatedot(){
 
         //total
         SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
-		SwapM[i].spending = SwapM[i].spending/12;
 		SwapM[i].spendingperkm = SwapM[i].spending/input[0].monthkm;
 
         SwapM[i].emission = SwapM[i].fuelburn*1+SwapM[i].fuelmakefinal*1+SwapM[i].battery*1+SwapM[i].body*1;
@@ -801,9 +825,9 @@ function updatedot(){
 	for(var i=0; i<ChargeM.length; i++){
 		//spending
 		discountformula(ChargeM[i].taxoriginal);
-		ChargeM[i].tax = sum;
+		ChargeM[i].tax = sum/12;
 
-		ChargeM[i].maintain = evmaintain;
+		ChargeM[i].maintain = evmaintain/12;
 
 		ChargeM[i].kwh = input[0].monthkm/ChargeM[i].efficiency;
 
@@ -834,11 +858,11 @@ function updatedot(){
 		};
 
 		discountformula(ChargeM[i].fueloriginal);
-        ChargeM[i].fuel = sum;
+        ChargeM[i].fuel = sum/12;
 
         ChargeM[i].salvage = (ChargeM[i].price-evmotorsub)*input[0].depreciation**input[0].ownyear;
         discountformula((ChargeM[i].price-evmotorsub-ChargeM[i].salvage)/input[0].ownyear);
-        ChargeM[i].own = sum;
+        ChargeM[i].own = sum/12;
 
 		//emission
         ChargeM[i].battery = ChargeM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
@@ -849,7 +873,6 @@ function updatedot(){
 
         //total
 		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
-		ChargeM[i].spending = ChargeM[i].spending/12;
 		ChargeM[i].spendingperkm = ChargeM[i].spending/input[0].monthkm;
 
         ChargeM[i].emission = ChargeM[i].fuelburn*1+ChargeM[i].fuelmakefinal*1+ChargeM[i].battery*1+ChargeM[i].body*1;
@@ -860,10 +883,10 @@ function updatedot(){
 	for(var i=0; i<SwapS.length; i++){
 		//spending
         discountformula(SwapS[i].taxoriginal);
-        SwapS[i].tax = sum;
+        SwapS[i].tax = sum/12;
 
         //maintain
-        SwapS[i].maintain = greenevmaintain;
+        SwapS[i].maintain = greenevmaintain/12;
 
         SwapS[i].kwh = input[0].monthkm/SwapS[i].efficiency;
 
@@ -910,11 +933,11 @@ function updatedot(){
 		};
 
 		discountformula(SwapS[i].fueloriginal);
-        SwapS[i].fuel = sum;
+        SwapS[i].fuel = sum/12;
 
         SwapS[i].salvage = (SwapS[i].price-greenevsub)*input[0].depreciation**input[0].ownyear;
         discountformula((SwapS[i].price-greenevsub-SwapS[i].salvage)/input[0].ownyear);
-        SwapS[i].own = sum;
+        SwapS[i].own = sum/12;
 
         //emission
         SwapS[i].battery = SwapS[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
@@ -925,7 +948,6 @@ function updatedot(){
 
         //total
         SwapS[i].spending = SwapS[i].tax*1+SwapS[i].maintain*1+SwapS[i].fuel*1+SwapS[i].own*1;
-		SwapS[i].spending = SwapS[i].spending/12;
 		SwapS[i].spendingperkm = SwapS[i].spending/input[0].monthkm;
 
         SwapS[i].emission = SwapS[i].fuelburn*1+SwapS[i].fuelmakefinal*1+SwapS[i].battery*1+SwapS[i].body*1;
@@ -936,10 +958,10 @@ function updatedot(){
 	for(var i=0; i<ChargeS.length; i++){
 		//spending
         discountformula(ChargeS[i].taxoriginal);
-        ChargeS[i].tax = sum;
+        ChargeS[i].tax = sum/12;
 
         //maintain
-        ChargeS[i].maintain = greenevmaintain;
+        ChargeS[i].maintain = greenevmaintain/12;
 
         ChargeS[i].kwh = input[0].monthkm/ChargeS[i].efficiency;
 
@@ -958,11 +980,11 @@ function updatedot(){
 		};
 
 		discountformula(ChargeS[i].fueloriginal);
-        ChargeS[i].fuel = sum;
+        ChargeS[i].fuel = sum/12;
 
         ChargeS[i].salvage = (ChargeS[i].price-greenevsub)*input[0].depreciation**input[0].ownyear;
         discountformula((ChargeS[i].price-greenevsub-ChargeS[i].salvage)/input[0].ownyear);
-        ChargeS[i].own = sum;
+        ChargeS[i].own = sum/12;
 
         //emission
         ChargeS[i].battery = ChargeS[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
@@ -973,7 +995,6 @@ function updatedot(){
 
         //total
         ChargeS[i].spending = ChargeS[i].tax*1+ChargeS[i].maintain*1+ChargeS[i].fuel*1+ChargeS[i].own*1;
-		ChargeS[i].spending = ChargeS[i].spending/12;
 		ChargeS[i].spendingperkm = ChargeS[i].spending/input[0].monthkm;
 
         ChargeS[i].emission = ChargeS[i].fuelburn*1+ChargeS[i].fuelmakefinal*1+ChargeS[i].battery*1+ChargeS[i].body*1;
@@ -981,11 +1002,11 @@ function updatedot(){
 	};
 
 	//futuregoal
-// 	FutureGoal.forEach(d =>{
-// 		d.body = d.bodymake/(input[0].ownyear*input[0].yearkm)*1000;
-// 		d.emission = d.fuelburn*1+d.fuelmake*1+d.battery*1+d.body*1;
-// 		d.emissionpermonth = d.emission*input[0].monthkm/1000;
-// 	});
+	FutureGoal.forEach(d =>{
+		d.body = d.bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+		d.emission = d.fuelburn*1+d.fuelmake*1+d.battery*1+d.body*1;
+		d.emissionpermonth = d.emission*input[0].monthkm/1000;
+	});
 
 	//畫到圖上前要重新整合一次, 順序要跟剛剛一樣
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
@@ -1025,20 +1046,21 @@ function updatedot(){
 
 	//重新定義xy軸的上下區間
 	dotxScale = d3.scaleLinear()
-			.domain([d3.min(motordata, d => d.x*1)*0.98, d3.max(motordata, d => d.x*1)*1.02])
+			.domain([d3.min(motordata, d => d.x*1)*0.96, d3.max(motordata, d => d.x*1)*1.04])
 			.range([57, winWidth-40]);
 
 	//yAxis
+	var ymin;
 	if(selectyaxis.value == selectyaxis[0].innerHTML){
 		//emission per km
 		motordata.forEach(d => d.y = d.emission);
-// 		FutureGoal.forEach(d => d.y = d.emission);
+		FutureGoal.forEach(d => d.y = d.emission);	
 
 		yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 	}else if(selectyaxis.value == selectyaxis[1].innerHTML){
 		//emissiom per month
 		motordata.forEach(d => d.y = d.emissionpermonth);
-// 		FutureGoal.forEach(d => d.y = d.emissionpermonth);
+		FutureGoal.forEach(d => d.y = d.emissionpermonth);
 
 		yaxistitle.html('Greenhouse Gas Emissions (kgCO₂eq/month)');
 	}else if(selectyaxis.value == selectyaxis[2].innerHTML){
@@ -1049,13 +1071,19 @@ function updatedot(){
 	}else if(selectyaxis.value == selectyaxis[3].innerHTML){
 		//fuel
 		motordata.forEach(d => d.y = d.fuelmakefinal*1+d.fuelburn*1);
-// 		FutureGoal.forEach(d => d.y = d.fuelmake*1+d.fuelburn*1);
+		FutureGoal.forEach(d => d.y = d.fuelmake*1+d.fuelburn*1);
 
 		yaxistitle.html('Fuel Emissions (gCO₂eq/km)');
 	};
 
+	if(selectyaxis.value == selectyaxis[2].innerHTML){
+		ymin = d3.min(motordata, d => d.y*1)*0.94;
+	}else{
+		ymin = Math.min(d3.min(motordata, d => d.y*1)*0.94, FutureGoal[2].y*0.9);
+	};
+
 	dotyScale = d3.scaleLinear()
-			.domain([d3.max(motordata, d => d.y*1)*1.02, d3.min(motordata, d => d.y*1)*0.98])
+			.domain([d3.max(motordata, d => d.y*1)*1.06, ymin])
 			.range([15, winHeight-70]);
 
 	//xy軸改變的動畫時間, 單位毫秒
@@ -1080,13 +1108,21 @@ function updatedot(){
         .attr('cx', d => dotxScale(d.x))
 		.attr('cy', d => dotyScale(d.y));
 
-	//futuregoal
-	// futureGoalArea.selectAll('line')
-	// 	.data(FutureGoal)
-	// 	.transition()
-	// 	.duration(800)
-	// 	.attr('y1', d => dotyScale(d.y))
-	// 	.attr('y2', d => dotyScale(d.y));
+	selectedDotArea.selectAll('g')
+		.data(checkedData)
+		.transition()
+		.duration(800)
+		.attr('transform', d => {
+			console.log(d.x,d.y);
+			return 'translate(' + dotxScale(d.x) + ',' + dotyScale(d.y) +')'});
+
+	// futuregoal
+	futureGoalArea.selectAll('line')
+		.data(FutureGoal)
+		.transition()
+		.duration(800)
+		.attr('y1', d => dotyScale(d.y))
+		.attr('y2', d => dotyScale(d.y));
 
 	// 	var checkedlist = document.getElementById('checkedlist');
 	// var ph6 = ChargeS.map(d => {
@@ -1185,7 +1221,6 @@ var checkedlisth12 = document.getElementById('checkedlisth12');
 var checkedlist2 = document.getElementById('checkedlist2');
 var motorlist = document.querySelectorAll("[type=checkbox]");
 var motorlabelcombine = [];
-var checkedData = [];
 
 for(var i=0; i<motorlist.length; i++){
 	//這邊的.name+.value是剛剛上面<input>設定的
@@ -1272,9 +1307,9 @@ function updateSelectedDot(){
 			for(var i=0; i<checkedData.length; i++){
 				if(d.category+d.model == checkedData[i].category+checkedData[i].model){
 					return i+1;
+				};
 			};
-		};
-	});
+		});
 };
 
 
@@ -1381,13 +1416,13 @@ function spendingHover(d,i){
     var thisvalue = i[1]-i[0];
     thisvalue = thisvalue.toFixed(0);
     if(thisvalue == (i.data.own*1).toFixed(0)){
-        bardiv.html('<h2>Acquisition and Depreciation</h2><br>'+i.data.own+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Acquisition and Depreciation</h2><br>'+(i.data.own*1).toFixed(0)+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.fuel*1).toFixed(0)){
-        bardiv.html('<h2>Fuel and Electricity</h2><br>'+i.data.fuel+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Fuel and Electricity</h2><br>'+(i.data.fuel*1).toFixed(0)+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.maintain*1).toFixed(0)){
-        bardiv.html('<h2>Mantenance</h2><br>'+i.data.maintain+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Mantenance</h2><br>'+(i.data.maintain*1).toFixed(0)+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.tax*1).toFixed(0)){
-        bardiv.html('<h2>Basic Tax and Insurance</h2><br>'+i.data.tax+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Basic Tax and Insurance</h2><br>'+(i.data.tax*1).toFixed(0)+' NT$/month<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     };
 };
 function spendingMove(d,i){
@@ -1413,13 +1448,13 @@ function emissionHover(d,i){
     var thisvalue = i[1]-i[0];
     thisvalue = thisvalue.toFixed(2);
     if(thisvalue == (i.data.fuelburn*1).toFixed(2)){
-        bardiv.html('<h2>Fuel Usage</h2><br>'+i.data.fuelburn+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Fuel Usage</h2><br>'+(i.data.fuelburn*1).toFixed(2)+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.fuelmakefinal*1).toFixed(2)){
-        bardiv.html('<h2>Fuel Production</h2><br>'+i.data.fuelmakefinal+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Fuel Production</h2><br>'+(i.data.fuelmakefinal*1).toFixed(2)+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.battery*1).toFixed(2)){
-        bardiv.html('<h2>Battery Production</h2><br>'+i.data.battery+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Battery Production</h2><br>'+(i.data.battery*1).toFixed(2)+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     }else if(thisvalue == (i.data.body*1).toFixed(2)){
-        bardiv.html('<h2>Vehicle Production</h2><br>'+i.data.body+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
+        bardiv.html('<h2>Vehicle Production</h2><br>'+(i.data.body*1).toFixed(2)+' gCO<sub>2</sub>/km<br>'+i.data.category+' | '+i.data.brand+' '+i.data.model+'');
     };
 };
 function emissionMove(d,i){

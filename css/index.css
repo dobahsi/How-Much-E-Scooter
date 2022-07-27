@@ -18,10 +18,12 @@
     --dark: #112D4E;
     --hoverBackground: rgba(17,45,78,0.07);
 
-    --phase6: #B05A51;
-    --phase7: #C78B85;
-    --swapS: #3F72AF;
-    --chargeS: #1A3B63;
+    --phase6: #BA9699;
+    --phase7: #C36B76;
+    --swapM: #16A1FE;
+    --chargeM: #FEAE0A;
+    --swapS: #B5CCDD;
+    --chargeS: #EAE4D4;
 
     --tax: #8BAACF;
     --maintain: #658EBF;
@@ -367,11 +369,17 @@ aside{
 #phasesevendot{
     background-color: var(--phase7);
 }
-#chargingescooterdot{
-    background-color: var(--chargeS);
-}
 #swappingescooterdot{
+    background-color: var(--swapM);
+}
+#chargingescooterdot{
+    background-color: var(--chargeM);
+}
+#lwswappingescooterdot{
     background-color: var(--swapS);
+}
+#lwchargingescooterdot{
+    background-color: var(--chargeS);
 }
 
 /* barside */

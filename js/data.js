@@ -99,7 +99,7 @@ var input = [
         "discount": "0.06",
         "gas92": "27.2",
         "electric": "2.7",
-        "electriccoefficient": "529.6",
+        "electriccoefficient": "551.7",
         "gascoefficient": "2263.1"
     }
 ];
@@ -246,27 +246,38 @@ const subsidy = [
 var FutureGoal = [
     {
         "year": "2030",
-        "efficiency": "141.5963",
+        "efficiency": "38.174",
         "weight": "111",
-        "bodymake": "277.37",
-        "fuelburn": "16.759",
-        "fuelmake": "4.5905",
+        "bodymake": "277.7",
+        "fuelburn": "59.284",
+        "fuelmake": "17.027",
         "battery": "0",
-        "body": "5.55",
-        "emission": "74.52",
-        "emissionpermonth": "11.21"
+        "body": "2.7119",
+        "emission": "79.023",
+        "emissionpermonth": "42.146"
     },
     {
         "year": "2040",
-        "efficiency": "53.94190898",
+        "efficiency": "64.629",
         "weight": "111",
-        "bodymake": "277.37",
-        "fuelburn": "43.99176901",
-        "fuelmake": "12.04999994",
+        "bodymake": "277.7",
+        "fuelburn": "35.017",
+        "fuelmake": "10.057",
         "battery": "0",
-        "body": "5.55",
-        "emission": "61.59",
-        "emissionpermonth": "25.66"
+        "body": "2.7119",
+        "emission": "47.786",
+        "emissionpermonth": "25.486"
+    },{
+        "year": "2050",
+        "efficiency": "253.678",
+        "weight": "111",
+        "bodymake": "277.7",
+        "fuelburn": "8.921",
+        "fuelmake": "2.562",
+        "battery": "0",
+        "body": "2.7119",
+        "emission": "14.195",
+        "emissionpermonth": "7.571"
     }
 ];
 var Phase6 = [
