@@ -122,7 +122,7 @@ input[0].electric = inelec.value};
 
 var gasmotorsubsidy = document.getElementById("gasmotorsubsidy");
 var evmotorsubsidy = document.getElementById("evmotorsubsidy");
-// var greenevsubsidy = document.getElementById("greenevsubsidy");
+var greenevsubsidy = document.getElementById("greenevsubsidy");
 var gasmotorsub = subsidy[0].gas;
 var evmotorsub = subsidy[0].evwhite;
 var greenevsub = subsidy[0].evgreen;
