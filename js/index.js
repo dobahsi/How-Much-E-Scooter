@@ -103,6 +103,9 @@ document.getElementById("searchclose").onclick = function(){
 	searchside.classList.add("displaynone");
 	fullbackground.classList.add("displaynone");
 };
+document.getElementById("informationclose").onclick = function(){
+	information.onclick();
+};
 
 
 //slider
@@ -203,8 +206,8 @@ document.getElementById("reset").onclick = function(){
 	greenevsubsidy.innerHTML = subsidy[0].evgreen;
 	searchside.classList.add("displaynone");
 	fullbackground.classList.add("displaynone");
-	d3.selectAll("input[type=checkbox]").property("checked", false);
-	checkedData = [];
+	// d3.selectAll("input[type=checkbox]").property("checked", false);
+	// checkedData = [];
 	updateSelectedDot();
 };
 
@@ -423,9 +426,15 @@ function lineHover(d,i){
 	
 	var tempy = (i.y*1).toFixed(2);
 
+	if(selectyaxis.value == selectyaxis[1].innerHTML){
+	namediv.html(i.year+' Emission Target<br>(for average car on road)<br>'+tempy+' kgCO2')
+		.style('left', d.x+20 + 'px')
+		.style('top', d.y+20 + 'px');
+	}else{
 	namediv.html(i.year+' Emission Target<br>(for average car on road)<br>'+tempy+' gCO2')
 		.style('left', d.x+20 + 'px')
 		.style('top', d.y+20 + 'px');
+	};
 };
 
 function lineunHover(d,i){
@@ -1573,59 +1582,75 @@ window.addEventListener('pointerup', e => {setTimeout(updatebar,10)});
 
 //tour
 var tourstep = [
-    {"name":"tour-start" , "position":"tourstart-position"},
-    {"name":"tour-dotchart", "position":"tourdotchart-position"},
-    {"name":"tour-barchart", "position":"tourbarchart-position"},
-    {"name":"tour-search", "position":"toursearch-position"},
-    {"name":"tour-customize", "position":"tourcustom-position"},
-    {"name":"tour-info", "position":"tourinfo-position"},
-    {"name":"tour-reset", "position":"tourreset-position"},
-    {"name":"tour-more", "position":"tourmore-position"}
-]
+    {"name":"tour-start" , "position":"tourstart"},
+    {"name":"tour-dotchart", "position":"tourdotchart"},
+	{"name":"tour-target", "position":"tourtarget"},
+	{"name":"tour-customize", "position":"tourcustom"},
+    {"name":"tour-barchart", "position":"tourbarchart"},
+    {"name":"tour-search", "position":"toursearch"},
+	{"name":"tour-reset", "position":"tourreset"},
+    {"name":"tour-info", "position":"tourinfo"},
+    {"name":"tour-end", "position":"tourend"}
+];
 
 var step = 0;
 
 function tourstart(){
-    var x = document.getElementById("tour-start");
-    if (x.classList.contains("displaynone")) {
-      x.classList.remove("displaynone");
-    } else {
-      x.classList.add("displaynone");
-    };
-    // touranimate.classList.add("displaynone");
-    searchside.classList.add("displaynone");
-    fullbackground.classList.add("displaynone");
-    informationside.classList.add("displaynone");
-    if(customside.classList.contains("displaynone")){
-    }else{
-        custombutton.onclick();
-    };
-}
+	if(step !== 0){
+		tourend();
+	}else{
+		step = 0;
+
+		if(document.getElementById("tour-start").classList.contains("displaynone")) {
+			document.getElementById("tour-start").classList.remove("displaynone");
+		}else{
+			tourend();
+		};
+		searchside.classList.add("displaynone");
+		fullbackground.classList.add("displaynone");
+		informationside.classList.add("displaynone");
+		if(customside.classList.contains("displaynone")){
+		}else{
+			custombutton.onclick();
+    	};
+	};
+};
 
 function tourend(){
     document.getElementById(tourstep[step].name).classList.add("displaynone");
-    document.getElementById(tourstep[step].position).classList.add("displaynone");
-    step = 0;
-}
+	if(step !== 0 && step !== 8){
+	    document.getElementById(tourstep[step].position).classList.add("displaynone");
+	};
+
+	step = 0;
+};
 
 function tournext(){
     step += 1;
+
     document.getElementById(tourstep[step-1].name).classList.add("displaynone");
     document.getElementById(tourstep[step].name).classList.remove("displaynone");
-    document.getElementById(tourstep[step-1].position).classList.add("displaynone");
-    document.getElementById(tourstep[step].position).classList.remove("displaynone");
+	if(step !== 1){
+		document.getElementById(tourstep[step-1].position).classList.add("displaynone");
+	};
+	if(step !== 8){
+		document.getElementById(tourstep[step].position).classList.remove("displaynone");
+	};
 
     tourstepcheck();
-}
+};
 
 function tourprev(){
     step -= 1;
-    if(step >= 0 ){
-        document.getElementById(tourstep[step+1].name).classList.add("displaynone");
-        document.getElementById(tourstep[step].name).classList.remove("displaynone");
-        document.getElementById(tourstep[step+1].position).classList.add("displaynone");
-        document.getElementById(tourstep[step].position).classList.remove("displaynone");
-    };
+
+	document.getElementById(tourstep[step+1].name).classList.add("displaynone");
+	document.getElementById(tourstep[step].name).classList.remove("displaynone");
+	if(step !== 7){
+		document.getElementById(tourstep[step+1].position).classList.add("displaynone");
+	};
+	if(step !== 0){
+		document.getElementById(tourstep[step].position).classList.remove("displaynone");
+	};
 
     tourstepcheck();
 };
@@ -1640,7 +1665,12 @@ function tourstepcheck(){
             custombutton.onclick();
         };
         dotbutton.onclick();
-    }else if(step==2){
+	}else if(step==2){
+		dotbutton.onclick();
+    }else if(step==3){
+        custombutton.onclick();
+        dotbutton.onclick();
+    }else if(step==4){
         searchside.classList.add("displaynone");
         fullbackground.classList.add("displaynone");
         informationside.classList.add("displaynone");
@@ -1649,7 +1679,7 @@ function tourstepcheck(){
             custombutton.onclick();
         };
         barbutton .onclick();
-    }else if(step==3){
+    }else if(step==5){
         informationside.classList.add("displaynone");
         if(customside.classList.contains("displaynone")){
         }else{
@@ -1657,11 +1687,6 @@ function tourstepcheck(){
         };
         searchside.classList.remove("displaynone");
 		fullbackground.classList.remove("displaynone");
-    }else if(step==4){
-        custombutton.onclick();
-        dotbutton.onclick();
-    }else if(step==5){
-        information.onclick();
     }else if(step==6){
         searchside.classList.add("displaynone");
         fullbackground.classList.add("displaynone");
@@ -1669,7 +1694,11 @@ function tourstepcheck(){
         if(customside.classList.contains("displaynone")){
             custombutton.onclick();
         };
-    }else if(step==7){
+	}else if(step==7){
+		if(informationside.classList.contains("displaynone")){
+	        information.onclick();
+		};
+    }else if(step==8){
         searchside.classList.add("displaynone");
         fullbackground.classList.add("displaynone");
         informationside.classList.add("displaynone");

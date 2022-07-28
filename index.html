@@ -21,19 +21,18 @@
         <div id="title">How Much Do E-Scooters Really Cost?</div>
 
         <div id="icons">
-            <div id="question" title='The "Tour" function will update later on.'>
-                <!-- class="icon" -->
-                <!-- onclick="tourstart()" -->
+            <div id="question" class="icon" onclick="tourstart()" title='Tour'>
                 <text translate="no">?</text>
             </div>
 
-            <div id="information" class="icon">
+            <div id="information" class="icon" title="Information">
                 <text translate="no">i</text>
-                <div id="tourinfo-position" , class="tour-position displaynone"></div>
+                <div id="tourinfo", class="tour-position displaynone"></div>
             </div>
 
-            <div id="reset" class="icon">
+            <div id="reset" class="icon" title="Reset">
                 <img src="pic/reset.svg" height="30px">
+                <div id="tourreset", class="tour-position displaynone"></div>
             </div>
         </div>
     </nav>
@@ -43,18 +42,22 @@
             <div id="dotbutton" class="window buttonradius button">
                 <img src="pic/dot.svg" height="25">
                 <text class="buttontext">Overview</text>
+                <div id="tourdotchart", class="tour-position displaynone"></div>
             </div>
 
             <div id="barbutton" class="window buttonradius button">
                 <img src="pic/bar.svg" height="25">
                 <text class="buttontext">Analysis</text>
+                <div id="tourbarchart", class="tour-position displaynone"></div>
             </div>
 
             <div id="chartbuttonshadow" class="buttonradius shadow"></div>
         </div>
 
         <div id="chartwindow">
-            <div id="dotwindow" class="window"></div>
+            <div id="dotwindow" class="window">
+                <div id="tourtarget", class="tour-position displaynone"></div>
+            </div>
 
             <div id="barwindow" class="window">
                 <div id="spendingchartarea"></div>
@@ -71,10 +74,12 @@
             <div id="searchbutton" class="window buttonradius">
                 <img src="pic/search.svg" id="searchicon" height="28px">
                 <input type="text" id="searchbar" class="buttontext" placeholder="Search">
+                <div id="toursearch" class="tour-position displaynone"></div>
             </div>
 
             <div id="custombutton" class="window buttonradius button">
                 <text class="buttontext">Customize</text>
+                <div id="tourcustom" class="tour-position displaynone"></div>
             </div>
 
             <div id="custombuttonshadow" class="buttonradius shadow"></div>
@@ -282,9 +287,10 @@
             </div>
 
             <div id="informationside" class="window">
+                <img src="pic/close.svg" height="20px" id="informationclose" class="icon closeicon">
                 <h1>Authors</h1>
                 <h2>First Author:</h2>
-                <h3>Yuan-Hsi Thomas Chien</h3>
+                <h3>Yuan-Hsi Chien</h3>
                 <a href="mailto:hsi.en07@nycu.edu.tw">hsi.en07@nycu.edu.tw</a><br><br>
                 <h2>Adviser:</h2>
                 <h3>I-Yun Lisa Hsieh</h3>
@@ -301,78 +307,118 @@
     </aside>
 
     <div id="tour">
-		
 		<div id="tour-start" class="tour-box displaynone">
-			<span id="tourbox-header">導覽</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">嗨～我是功能導覽視窗～<br>每往下一步都會有一個地方被粉紅框框起來，在這裡會跟你說明各個按鈕或區域的功用。<br><br>p.s.使用手機的朋友如果找不到粉紅框框可以上下滑滑找找</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Welcome!</text>
+            <text class="tour-text">
+                Here's a quick tour to our website.<br>
+                We will introduce features to you step by step, feel free to click the "&#62;&#62;" and "&#60;&#60;" button if you miss anything.<br>
+                Note: This website is built for bigger screens (e.g. laptops), if something isn't showing the way it should, please change to a bigger device and visit us again!
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+            </div>
 		</div>
 
 		<div id="tour-dotchart" class="tour-box displaynone">
-			<span id="tourbox-header">散佈圖</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">以參數客製設定的值，計算機車全生命週期的碳排放量和總持有成本，橫軸為每年平均花費，縱軸為機車每行駛一公里的平均碳排放量。</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Overview</text>
+            <text class="tour-text">
+                The scatter plot shows emission and TCO of all scooter models.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
+		</div>
+
+        <div id="tour-target" class="tour-box displaynone">
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">The Targets</text>
+            <text class="tour-text">
+                Dotted line shows the 2030, 2040 and 2050 on road emission target of the pathway to net zero.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
+		</div>
+
+        <div id="tour-customize" class="tour-box displaynone">
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Customize</text>
+            <text class="tour-text">
+                We provided custom settings that can meet your usage condition or making decisions.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
 		</div>
 
 		<div id="tour-barchart" class="tour-box displaynone">
-			<span id="tourbox-header">柱狀圖</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">點擊右邊的「柱狀圖」可以換成柱狀圖。圖中以不同色塊顯示所選車款在不同項目的花費及碳排放量。</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Analysis</text>
+            <text class="tour-text">
+                You can select models from scatter plot for breakdown analysis.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
 		</div>
 
 		<div id="tour-search" class="tour-box displaynone">
-			<span id="tourbox-header">搜尋車輛</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">點擊搜尋欄，資訊欄會出現資料庫的所有車款，點擊想要的車款就會被選起來，也可以直接搜尋，等等在「柱狀圖」會顯示已選車款的詳細分析。<br><br>p.s.如果想要分析其他車款的時候記得回到這裡</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
-		</div>
-
-		<div id="tour-customize" class="tour-box displaynone">
-			<span id="tourbox-header">參數客製</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">點擊「參數客製」後，可依你的機車使用習慣及你喜歡的油電價格調整，調整完參數表格會自動更新～<br><br>p.s. 使用手機的朋友得麻煩你調整完參數點一下任何空白處才會更新</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
-		</div>
-
-		<div id="tour-info" class="tour-box displaynone">
-			<span id="tourbox-header">更多資訊</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">在「更多資訊」裡，可以看到我們的資料來源及研究方法，還有製作這個平台的作者們～</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Search</text>
+            <text class="tour-text">
+                Here are all the models we put in the research.<br>
+                If you can't find the model you're looking for, just type in the brand or model name then you can easily find them.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
 		</div>
 
 		<div id="tour-reset" class="tour-box displaynone">
-			<span id="tourbox-header">數據重置</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">按一下「數據重製」可以將客製參數調整回預設值，已選車款也會全部清空。</span>
-			<span id="tourbox-next" onclick="tournext()">下一步</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Reset</text>
+            <text class="tour-text">
+                All of the custom settings will be reset to default numbers.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
 		</div>
 
-		<div id="tour-more" class="tour-box displaynone">
-			<span id="tourbox-header">來去隔壁看看</span>
-			<span id="tourline"></span>
-			<div id="closeicon" class="icon" onclick="tourend()"><img src="pic/close.svg"></div>
-			<span id="tourbox-text">點擊「查看汽車分析」前往汽車種類的分析平台～</span>
-			<span id="tourbox-prev" onclick="tourprev()">上一步</span>
-			<span id="tourbox-close" onclick="tourend()">結束</span>
+		<div id="tour-info" class="tour-box displaynone">
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">Information</text>
+            <text class="tour-text">
+                You can find more informations here.<br>
+                Full abstract can be found at the end of the paragraph.<br>
+                If you have any question or suggestion, feel free to contact us.
+            </text>
+            <div class="tour-button">
+                <div class="tour-next icon" onclick="tournext()">&#62;&#62;</div>
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
 		</div>
 
+		<div id="tour-end" class="tour-box displaynone">
+			<img src="pic/close.svg" class="icon closeicon" height="20px" onclick="tourend()">
+            <text class="tour-head">End of tour</text>
+            <text class="tour-text">
+                This is the end of the tour.<br>
+                Hope this website made you easier understanding the research.<br>
+                Have a nice day!
+            </text>
+            <div id="tour-last" class="tour-button">
+                <div class="tour-prev icon" onclick="tourprev()">&#60;&#60;</div>
+            </div>
+		</div>
 	</div>
     
 </body>

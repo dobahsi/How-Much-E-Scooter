@@ -17,6 +17,7 @@
     --subLight: #3F72AF;
     --dark: #112D4E;
     --hoverBackground: rgba(17,45,78,0.07);
+    --highLight: #F5DF4D;
 
     --phase6: #BA9699;
     --phase7: #C36B76;
@@ -696,8 +697,105 @@ sub{
 }
 
 /* tour */
-.tour-position {
+.tour-box{
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: var(--windowColor);
+    border: 3px solid var(--dark);
+    border-radius: 15px;
+    box-shadow: 3px 3px var(--dark);
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.tour-head{
+    width: 100%;
+    height: 32px;
+    padding: 0 8% 0;
+    font-size: 1.4em;
+    font-weight: 700;
+
+    /* background-color: #16A1FE; */
+}
+
+.tour-text{
+    width: 100%;
+    height: calc(100% - 95px);
+    padding: 1% 8% 0;
+    overflow: auto;
+
+    /* background-color: #16A1FE; */
+}
+
+.tour-button{
+    width: 100%;
+    height: 36px;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#tour-last{
+    flex-direction: row !important;
+}
+
+.tour-next, .tour-prev{
+    width: 20%;
+    height: 65%;
+    font-size: 1.1em;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tour-position{
 	position: absolute;
-	border: 7px solid var(--phase7);
+	border: 6px solid var(--highLight);
 	z-index: 1000;
+}
+
+#tourdotchart{
+    width: 140px;
+    height: 50px;
+    border-radius: 18px 0 0 18px;
+}
+
+#tourtarget{
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    transform: translate(-13px, -13px);
+    border-radius: 20px;
+}
+
+#tourcustom, #toursearch{
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    border-radius: 18px;
+}
+
+#tourbarchart{
+    width: 140px;
+    height: 50px;
+    border-radius: 0 18px 18px 0;
+}
+
+#tourinfo, #tourreset{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#tourreset{
+    transform: translate(-8px, -89%);
 }
