@@ -588,7 +588,7 @@ sub{
     top: 0;
     left: 0;
 }
-#chartwindowshadow{
+#chartwindowshadow, #sidewindowshadow{
     width: 100%;
     height: calc(86vh - 110px);
 }
@@ -596,10 +596,6 @@ sub{
     width: 120px;
     height: 50px;
     right: 0;
-}
-#sidewindowshadow{
-    width: 100%;
-    height: calc(86vh - 110px);
 }
 
 #fullbackground{
@@ -798,4 +794,47 @@ sub{
 
 #tourreset{
     transform: translate(-8px, -89%);
+}
+
+/* RWD */
+@media all and (min-width: 1400px){
+    body{
+        width: 1400px;
+        margin: auto;
+    }
+
+    nav{
+        width: calc(1400px * 0.95);
+        left: calc((100vw - 1400px * 0.95) / 2);
+    }
+
+    article{
+        width: calc(1400px * 0.65);
+        left: calc((100vw - 1400px * 0.95) / 2);
+    }
+
+    aside{
+        width: calc(1400px * 0.27);
+        right: calc((100vw - 1400px * 0.95) / 2);
+    }
+
+    @media all and (min-height: 800px){
+        nav{
+            top: calc(800px * 0.03);
+        }
+
+        article{
+            height: calc(800px * 0.89 - 60px);
+            top: calc(800px * 0.06 + 60px);
+        }
+
+        aside{
+            height: calc(800px * 0.89 - 60px);
+            top: calc(800px * 0.06 + 60px);
+        }
+
+        #chartwindow, #dotwindow, #dotwindow, #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #chartwindowshadow, #sidewindowshadow{
+        height: calc(800px * 0.86 - 110px);
+        }
+    }
 }
