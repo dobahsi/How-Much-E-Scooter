@@ -797,6 +797,7 @@ sub{
 }
 
 /* RWD */
+/* bigbig screen */
 @media all and (min-width: 1400px){
     body{
         width: 1400px;
@@ -833,8 +834,66 @@ sub{
             top: calc(800px * 0.06 + 60px);
         }
 
-        #chartwindow, #dotwindow, #dotwindow, #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #chartwindowshadow, #sidewindowshadow{
+        #chartwindow, #dotwindow, #barwindow, #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #chartwindowshadow, #sidewindowshadow{
         height: calc(800px * 0.86 - 110px);
         }
+    }
+}
+
+@media all and (max-width: 1000px){
+    #fullwindow{
+        overflow: auto;
+    }
+
+    article{
+        width: 95vw;
+
+    }
+
+    aside{
+        width: 95vw;
+        height: 94vh;
+        top: calc(100vh + 10px);
+    }
+
+    aside::after{
+        content: "";
+        width: 50vw;
+        height: 3vh;
+        transform: translateY(3vh);
+        /* background-color: #B5CCDD; */
+    }
+
+    #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #sidewindowshadow{
+        height: calc(88vh - 50px);
+        margin-top: 2.5vh;
+    }
+
+    .tour-box{
+        width: 300px;
+    }
+
+    .tour-text{
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 840px){
+    #title{
+        font-size: 20px;
+    }
+
+    #question, #information{
+        width: 25px;
+        height: 25px;
+    }
+
+    #question text, #information text{
+        font-size: 20px;
+        border-width: 2px;
+    }
+
+    #reset{
+        transform: scale(0.8);
     }
 }
