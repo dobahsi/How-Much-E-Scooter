@@ -798,6 +798,26 @@ sub{
 
 /* RWD */
 /* bigbig screen */
+@media all and (min-height: 800px){
+    nav{
+        top: calc(800px * 0.03);
+    }
+
+    article{
+        height: calc(800px * 0.89 - 60px);
+        top: calc(800px * 0.06 + 60px);
+    }
+
+    aside{
+        height: calc(800px * 0.89 - 60px);
+        top: calc(800px * 0.06 + 60px);
+    }
+
+    #chartwindow, #dotwindow, #barwindow, #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #chartwindowshadow, #sidewindowshadow{
+    height: calc(800px * 0.86 - 110px);
+    }
+}
+
 @media all and (min-width: 1400px){
     body{
         width: 1400px;
@@ -876,6 +896,25 @@ sub{
     .tour-text{
         font-size: 12px;
     }
+    @media all and (min-height: 800px){
+        nav{
+            top: calc(800px * 0.03);
+        }
+
+        article{
+            height: calc(800px * 0.89 - 60px);
+            top: calc(800px * 0.06 + 60px);
+        }
+
+        aside{
+            height: calc(800px * 0.89 - 60px);
+            top: 800px;
+        }
+
+        #chartwindow, #dotwindow, #barwindow, #sidewindow, #dotside, #barside, #searchside, #customside, #informationside, #chartwindowshadow, #sidewindowshadow{
+        height: calc(800px * 0.86 - 110px);
+        }
+    }
 }
 
 @media all and (max-width: 840px){
@@ -897,3 +936,4 @@ sub{
         transform: scale(0.8);
     }
 }
+
