@@ -1020,6 +1020,26 @@ function updatedot(){
 	//畫到圖上前要重新整合一次, 順序要跟剛剛一樣
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 
+	//sensitive analysis(不重要)
+	var edata = SwapM.concat(SwapS)
+	var gdata = Phase7.concat(Phase6)
+
+	var allx = 0, ally = 0
+	edata.forEach(d => {
+		allx += d.x*1
+		ally += d.y*1
+	})
+	console.log('elec_TCO', allx/edata.length);
+
+	var allx = 0, ally = 0
+	gdata.forEach(d => {
+		allx += d.x*1
+		ally += d.y*1
+	})
+	console.log('gas_TCO', allx/gdata.length);
+	//end 不重要
+
+
 	//xAxis
 	//當xy軸選擇不同種的時候, x y點的值會不同
 	//軸的名稱html要變
