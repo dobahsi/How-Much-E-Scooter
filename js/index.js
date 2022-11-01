@@ -1028,15 +1028,18 @@ function updatedot(){
 	edata.forEach(d => {
 		allx += d.x*1
 		ally += d.y*1
+		elecxavg = allx/edata.length
 	})
-	console.log('elec_TCO', allx/edata.length);
+	console.log('elec_TCO', elecxavg);
 
 	var allx = 0, ally = 0
 	gdata.forEach(d => {
 		allx += d.x*1
 		ally += d.y*1
+		gasxavg = allx/gdata.length
 	})
-	console.log('gas_TCO', allx/gdata.length);
+	console.log('gas_TCO', gasxavg);
+	console.log('ratio_TCO', elecxavg/gasxavg);
 	//end 不重要
 
 
