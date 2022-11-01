@@ -1039,7 +1039,7 @@ function updatedot(){
 		gasxavg = allx/gdata.length
 	})
 	console.log('gas_TCO', gasxavg);
-	console.log('ratio_TCO', elecxavg/gasxavg);
+	console.log('->ratio_TCO', elecxavg/gasxavg);
 	//end 不重要
 
 
