@@ -1212,7 +1212,338 @@ updatedot();
 
 window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 
+// //testt
+// testt = []
+// for (var vkt=0; vkt<12001; vkt+=100){
+// 	input[0].yearkm = vkt
+// 	input[0].monthkm = vkt/12
+// 	// console.log(input[0].yearkm, input[0].monthkm);
+// 	//evmaintain
+//     //$833 first1000km
+//     var evfirst1k = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         if(input[0].yearkm*i >= 1000){
+//             evfirst1k = 833/(1+input[0].discount*1)**i;
+//             break
+//         };
+//     };
+//     if(input[0].ownyear*input[0].yearkm==1000){
+//         evfirst1k = 0;
+//     }
+//     evfirst1k = evfirst1k/input[0].ownyear;
 
+//     //$511 3000km
+//     var evmay3k = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         evmay3k += (Math.floor(input[0].yearkm*i/3000)-Math.floor(input[0].yearkm*(i-1)/3000))*511/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%3000 == 0){
+//         evmay3k = evmay3k - 511/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     evmay3k = evmay3k/input[0].ownyear;
+
+//     //$322 9000km
+//     var evmay9k = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         evmay9k += (Math.floor(input[0].yearkm*i/9000)-Math.floor(input[0].yearkm*(i-1)/9000))*322/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%9000 == 0){
+//         evmay9k = evmay9k - 322/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     evmay9k = evmay9k/input[0].ownyear;
+
+//     //$827 18000km
+//     var evmay18k = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         evmay18k += (Math.floor(input[0].yearkm*i/18000)-Math.floor(input[0].yearkm*(i-1)/18000))*827/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%18000 == 0){
+//         evmay18k = evmay18k - 827/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     evmay18k = evmay18k/input[0].ownyear;
+
+// 	var evmaintain = evfirst1k*1 + evmay3k*1 + evmay9k*1 + evmay18k*1;
+
+// 	//gasmaintain
+// 	//機油+齒輪油 $300 2000km
+// 	var gasenginoil = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         gasenginoil += (Math.floor(input[0].yearkm*i/2000)-Math.floor(input[0].yearkm*(i-1)/2000))*300/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%2000 == 0){
+//         gasenginoil = gasenginoil - 300/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     gasenginoil = gasenginoil/input[0].ownyear;
+
+//     //煞車油 $200 2year
+//     var gasbreakoil = 0;
+//     for (var i=0; i<input[0].ownyear; i+=2){
+//         if(i==0){}else{
+//             gasbreakoil += 200/(1+input[0].discount*1)**i;
+//         };
+//     };
+//     gasbreakoil = gasbreakoil/input[0].ownyear;
+
+//     //電瓶 $800 3year
+//     var gasbattery = 0;
+//     for (var i=0; i<input[0].ownyear; i+=3){
+//         if(i==0){}else{
+//             gasbattery += 800/(1+input[0].discount*1)**i;
+//         };
+//     };
+//     gasbattery = gasbattery/input[0].ownyear;
+
+//     //火星塞 $150 15000km
+//     var gassparkplug = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         gassparkplug += (Math.floor(input[0].yearkm*i/15000)-Math.floor(input[0].yearkm*(i-1)/15000))*150/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%15000 == 0){
+//         gassparkplug = gassparkplug - 150/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     gassparkplug = gassparkplug/input[0].ownyear;
+
+//     //空氣濾芯 $200 5000km
+//     var gasairfilter = 0;
+//     for (var i=1; i<input[0].ownyear*1+1; i++){
+//         gasairfilter += (Math.floor(input[0].yearkm*i/5000)-Math.floor(input[0].yearkm*(i-1)/5000))*200/(1+input[0].discount*1)**i;
+//     };
+//     if((input[0].yearkm*input[0].ownyear)%5000 == 0){
+//         gasairfilter = gasairfilter - 200/(1+input[0].discount*1)**input[0].ownyear;
+//     };
+//     gasairfilter = gasairfilter/input[0].ownyear;
+
+// 	var gasmaintain = gasenginoil*1 + gasbreakoil*1 + gasbattery*1 + gassparkplug*1 + gasairfilter*1;
+	
+// 	for (var i=0; i<SwapM.length; i++){
+// 		//spending
+// 		discountformula(SwapM[i].taxoriginal);
+// 		SwapM[i].tax = sum/12;
+
+// 		SwapM[i].maintain = evmaintain/12;
+
+// 		SwapM[i].kwh = input[0].monthkm/SwapM[i].efficiency;
+
+// 		if(SwapM[i].electricgroup == 'Ionex 3.0'){
+// 			if(SwapM[i].kwh*1 > ionex[2].kwhpermonth*1){
+// 				SwapM[i].plan = ionex[2].plan;
+// 				SwapM[i].planprice = ionex[2].price;
+// 				SwapM[i].fueloriginal = SwapM[i].kwh*ionex[2].ntdperkwh*12;
+// 			}else if(SwapM[i].kwh*1 > ionex[2].price/ionex[1].ntdperkwh){
+// 				SwapM[i].plan = ionex[2].plan;
+// 				SwapM[i].planprice = ionex[2].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			}else if(SwapM[i].kwh > ionex[1].kwhpermonth*1){
+// 				SwapM[i].plan = ionex[1].plan;
+// 				SwapM[i].planprice = ionex[1].price;
+// 				SwapM[i].fueloriginal = SwapM[i].kwh*ionex[1].ntdperkwh*12;
+// 			}else{
+// 				SwapM[i].plan = ionex[1].plan;
+// 				SwapM[i].planprice = ionex[1].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			};
+// 		}else if(SwapM[i].electricgroup == 'gogoro network'){
+// 			if(input[0].monthkm*1 > 630+66){
+// 				SwapM[i].plan = gogoro[4].plan;
+// 				SwapM[i].planprice = gogoro[4].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			}else if(input[0].monthkm*1 > 630){
+// 				SwapM[i].plan = gogoro[2].plan;
+// 				SwapM[i].planprice = gogoro[2].price;
+// 				SwapM[i].fueloriginal = (799+(input[0].monthkm-630)*1.5)*12;
+// 			}else if(input[0].monthkm*1 > 315+120){
+// 				SwapM[i].plan = gogoro[2].plan;
+// 				SwapM[i].planprice = gogoro[2].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			}else if(input[0].monthkm*1 > 315){
+// 				SwapM[i].plan = gogoro[1].plan;
+// 				SwapM[i].planprice = gogoro[1].price;
+// 				SwapM[i].fueloriginal = (499+(input[0].monthkm-315)*2.5)*12;
+// 			}else if(SwapM[i].kwh*1 > 7.514){
+// 				SwapM[i].plan = gogoro[1].plan;
+// 				SwapM[i].planprice = gogoro[1].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			}else if(SwapM[i].kwh*1 > 3.757 && SwapM[i].kwh*1 < 7.514){
+// 				SwapM[i].plan = gogoro[0].plan;
+// 				SwapM[i].planprice = gogoro[0].price;
+// 				SwapM[i].fueloriginal = (299+(SwapM[i].kwh-gogoro[0].kwhpermonth)*gogoro[0].ntdperkwh)*12;
+// 			}else{
+// 				SwapM[i].plan = gogoro[0].plan;
+// 				SwapM[i].planprice = gogoro[0].price;
+// 				SwapM[i].fueloriginal = SwapM[i].planprice*12;
+// 			};
+// 		};
+
+// 		discountformula(SwapM[i].fueloriginal);
+// 		SwapM[i].fuel = sum/12;
+
+// 		SwapM[i].salvage = (SwapM[i].price-evmotorsub)*input[0].depreciation**input[0].ownyear;
+// 		discountformula((SwapM[i].price-evmotorsub-SwapM[i].salvage)/input[0].ownyear);
+// 		SwapM[i].own = sum/12;
+
+// 		//emission
+// 		SwapM[i].battery = SwapM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+// 		SwapM[i].body = SwapM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+// 		SwapM[i].fuelmakefinal = SwapM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+
+// 		//total
+// 		SwapM[i].spending = SwapM[i].tax*1+SwapM[i].maintain*1+SwapM[i].fuel*1+SwapM[i].own*1;
+// 		SwapM[i].spendingperkm = SwapM[i].spending/input[0].monthkm;
+
+// 		SwapM[i].emission = SwapM[i].fuelburn*1+SwapM[i].fuelmakefinal*1+SwapM[i].battery*1+SwapM[i].body*1;
+// 		SwapM[i].emissionpermonth = SwapM[i].emission*input[0].monthkm/1000;
+// 	};
+// 	//ChargeM
+// 	for(var i=0; i<ChargeM.length; i++){
+// 		//spending
+// 		discountformula(ChargeM[i].taxoriginal);
+// 		ChargeM[i].tax = sum/12;
+
+// 		ChargeM[i].maintain = evmaintain/12;
+
+// 		ChargeM[i].kwh = input[0].monthkm/ChargeM[i].efficiency;
+
+// 		if(ChargeM[i].electricgroup == 'Ionex 3.0'){
+// 			if(input[0].yearkm*1 > ionex[4].kmperyear*1){
+// 				ChargeM[i].plan = ionex[4].plan;
+// 				ChargeM[i].planprice = ionex[4].price;
+// 				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+(input[0].yearkm-ionex[4].kmperyear)*ionex[4].ntdperkm+(input[0].yearkm/ChargeM[i].efficiency*input[0].electric);
+// 			}else{
+// 				ChargeM[i].plan = ionex[4].plan;
+// 				ChargeM[i].planprice = ionex[4].price;
+// 				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+(input[0].yearkm/ChargeM[i].efficiency*input[0].electric);
+// 			};
+// 		}else if(ChargeM[i].electricgroup=='eMOVING'){
+// 			if(input[0].monthkm/2 > emoving[1].distance*1){
+// 				ChargeM[i].plan = "進階型";
+// 				ChargeM[i].planprice = 799;
+// 				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+input[0].yearkm/2/ChargeM[i].efficiency*input[0].electric;
+// 			}else if(input[0].monthkm/2 > emoving[0].distance*1){
+// 				ChargeM[i].plan = "輕量型";
+// 				ChargeM[i].planprice = 599;
+// 				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+input[0].yearkm/2/ChargeM[i].efficiency*input[0].electric;
+// 			}else{
+// 				ChargeM[i].plan = "基礎型";
+// 				ChargeM[i].planprice = 399;
+// 				ChargeM[i].fueloriginal = ChargeM[i].planprice*12+input[0].yearkm/2/ChargeM[i].efficiency*input[0].electric;
+// 			};
+// 		};
+
+// 		discountformula(ChargeM[i].fueloriginal);
+//         ChargeM[i].fuel = sum/12;
+
+//         ChargeM[i].salvage = (ChargeM[i].price-evmotorsub)*input[0].depreciation**input[0].ownyear;
+//         discountformula((ChargeM[i].price-evmotorsub-ChargeM[i].salvage)/input[0].ownyear);
+//         ChargeM[i].own = sum/12;
+
+// 		//emission
+//         ChargeM[i].battery = ChargeM[i].batterymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+//         ChargeM[i].body = ChargeM[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+//         ChargeM[i].fuelmakefinal = ChargeM[i].kwh*input[0].electriccoefficient/input[0].monthkm;
+
+//         //total
+// 		ChargeM[i].spending = ChargeM[i].tax*1+ChargeM[i].maintain*1+ChargeM[i].fuel*1+ChargeM[i].own*1;
+// 		ChargeM[i].spendingperkm = ChargeM[i].spending/input[0].monthkm;
+
+//         ChargeM[i].emission = ChargeM[i].fuelburn*1+ChargeM[i].fuelmakefinal*1+ChargeM[i].battery*1+ChargeM[i].body*1;
+// 		ChargeM[i].emissionpermonth = ChargeM[i].emission*input[0].monthkm/1000;
+// 	};
+
+// 	//phase6
+// 	for (var i=0; i<Phase6.length; i++){
+//         //spending
+//         discountformula(Phase6[i].taxoriginal);
+//         Phase6[i].tax = sum/12;
+
+//         Phase6[i].maintain = gasmaintain/12;
+            
+//         discountformula((input[0].yearkm/Phase6[i].efficiency)*input[0].gas92);
+//         Phase6[i].fuel = sum/12;
+
+//         Phase6[i].salvage = Phase6[i].price*input[0].depreciation**input[0].ownyear;
+//         discountformula((Phase6[i].price-Phase6[i].salvage)/input[0].ownyear);
+//         Phase6[i].own = sum/12;
+
+//         //emission
+// 		Phase6[i].fuelburn = input[0].gascoefficient*1/Phase6[i].efficiency
+
+//         Phase6[i].body = Phase6[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+//         Phase6[i].fuelmakefinal = Phase6[i].fuelmake;
+
+//         //total
+//         Phase6[i].spending = Phase6[i].tax*1+Phase6[i].maintain*1+Phase6[i].fuel*1+Phase6[i].own*1;
+// 		Phase6[i].spendingperkm = Phase6[i].spending/input[0].monthkm;
+
+//         Phase6[i].emission = Phase6[i].fuelburn*1+Phase6[i].fuelmakefinal*1+Phase6[i].battery*1+Phase6[i].body*1;
+// 		Phase6[i].emissionpermonth = Phase6[i].emission*input[0].monthkm/1000;
+//     };
+
+// 	//phase7
+// 	for (var i=0; i<Phase7.length; i++){
+//         //spending
+//         discountformula(Phase7[i].taxoriginal);
+//         Phase7[i].tax = sum/12;
+
+//         Phase7[i].maintain = gasmaintain/12;
+            
+//         discountformula((input[0].yearkm/Phase7[i].efficiency)*input[0].gas92);
+//         Phase7[i].fuel = sum/12;
+
+//         Phase7[i].salvage = Phase7[i].price*input[0].depreciation**input[0].ownyear;
+//         discountformula((Phase7[i].price-Phase7[i].salvage)/input[0].ownyear);
+//         Phase7[i].own = sum/12;
+
+//         //emission
+// 		Phase7[i].fuelburn = input[0].gascoefficient*1/Phase7[i].efficiency
+
+//         Phase7[i].body = Phase7[i].bodymake/(input[0].ownyear*input[0].yearkm)*1000;
+
+//         Phase7[i].fuelmakefinal = Phase7[i].fuelmake;
+
+//         //total
+//         Phase7[i].spending = Phase7[i].tax*1+Phase7[i].maintain*1+Phase7[i].fuel*1+Phase7[i].own*1;
+// 		Phase7[i].spendingperkm = Phase7[i].spending/input[0].monthkm;
+
+//         Phase7[i].emission = Phase7[i].fuelburn*1+Phase7[i].fuelmakefinal*1+Phase7[i].battery*1+Phase7[i].body*1;
+// 		Phase7[i].emissionpermonth = Phase7[i].emission*input[0].monthkm/1000;
+//     };
+
+// 	//sensitive analysis(不重要)
+// 	var edata = SwapM.concat(SwapS)
+// 	var gdata = Phase7.concat(Phase6)
+
+
+// 	var allx = 0, ally = 0
+// 	edata.forEach(d => {
+// 		allx += d.spendingperkm*1
+// 		ally += d.emission*1
+		
+// 	})
+// 	elecxavg = allx/edata.length
+// 	// console.log('elec_TCO', elecxavg);
+
+// 	var allx = 0, ally = 0
+// 	gdata.forEach(d => {
+// 		allx += d.spendingperkm*1
+// 		ally += d.emission*1
+		
+// 	})
+// 	gasxavg = allx/gdata.length
+// 	// console.log('gas_TCO', gasxavg);
+// 	// console.log('->ratio_TCO', elecxavg/gasxavg);
+// 	//end 不重要
+// 	testt.push([vkt, elecxavg/gasxavg])
+// };
+// // console.log(testt);
+// var csv = testt.map(function(d){
+//     return d.join();
+// }).join('\n');
+// console.log(csv);
 
 //search
 //之前是在html檔裡面把所有checkbox打好, 現在改成直接讓js做好
