@@ -1062,15 +1062,15 @@ function updatedot(){
 		//vehicle price
 		motordata.forEach(function(d){
 			if(d.category == 'Phase6' || d.category == 'Phase7'){
-				d.x = d.price-gasmotorsub;
+				d.x = (d.price-gasmotorsub) / 1000;
 			}else if(d.category == 'SwapM' || d.category == 'ChargeM'){
-				d.x = d.price-evmotorsub;
+				d.x = (d.price-evmotorsub) / 1000;
 			}else if(d.category == 'SwapS' || d.category == 'ChargeS'){
-				d.x = d.price-greenevsub;
+				d.x = (d.price-greenevsub) / 1000;
 			};
 		});
 		
-		xaxistitle.html('Vehicle Price (NT$)');
+		xaxistitle.html('Vehicle Price (Thousand NT$)');
 	}else if(selectxaxis.value == selectxaxis[3].innerHTML){
 		//fuel price
 		motordata.forEach(d => d.x = d.fuel);
