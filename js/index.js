@@ -1021,25 +1021,27 @@ function updatedot(){
 	motordata = SwapM.concat(SwapS, ChargeM, ChargeS, Phase7, Phase6);
 
 	//sensitive analysis(不重要)
-	var edata = SwapM.concat(SwapS)
+	var edata = SwapM.concat(ChargeM)
 	var gdata = Phase7.concat(Phase6)
 
 	var allx = 0, ally = 0
 	edata.forEach(d => {
 		allx += d.x*1
 		ally += d.y*1
-		elecxavg = allx/edata.length
 	})
-	console.log('elec_TCO', elecxavg);
+	elecxavg = allx/edata.length
+	elecyavg = ally/edata.length
+	console.log('elec_TCO', elecxavg, 'elec_LCA', elecyavg);
 
 	var allx = 0, ally = 0
 	gdata.forEach(d => {
 		allx += d.x*1
 		ally += d.y*1
-		gasxavg = allx/gdata.length
 	})
-	console.log('gas_TCO', gasxavg);
-	console.log('->ratio_TCO', elecxavg/gasxavg);
+	gasxavg = allx/gdata.length
+	gasyavg = ally/gdata.length
+	console.log('gas_TCO', gasxavg, 'gas_LCA', gasyavg);
+	console.log('->ratio_TCO', elecxavg/gasxavg, 'ratio_LCA', elecyavg/gasyavg);
 	//end 不重要
 
 
@@ -1214,9 +1216,10 @@ window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 
 // //testt
 // testt = []
-// for (var vkt=0; vkt<12001; vkt+=100){
-// 	input[0].yearkm = vkt
-// 	input[0].monthkm = vkt/12
+// for (var emico=1442; emico<1443; emico+=0.05){
+// 	// input[0].yearkm = vkt
+// 	// input[0].monthkm = vkt/12
+// 	input[0].electriccoefficient = emico
 // 	// console.log(input[0].yearkm, input[0].monthkm);
 // 	//evmaintain
 //     //$833 first1000km
@@ -1514,7 +1517,7 @@ window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 //     };
 
 // 	//sensitive analysis(不重要)
-// 	var edata = SwapM.concat(SwapS)
+// 	var edata = SwapM.concat(ChargeM)
 // 	var gdata = Phase7.concat(Phase6)
 
 
@@ -1525,6 +1528,7 @@ window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 		
 // 	})
 // 	elecxavg = allx/edata.length
+// 	elecyavg = ally/edata.length
 // 	// console.log('elec_TCO', elecxavg);
 
 // 	var allx = 0, ally = 0
@@ -1534,10 +1538,11 @@ window.addEventListener('pointerup', e => {setTimeout(updatedot,10)});
 		
 // 	})
 // 	gasxavg = allx/gdata.length
+// 	gasyavg = ally/gdata.length
 // 	// console.log('gas_TCO', gasxavg);
 // 	// console.log('->ratio_TCO', elecxavg/gasxavg);
 // 	//end 不重要
-// 	testt.push([vkt, elecxavg/gasxavg])
+// 	testt.push([emico, elecyavg, gasyavg])
 // };
 // // console.log(testt);
 // var csv = testt.map(function(d){
