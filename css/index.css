@@ -550,11 +550,22 @@ select:focus{
     display: flex;
     justify-content: space-between;
 }
+
 /* informationside */
 #informationside, #informationside a{
     font-size: 12px;
 }
 
+.mailicon{
+    font-size: 0.8em;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+#tourtext{
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 
 /* other */
