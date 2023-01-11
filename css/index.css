@@ -562,6 +562,10 @@ select:focus{
     text-decoration: none;
 }
 
+.mailtext{
+    user-select: all;
+}
+
 #tourtext{
     text-decoration: underline;
     cursor: pointer;
