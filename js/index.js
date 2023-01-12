@@ -206,8 +206,8 @@ document.getElementById("reset").onclick = function(){
 	greenevsubsidy.innerHTML = subsidy[0].evgreen;
 	searchside.classList.add("displaynone");
 	fullbackground.classList.add("displaynone");
-	// d3.selectAll("input[type=checkbox]").property("checked", false);
-	// checkedData = [];
+	d3.selectAll("input[type=checkbox]").property("checked", false);
+	checkedData = [];
 	updateSelectedDot();
 };
 
