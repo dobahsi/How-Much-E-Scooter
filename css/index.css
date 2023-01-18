@@ -37,6 +37,11 @@
     --fuelburn: #8C4840;
 }
 
+::selection {
+    background: var(--subLight);
+    color: var(--windowColor);
+  }
+
 ::-webkit-scrollbar{
     width: 8px;
 }
@@ -554,16 +559,17 @@ select:focus{
 /* informationside */
 #informationside, #informationside a{
     font-size: 12px;
+    user-select: text;
+}
+
+#informationside h2{
+    user-select: text;
 }
 
 .mailicon{
     font-size: 0.8em;
     font-weight: 300;
     text-decoration: none;
-}
-
-.mailtext{
-    user-select: all;
 }
 
 #tourtext{
@@ -718,7 +724,7 @@ sub{
     background-color: var(--windowColor);
     border: 3px solid var(--dark);
     border-radius: 15px;
-    box-shadow: 3px 3px var(--dark);
+    box-shadow: 7px 7px var(--dark);
     z-index: 9999;
 
     display: flex;
