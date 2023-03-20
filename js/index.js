@@ -355,18 +355,26 @@ function dotHover(d,i){
 		tempx = (i.x*1).toFixed(2);
 	};
 
-	//hover資訊卡的innerhtml
-	//d.x y是在hover的時候滑鼠所在螢幕上的位置資訊
-	//也是hover資訊卡會出現的地方
-	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
-		.style('left', d.x+20 + 'px')
-		.style('top', d.y+20 + 'px');
+	var moneytext = ' NT$, '
+	var emissiontext = ' gCO<sub>2</sub>'
+
 	//select axis後面會出現
 	//這個if用在如果有特定軸需要不同單位的時候用
 	//像是這邊原本是gCO2, 變成kgCO2
 	if(selectyaxis.value == selectyaxis[1].innerHTML || selectyaxis.value == selectyaxis[2].innerHTML){
-		namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' kgCO<sub>2</sub>')
-	};
+		emissiontext = ' kgCO<sub>2</sub>'
+	}
+
+	if(selectxaxis.value == selectxaxis[2].innerHTML){
+		moneytext = ' kNT$, '
+	}
+
+	//hover資訊卡的innerhtml
+	//d.x y是在hover的時候滑鼠所在螢幕上的位置資訊
+	//也是hover資訊卡會出現的地方
+	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+moneytext+tempy+emissiontext)
+		.style('left', d.x+20 + 'px')
+		.style('top', d.y+20 + 'px');
 };
 
 //unhover的時候把點點縮回去, 資訊卡藏起來
