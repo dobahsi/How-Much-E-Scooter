@@ -459,10 +459,22 @@ function selectedDotHover(d,i){
 		tempx = (i.x*1).toFixed(2);
 	};
 
-	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+' NT$, '+tempy+' gCO<sub>2</sub>')
-		.style('left', d.x+20 + 'px')
-		.style('top', d.y+20 + 'px');
+	var moneytext = ' NT$, '
+	var emissiontext = ' gCO<sub>2</sub>'
+
+	if(selectyaxis.value == selectyaxis[1].innerHTML || selectyaxis.value == selectyaxis[2].innerHTML){
+		emissiontext = ' kgCO<sub>2</sub>'
+	}
+
+	if(selectxaxis.value == selectxaxis[2].innerHTML){
+		moneytext = ' kNT$, '
+	}
+	
+	namediv.html(energySelect(i.category)+' | $'+i.price+'<br>'+i.brand+' '+i.model+'<br>'+tempx+moneytext+tempy+emissiontext)
+			.style('left', d.x+20 + 'px')
+			.style('top', d.y+20 + 'px');
 };
+
 function selectedDotunHover(d,i){
 	d3.select(this).select('circle')
 		.attr('r', 9);
@@ -1092,7 +1104,7 @@ function updatedot(){
 
 		yaxistitle.html('Greenhouse Gas Emissions (gCO₂eq/km)');
 	}else if(selectyaxis.value == selectyaxis[1].innerHTML){
-		//emissiom per month
+		//emission per month
 		motordata.forEach(d => d.y = d.emissionpermonth);
 		FutureGoal.forEach(d => d.y = d.emissionpermonth);
 
